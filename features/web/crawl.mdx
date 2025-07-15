@@ -1,0 +1,84 @@
+---
+title: 'Crawl'
+description: 'Crawl a whole website and get content of all pages on it.'
+---
+
+Crawl a whole website and get content of all pages on it. Crawling is a long running task. To get the content of a crawl, you first create a crawl job and then check the results of the job.
+
+<Info>
+  The crawler will follow only the child links. For example, if you crawl
+  `https://supadata.ai/blog`, the crawler will follow links like
+  `https://supadata.ai/blog/article-1` , but not `https://supadata.ai/about`. To crawl the whole
+  website, provide the top URL (ie `https://supadata.ai`) as the URL to crawl.
+</Info>
+
+## Endpoint
+
+`POST /v1/web/crawl` - Create a crawl job and return a job ID to check the status of the crawl.
+
+## JSON Body
+
+| Parameter | Type   | Required | Description                                        |
+| --------- | ------ | -------- | -------------------------------------------------- |
+| url       | string | Yes      | URL of the webpage to scrape                       |
+| limit     | number | No       | Maximum number of pages to crawl. Defaults to 100. |
+
+## Example Request
+
+```bash
+curl -X POST 'https://api.supadata.ai/v1/web/crawl' \
+-H 'x-api-key: YOUR_API_KEY' \
+-H 'Content-Type: application/json' \
+-d '{"url": "https://supadata.ai", "limit": 100}'
+```
+
+## Response
+
+```json
+{
+  "jobId": "string" // The ID of the crawl job
+}
+```
+
+## Results
+
+After starting a crawl job, you can check the status of it. If the job is completed, you can get the results of the crawl.
+The results can be paginated for large crawls. In such cases, the response will contain a `next` field which you can use to get the next page of results.
+
+### Crawl Job
+
+```bash
+curl 'https://api.supadata.ai/v1/web/crawl/{jobId}' \
+-H 'x-api-key: YOUR_API_KEY'
+```
+
+### Crawl Results
+
+```json
+{
+  "status": "string", // The status of the crawl job: 'scraping', 'completed', 'failed' or 'cancelled'
+  "pages": [
+    // If job is completed, contains list of pages that were crawled
+    {
+      "url": "string", // The URL that was scraped
+      "content": "string", // The markdown content extracted from the URL
+      "name": "string", // The title of the webpage
+      "description": "string" // A description of the webpage
+    }
+  ],
+  "next": "string" // Large crawls will be paginated. Call this endpoint to get the next page of results
+}
+```
+
+## Error Codes
+
+The API returns HTTP status codes and error codes. See this [page](/documentation/errors) for more details.
+
+<Info>
+  Respect robots.txt and website terms of service when scraping web content.
+</Info>
+
+## Pricing
+
+- 1 crawl request = 1 credit
+- 1 crawled page = 1 credit

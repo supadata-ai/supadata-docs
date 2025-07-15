@@ -1,0 +1,59 @@
+---
+title: 'Channel'
+description: 'Use this API endpoint to fetch metadata from a YouTube channel including name, description, subscriber count, and more.'
+---
+
+This endpoint returns metadata from YouTube channels including name, description, subscriber count, video count, and more.
+
+## Quick Start
+
+### Request
+
+```bash
+curl -X GET 'https://api.supadata.ai/v1/youtube/channel?id=RickAstleyVEVO' \
+  -H 'x-api-key: YOUR_API_KEY'
+```
+
+### Response
+
+```json
+{
+  "id": "UCuAXFkgsw1L7xaCfnd5JJOw",
+  "name": "Rick Astley",
+  "description": "The official Rick Astley YouTube channel",
+  "subscriberCount": 2000000,
+  "videoCount": 100,
+  "thumbnail": "https://yt3.ggpht.com/...",
+  "banner": "https://yt3.ggpht.com/..."
+}
+```
+
+## Specification
+
+### Endpoint
+
+`GET https://api.supadata.ai/v1/youtube/channel`
+
+Each request requires an `x-api-key` header with your API key available after signing up. Find out more about [Authentication](/documentation/getting-started#authentication).
+
+### Query Parameters
+
+| Parameter | Type   | Required | Description                                                                                                           |
+| --------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| id        | string | Yes      | YouTube channel URL, handle or ID. See [Supported YouTube URL Formats](/documentation/youtube/supported-url-formats). |
+
+## Channel Videos
+
+You can also retrieve a list of video IDs from a channel using the [Channel Videos](/documentation/youtube/channel-videos) endpoint.
+
+### Error Codes
+
+The API returns HTTP status codes and error codes. See this [page](/documentation/errors) for more details.
+
+### Supported YouTube Identifiers
+
+The universal `id` parameter supports various YouTube URL and ID formats. See this [page](/documentation/youtube/supported-url-formats) for more details.
+
+## Pricing
+
+- 1 channel metadata request = 1 credit

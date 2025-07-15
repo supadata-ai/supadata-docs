@@ -1,0 +1,28 @@
+---
+title: 'URL Formats'
+description: 'Supported YouTube URL formats for videos, playlists, and channels.'
+---
+
+## Supported YouTube URL Formats
+
+The API supports various input formats for referencing videos, playlists and channels. Here are the supported formats:
+
+| Content Type | Supported Formats | Example |
+|-------------|------------------|----------|
+| Videos | YouTube video URL | `https://youtube.com/watch?v=dQw4w9WgXcQ` |
+| | Short URL | `http://youtu.be/dQw4w9WgXcQ` |
+| | Shorts URL | `https://youtube.com/shorts/dQw4w9WgXcQ` |
+| | Embed URL | `http://www.youtube.com/embed/dQw4w9WgXcQ` |
+| | Video ID | `dQw4w9WgXcQ` |
+| Playlists | Playlist URL | `https://youtube.com/playlist?list=PL9tY0BWXOZFuFEG_GtOBZ8-8wbkH-NVAr` |
+| | Playlist ID | `PL9tY0BWXOZFuFEG_GtOBZ8-8wbkH-NVAr` |
+| Channels | Channel URL | `https://youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw` |
+| | Custom URL | `https://youtube.com/c/RickAstley` |
+| | Handle URL | `https://youtube.com/@RickAstley` |
+| | Channel ID | `UCuAXFkgsw1L7xaCfnd5JJOw` |
+
+### Not supported content types:
+
+- Live stream videos - not possible to fetch transcripts of currently streamed videos
+- Private videos - will return a 404 error
+- User profile links

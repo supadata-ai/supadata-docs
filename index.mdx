@@ -1,71 +1,64 @@
 ---
-title: Introduction
-description: "Welcome to the home of your new documentation"
+title: 'Quickstart'
+description: 'Welcome to the Supadata documentation. Our API provides powerful tools for extracting web content.'
+og:title: "Quickstart | Supadata"
+og:description: "Welcome to the Supadata documentation. Our API provides powerful tools for extracting web content."
 ---
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.png"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.png"
-  alt="Hero Dark"
-/>
+## Overview
 
-## Setting up
+Supadata offers three main services:
 
-The first step to world-class documentation is setting up your editing environments.
+- Video Transcripts - Extract transcripts from YouTube, TikTok, X (Twitter) and video files
+- Web Reader - Extract content from any website, crawl pages and extract structured data
+- YouTube Metadata - Extract video, channel and playlist metadata
 
-<CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
-  </Card>
-  <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
+## Getting an API Key
 
-## Make it yours
+All requests to Supadata require authentication using an API key. The same key also works with the SDKs and no-code integrations. To get your API key:
 
-Update your docs to your brand and add valuable content for the best user conversion.
+1. Sign up for an account at [dash.supadata.ai](https://dash.supadata.ai)
+2. Choose a subscription plan
+3. Your API key will be generated automatically
 
-<CardGroup cols={2}>
-  <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
-  >
-    Customize your docs to your company's colors and brands
-  </Card>
-  <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
-  >
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/content/components/accordions"
-  >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/customers"
-  >
-    Check out our showcase of our favorite documentation
-  </Card>
-</CardGroup>
+## Integrations and SDKs
+
+This documentation provides examples for how to use the Supadata API and its various parameters.
+
+We also offer the following SDKs and integrations:
+
+- [JavaScript SDK](https://github.com/supadata-ai/js)
+- [Python SDK](https://github.com/supadata-ai/py)
+- Make, Zapier, n8n, Active Pieces: [See here](https://supadata.ai/nocode)
+
+## Rate Limits
+
+API requests are rate-limited based on your subscription plan. Current limits are shown in the [pricing page](https://supadata.ai/pricing).
+
+It is possible to increase rate limits upon request.
+
+## API Usage
+
+### Authentication
+
+All API requests require authentication using an API key. Include your API key in the request headers:
+
+```bash
+curl -H "x-api-key: YOUR_API_KEY" https://api.supadata.ai/v1/...
+```
+
+<Warning>
+  Never share your API key or commit it to version control. Use environment
+  variables to store your API key securely. Only access the API from a secure
+  server environment.
+</Warning>
+
+### Base URL
+
+All API endpoints use the following base URL:
+
+`https://api.supadata.ai/v1`
+
+### Response Format
+
+All API responses are returned in JSON format.

@@ -1,33 +1,64 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+description: 'Supadata API Reference'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
 
-## Welcome
+## Features
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+<CardGroup cols={3}>
+  <Card title="Transcript" icon="book" href="/api-reference/endpoint/search" color="FF713C">
+    Search the web and get full page content in any format.
+  </Card>
+  <Card title="YouTube" icon="youtube" href="/api-reference/endpoint/search" color="FF713C">
+    Search the web and get full page content in any format.
+  </Card>
+  <Card title="Web" icon="markdown" href="/api-reference/endpoint/scrape" color="FF713C">
+    Extract content from any webpage in markdown or json format.
+  </Card>
+  {/* <Card title="Crawl" icon="spider" href="/api-reference/endpoint/crawl-post" color="FF713C">
+    Crawl entire websites, extract their content and metadata.
+  </Card>
+  <Card title="Map" icon="map" href="/api-reference/endpoint/map" color="FF713C">
+    Get a complete list of URLs from any website quickly and reliably.
+  </Card> */}
+</CardGroup>
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+## Base URL
+
+All requests contain the following base URL:
+
+```bash
+https://api.supadata.ai/v1
+```
+
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+For authentication, it's required to include a `x-api-key` header.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```bash
+x-api-key: <YOUR_API_KEY>
 ```
+
+## Response codes
+Supadata employs conventional HTTP status codes to signify the outcome of your requests.
+
+Typically, 2xx HTTP status codes denote success, 4xx codes represent failures related to the user, and 5xx codes signal infrastructure problems.
+
+Status | Description
+--- | ---
+200 | Request was successful.
+400 | Verify the correctness of the parameters.
+401 | The API key was not provided.
+402 | Payment required
+404 | The requested resource could not be located.
+429 | The rate limit has been surpassed.
+5xx | Signifies a server error with Supadata.
+
+Refer to the Error Codes section for a detailed explanation of all potential API errors.
+​
+## Rate limit
+The Supadata API has a rate limit to ensure the stability and reliability of the service. The rate limit is applied to all endpoints and is based on the number of requests made within a specific time frame.
+
+When you exceed the rate limit, you will receive a 429 response code.

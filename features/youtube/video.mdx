@@ -1,0 +1,62 @@
+---
+title: 'Video'
+description: 'Use this API endpoint to fetch metadata from a YouTube video including title, description, channel info, and more.'
+---
+
+This endpoint returns metadata from YouTube videos including title, description, channel information, view counts, and more.
+
+## Quick Start
+
+### Request
+
+```bash
+curl -X GET 'https://api.supadata.ai/v1/youtube/video?id=dQw4w9WgXcQ' \
+  -H 'x-api-key: YOUR_API_KEY'
+```
+
+### Response
+
+```json
+{
+  "id": "dQw4w9WgXcQ",
+  "title": "Rick Astley - Never Gonna Give You Up (Official Music Video)",
+  "description": "The official music video for \"Never Gonna Give You Up\"...",
+  "duration": 213,
+  "channel": {
+    "id": "UCuAXFkgsw1L7xaCfnd5JJOw",
+    "name": "Rick Astley"
+  },
+  "tags": ["Rick Astley", "Official Video", "Music"],
+  "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+  "uploadDate": "2009-10-25T00:00:00.000Z",
+  "viewCount": 1234567890,
+  "likeCount": 12345678,
+  "transcriptLanguages": ["en", "es", "fr"]
+}
+```
+
+## Specification
+
+### Endpoint
+
+`GET https://api.supadata.ai/v1/youtube/video`
+
+Each request requires an `x-api-key` header with your API key available after signing up. Find out more about [Authentication](/documentation/getting-started#authentication).
+
+### Query Parameters
+
+| Parameter | Type   | Required | Description                                                                                                 |
+| --------- | ------ | -------- | ----------------------------------------------------------------------------------------------------------- |
+| id        | string | Yes      | YouTube video URL or ID. See [Supported YouTube URL Formats](/documentation/youtube/supported-url-formats). |
+
+### Error Codes
+
+The API returns HTTP status codes and error codes. See this [page](/documentation/errors) for more details.
+
+### Supported YouTube Identifiers
+
+The universal `id` parameter supports various YouTube URL and ID formats. See this [page](/documentation/youtube/supported-url-formats) for more details.
+
+## Pricing
+
+- 1 video metadata request = 1 credit

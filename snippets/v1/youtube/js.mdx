@@ -1,0 +1,67 @@
+```js Node
+const transcript: Transcript = await supadata.youtube.transcript({
+  url: 'https://youtu.be/dQw4w9WgXcQ',
+});
+
+// Translate YouTube transcript
+const translated: Transcript = await supadata.youtube.translate({
+  videoId: 'dQw4w9WgXcQ',
+  lang: 'es',
+});
+
+// Get a YouTube Video metadata
+const video: YoutubeVideo = await supadata.youtube.video({
+  id: 'dQw4w9WgXcQ', // can be url or video id
+});
+
+// Get a YouTube channel metadata
+const channel: YoutubeChannel = await supadata.youtube.channel({
+  id: 'https://youtube.com/@RickAstleyVEVO', // can be url, channel id, handle
+});
+
+// Get a list of video IDs from a YouTube channel
+const channelVideos: VideoIds = await supadata.youtube.channel.videos({
+  id: 'https://youtube.com/@RickAstleyVEVO', // can be url, channel id, handle
+  type: 'all', // 'video', 'short', 'live', 'all'
+  limit: 10,
+});
+
+// Get the metadata of a YouTube playlist
+const playlist: YoutubePlaylist = await supadata.youtube.playlist({
+  id: 'PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI', // can be url or playlist id
+});
+
+// Get a list of video IDs from a YouTube playlist
+const playlistVideos: VideoIds = await supadata.youtube.playlist.videos({
+  id: 'https://www.youtube.com/playlist?list=PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc', // can be url or playlist id
+  limit: 10,
+});
+
+// Start a YouTube transcript batch job
+const transcriptBatch = await supadata.youtube.transcript.batch({
+  videoIds: ['dQw4w9WgXcQ', 'xvFZjo5PgG0'],
+  // playlistId: 'PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc' // alternatively
+  // channelId: 'UC_9-kyTW8ZkZNDHQJ6FgpwQ' // alternatively
+  lang: 'en',
+});
+console.log(`Started transcript batch job: ${transcriptBatch.jobId}`);
+
+// Start a YouTube video metadata batch job
+const videoBatch = await supadata.youtube.video.batch({
+  videoIds: ['dQw4w9WgXcQ', 'xvFZjo5PgG0', 'L_jWHffIx5E'],
+  // playlistId: 'PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc' // alternatively
+  // channelId: 'UC_9-kyTW8ZkZNDHQJ6FgpwQ' // alternatively
+});
+console.log(`Started video batch job: ${videoBatch.jobId}`);
+
+// Get results for a batch job (poll until status is 'completed' or 'failed')
+const batchResults = await supadata.youtube.batch.getBatchResults(
+  transcriptBatch.jobId
+); // or videoBatch.jobId
+if (batchResults.status === 'completed') {
+  console.log('Batch job completed:', batchResults.results);
+  console.log('Stats:', batchResults.stats);
+} else {
+  console.log('Batch job status:', batchResults.status);
+}
+```

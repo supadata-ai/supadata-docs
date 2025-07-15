@@ -1,0 +1,33 @@
+---
+title: 'Limit Exceeded'
+description: 'You have exceeded the allowed request rate or quota limits. Explanation of the error and how to fix it.'
+---
+
+You have exceeded the allowed request rate or quota limits. This error occurs when you've reached the maximum number of requests allowed for your current plan or time period.
+
+```json
+{
+  "error": "limit-exceeded",
+  "message": "Limit Exceeded",
+  "details": "You have exceeded the allowed request rate or quota limits",
+  "documentationUrl": "https://supadata.ai/documentation/errors/limit-exceeded"
+}
+```
+
+## Reasons and how to fix
+
+### Rate limit exceeded
+
+You've made too many requests in a short time period.
+
+To fix this, make sure to not call the API more often than the rate limit on your plan allows. Implement rate limiting in your application and consider batching multiple requests into a single call using our batch endpoints.
+
+### Quota limit reached
+
+You've reached your plan's monthly quota limit.
+
+To fix this, check your usage in the dashboard and consider upgrading your plan for higher limits, enable Auto Recharge, or wait for the next billing cycle.
+
+### Reach out to support
+
+If you continue to face issues or need further assistance, please reach out to support@supadata.ai, and we will assist you as soon as possible.

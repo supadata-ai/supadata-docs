@@ -1,0 +1,686 @@
+---
+title: 'Languages'
+description: 'Supported languages for YouTube transcripts.'
+---
+
+import youtubeLanguages from '../youtube-transcripts-languages.json'
+
+
+## Supported YouTube languages
+
+The `lang` parameter value designates the desired language for video transcripts. By specifying a particular language code in the YouTube Transcripts API requests, you can indicate your preference for the language of the transcript.
+
+If the preferred language is not available yet, a default language will be used.
+
+You can use a [dedicated endpoint](/features/youtube/get-transcript-translation) to perform translation.
+
+The following values are valid for the `lang` search parameter:
+{/* [
+  {
+    "language_code": "af",
+    "language_name": "Afrikaans"
+  },
+  {
+    "language_code": "ak",
+    "language_name": "Akan"
+  },
+  {
+    "language_code": "sq",
+    "language_name": "Albanian"
+  },
+  {
+    "language_code": "am",
+    "language_name": "Amharic"
+  },
+  {
+    "language_code": "ar",
+    "language_name": "Arabic"
+  },
+  {
+    "language_code": "hy",
+    "language_name": "Armenian"
+  },
+  {
+    "language_code": "as",
+    "language_name": "Assamese"
+  },
+  {
+    "language_code": "ay",
+    "language_name": "Aymara"
+  },
+  {
+    "language_code": "az",
+    "language_name": "Azerbaijani"
+  },
+  {
+    "language_code": "bn",
+    "language_name": "Bangla"
+  },
+  {
+    "language_code": "eu",
+    "language_name": "Basque"
+  },
+  {
+    "language_code": "be",
+    "language_name": "Belarusian"
+  },
+  {
+    "language_code": "bho",
+    "language_name": "Bhojpuri"
+  },
+  {
+    "language_code": "bs",
+    "language_name": "Bosnian"
+  },
+  {
+    "language_code": "bg",
+    "language_name": "Bulgarian"
+  },
+  {
+    "language_code": "my",
+    "language_name": "Burmese"
+  },
+  {
+    "language_code": "ca",
+    "language_name": "Catalan"
+  },
+  {
+    "language_code": "ceb",
+    "language_name": "Cebuano"
+  },
+  {
+    "language_code": "zh",
+    "language_name": "Chinese"
+  },
+  {
+    "language_code": "zh-HK",
+    "language_name": "Chinese (Hong Kong)"
+  },
+  {
+    "language_code": "zh-CN",
+    "language_name": "Chinese (China)"
+  },
+  {
+    "language_code": "zh-SG",
+    "language_name": "Chinese (Singapore)"
+  },
+  {
+    "language_code": "zh-TW",
+    "language_name": "Chinese (Taiwan)"
+  },
+  {
+    "language_code": "zh-Hans",
+    "language_name": "Chinese (Simplified)"
+  },
+  {
+    "language_code": "zh-Hant",
+    "language_name": "Chinese (Traditional)"
+  },
+  {
+    "language_code": "hak-TW",
+    "language_name": "Hakka Chinese (Taiwan)"
+  },
+  {
+    "language_code": "nan-TW",
+    "language_name": "Min Nan Chinese (Taiwan)"
+  },
+  {
+    "language_code": "co",
+    "language_name": "Corsican"
+  },
+  {
+    "language_code": "hr",
+    "language_name": "Croatian"
+  },
+  {
+    "language_code": "cs",
+    "language_name": "Czech"
+  },
+  {
+    "language_code": "da",
+    "language_name": "Danish"
+  },
+  {
+    "language_code": "dv",
+    "language_name": "Divehi"
+  },
+  {
+    "language_code": "nl",
+    "language_name": "Dutch"
+  },
+  {
+    "language_code": "en",
+    "language_name": "English"
+  },
+  {
+    "language_code": "en-US",
+    "language_name": "English (United States)"
+  },
+  {
+    "language_code": "eo",
+    "language_name": "Esperanto"
+  },
+  {
+    "language_code": "et",
+    "language_name": "Estonian"
+  },
+  {
+    "language_code": "ee",
+    "language_name": "Ewe"
+  },
+  {
+    "language_code": "fil",
+    "language_name": "Filipino"
+  },
+  {
+    "language_code": "fi",
+    "language_name": "Finnish"
+  },
+  {
+    "language_code": "fr",
+    "language_name": "French"
+  },
+  {
+    "language_code": "gl",
+    "language_name": "Galician"
+  },
+  {
+    "language_code": "lg",
+    "language_name": "Ganda"
+  },
+  {
+    "language_code": "ka",
+    "language_name": "Georgian"
+  },
+  {
+    "language_code": "de",
+    "language_name": "German"
+  },
+  {
+    "language_code": "el",
+    "language_name": "Greek"
+  },
+  {
+    "language_code": "gn",
+    "language_name": "Guarani"
+  },
+  {
+    "language_code": "gu",
+    "language_name": "Gujarati"
+  },
+  {
+    "language_code": "ht",
+    "language_name": "Haitian Creole"
+  },
+  {
+    "language_code": "ha",
+    "language_name": "Hausa"
+  },
+  {
+    "language_code": "haw",
+    "language_name": "Hawaiian"
+  },
+  {
+    "language_code": "iw",
+    "language_name": "Hebrew"
+  },
+  {
+    "language_code": "hi",
+    "language_name": "Hindi"
+  },
+  {
+    "language_code": "hmn",
+    "language_name": "Hmong"
+  },
+  {
+    "language_code": "hu",
+    "language_name": "Hungarian"
+  },
+  {
+    "language_code": "is",
+    "language_name": "Icelandic"
+  },
+  {
+    "language_code": "ig",
+    "language_name": "Igbo"
+  },
+  {
+    "language_code": "id",
+    "language_name": "Indonesian"
+  },
+  {
+    "language_code": "ga",
+    "language_name": "Irish"
+  },
+  {
+    "language_code": "it",
+    "language_name": "Italian"
+  },
+  {
+    "language_code": "ja",
+    "language_name": "Japanese"
+  },
+  {
+    "language_code": "jv",
+    "language_name": "Javanese"
+  },
+  {
+    "language_code": "kn",
+    "language_name": "Kannada"
+  },
+  {
+    "language_code": "kk",
+    "language_name": "Kazakh"
+  },
+  {
+    "language_code": "km",
+    "language_name": "Khmer"
+  },
+  {
+    "language_code": "rw",
+    "language_name": "Kinyarwanda"
+  },
+  {
+    "language_code": "ko",
+    "language_name": "Korean"
+  },
+  {
+    "language_code": "kri",
+    "language_name": "Krio"
+  },
+  {
+    "language_code": "ku",
+    "language_name": "Kurdish"
+  },
+  {
+    "language_code": "ky",
+    "language_name": "Kyrgyz"
+  },
+  {
+    "language_code": "lo",
+    "language_name": "Lao"
+  },
+  {
+    "language_code": "la",
+    "language_name": "Latin"
+  },
+  {
+    "language_code": "lv",
+    "language_name": "Latvian"
+  },
+  {
+    "language_code": "ln",
+    "language_name": "Lingala"
+  },
+  {
+    "language_code": "lt",
+    "language_name": "Lithuanian"
+  },
+  {
+    "language_code": "lb",
+    "language_name": "Luxembourgish"
+  },
+  {
+    "language_code": "mk",
+    "language_name": "Macedonian"
+  },
+  {
+    "language_code": "mg",
+    "language_name": "Malagasy"
+  },
+  {
+    "language_code": "ms",
+    "language_name": "Malay"
+  },
+  {
+    "language_code": "ml",
+    "language_name": "Malayalam"
+  },
+  {
+    "language_code": "mt",
+    "language_name": "Maltese"
+  },
+  {
+    "language_code": "mi",
+    "language_name": "Māori"
+  },
+  {
+    "language_code": "mr",
+    "language_name": "Marathi"
+  },
+  {
+    "language_code": "mn",
+    "language_name": "Mongolian"
+  },
+  {
+    "language_code": "ne",
+    "language_name": "Nepali"
+  },
+  {
+    "language_code": "nso",
+    "language_name": "Northern Sotho"
+  },
+  {
+    "language_code": "no",
+    "language_name": "Norwegian"
+  },
+  {
+    "language_code": "ny",
+    "language_name": "Nyanja"
+  },
+  {
+    "language_code": "or",
+    "language_name": "Odia"
+  },
+  {
+    "language_code": "om",
+    "language_name": "Oromo"
+  },
+  {
+    "language_code": "ps",
+    "language_name": "Pashto"
+  },
+  {
+    "language_code": "fa",
+    "language_name": "Persian"
+  },
+  {
+    "language_code": "pl",
+    "language_name": "Polish"
+  },
+  {
+    "language_code": "pt",
+    "language_name": "Portuguese"
+  },
+  {
+    "language_code": "pa",
+    "language_name": "Punjabi"
+  },
+  {
+    "language_code": "qu",
+    "language_name": "Quechua"
+  },
+  {
+    "language_code": "ro",
+    "language_name": "Romanian"
+  },
+  {
+    "language_code": "ru",
+    "language_name": "Russian"
+  },
+  {
+    "language_code": "sm",
+    "language_name": "Samoan"
+  },
+  {
+    "language_code": "sa",
+    "language_name": "Sanskrit"
+  },
+  {
+    "language_code": "gd",
+    "language_name": "Scottish Gaelic"
+  },
+  {
+    "language_code": "sr",
+    "language_name": "Serbian"
+  },
+  {
+    "language_code": "sn",
+    "language_name": "Shona"
+  },
+  {
+    "language_code": "sd",
+    "language_name": "Sindhi"
+  },
+  {
+    "language_code": "si",
+    "language_name": "Sinhala"
+  },
+  {
+    "language_code": "sk",
+    "language_name": "Slovak"
+  },
+  {
+    "language_code": "sl",
+    "language_name": "Slovenian"
+  },
+  {
+    "language_code": "so",
+    "language_name": "Somali"
+  },
+  {
+    "language_code": "st",
+    "language_name": "Southern Sotho"
+  },
+  {
+    "language_code": "es",
+    "language_name": "Spanish"
+  },
+  {
+    "language_code": "su",
+    "language_name": "Sundanese"
+  },
+  {
+    "language_code": "sw",
+    "language_name": "Swahili"
+  },
+  {
+    "language_code": "sv",
+    "language_name": "Swedish"
+  },
+  {
+    "language_code": "tg",
+    "language_name": "Tajik"
+  },
+  {
+    "language_code": "ta",
+    "language_name": "Tamil"
+  },
+  {
+    "language_code": "tt",
+    "language_name": "Tatar"
+  },
+  {
+    "language_code": "te",
+    "language_name": "Telugu"
+  },
+  {
+    "language_code": "th",
+    "language_name": "Thai"
+  },
+  {
+    "language_code": "ti",
+    "language_name": "Tigrinya"
+  },
+  {
+    "language_code": "ts",
+    "language_name": "Tsonga"
+  },
+  {
+    "language_code": "tr",
+    "language_name": "Turkish"
+  },
+  {
+    "language_code": "tk",
+    "language_name": "Turkmen"
+  },
+  {
+    "language_code": "uk",
+    "language_name": "Ukrainian"
+  },
+  {
+    "language_code": "ur",
+    "language_name": "Urdu"
+  },
+  {
+    "language_code": "ug",
+    "language_name": "Uyghur"
+  },
+  {
+    "language_code": "uz",
+    "language_name": "Uzbek"
+  },
+  {
+    "language_code": "vi",
+    "language_name": "Vietnamese"
+  },
+  {
+    "language_code": "cy",
+    "language_name": "Welsh"
+  },
+  {
+    "language_code": "fy",
+    "language_name": "Western Frisian"
+  },
+  {
+    "language_code": "xh",
+    "language_name": "Xhosa"
+  },
+  {
+    "language_code": "yi",
+    "language_name": "Yiddish"
+  },
+  {
+    "language_code": "yo",
+    "language_name": "Yoruba"
+  },
+  {
+    "language_code": "zu",
+    "language_name": "Zulu"
+  }
+] */}
+| Language Code | Language Name |
+| ------------- | ------------- |
+| af            | Afrikaans     |
+| ak            | Akan          |
+| sq            | Albanian      |
+| am            | Amharic       |
+| ar            | Arabic        |
+| hy            | Armenian      |
+| as            | Assamese      |
+| ay            | Aymara        |
+| az            | Azerbaijani   |
+| bn            | Bangla        |
+| eu            | Basque        |
+| be            | Belarusian    |
+| bho           | Bhojpuri      |
+| bs            | Bosnian       |
+| bg            | Bulgarian     |
+| my            | Burmese       |
+| ca            | Catalan       |
+| ceb           | Cebuano       |
+| zh            | Chinese       |
+| zh-HK         | Chinese (Hong Kong) |
+| zh-CN         | Chinese (China) |
+| zh-SG         | Chinese (Singapore) |
+| zh-TW         | Chinese (Taiwan) |
+| zh-Hans       | Chinese (Simplified) |
+| zh-Hant       | Chinese (Traditional) |
+| hak-TW        | Hakka Chinese (Taiwan) |
+| nan-TW        | Min Nan Chinese (Taiwan) |
+| co            | Corsican      |
+| hr            | Croatian      |
+| cs            | Czech         |
+| da            | Danish        |
+| dv            | Divehi        |
+| nl            | Dutch         |
+| en            | English       |
+| en-US         | English (United States) |
+| eo            | Esperanto     |
+| et            | Estonian      |
+| ee            | Ewe           |
+| fil           | Filipino      |
+| fi            | Finnish       |
+| fr            | French        |
+| gl            | Galician      |
+| lg            | Ganda         |
+| ka            | Georgian      |
+| de            | German        |
+| el            | Greek         |
+| gn            | Guarani       |
+| gu            | Gujarati      |
+| ht            | Haitian Creole |
+| ha            | Hausa         |
+| haw           | Hawaiian      |
+| iw            | Hebrew        |
+| hi            | Hindi         |
+| hmn           | Hmong         |
+| hu            | Hungarian     |
+| is            | Icelandic     |
+| ig            | Igbo          |
+| id            | Indonesian    |
+| ga            | Irish         |
+| it            | Italian       |
+| ja            | Japanese      |
+| jv            | Javanese      |
+| kn            | Kannada       |
+| kk            | Kazakh        |
+| km            | Khmer         |
+| rw            | Kinyarwanda   |
+| ko            | Korean        |
+| kri           | Krio          |
+| ku            | Kurdish       |
+| ky            | Kyrgyz        |
+| lo            | Lao           |
+| la            | Latin         |
+| lv            | Latvian       |
+| ln            | Lingala       |
+| lt            | Lithuanian    |
+| lb            | Luxembourgish |
+| mk            | Macedonian    |
+| mg            | Malagasy      |
+| ms            | Malay         |
+| ml            | Malayalam     |
+| mt            | Maltese       |
+| mi            | Māori         |
+| mr            | Marathi       |
+| mn            | Mongolian     |
+| ne            | Nepali        |
+| nso           | Northern Sotho |
+| no            | Norwegian     |
+| ny            | Nyanja        |
+| or            | Odia          |
+| om            | Oromo         |
+| ps            | Pashto        |
+| fa            | Persian       |
+| pl            | Polish        |
+| pt            | Portuguese    |
+| pa            | Punjabi       |
+| qu            | Quechua       |
+| ro            | Romanian      |
+| ru            | Russian       |
+| sm            | Samoan        |
+| sa            | Sanskrit      |
+| gd            | Scottish Gaelic |
+| sr            | Serbian       |
+| sn            | Shona         |
+| sd            | Sindhi        |
+| si            | Sinhala       |
+| sk            | Slovak        |
+| sl            | Slovenian     |
+| so            | Somali        |
+| st            | Southern Sotho |
+| es            | Spanish       |
+| su            | Sundanese     |
+| sw            | Swahili       |
+| sv            | Swedish       |
+| tg            | Tajik         |
+| ta            | Tamil         |
+| tt            | Tatar         |
+| te            | Telugu        |
+| th            | Thai          |
+| ti            | Tigrinya      |
+| ts            | Tsonga        |
+| tr            | Turkish       |
+| tk            | Turkmen       |
+| uk            | Ukrainian     |
+| ur            | Urdu          |
+| ug            | Uyghur        |
+| uz            | Uzbek         |
+| vi            | Vietnamese    |
+| cy            | Welsh         |
+| fy            | Western Frisian |
+| xh            | Xhosa         |
+| yi            | Yiddish       |
+| yo            | Yoruba        |
+| zu            | Zulu          |

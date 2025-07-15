@@ -1,0 +1,73 @@
+```python Python
+# Get YouTube transcript with Spanish language preference
+transcript = supadata.youtube.transcript(video_id="dQw4w9WgXcQ", lang="es")
+print(f"Got transcript {transcript.content}")
+
+# Translate YouTube transcript to Spanish
+translated = supadata.youtube.translate(
+    video_id="dQw4w9WgXcQ",
+    lang="es"
+)
+print(f"Got translated transcript in {translated.lang}")
+
+# Get plain text transcript
+text_transcript = supadata.youtube.transcript(
+    video_id="dQw4w9WgXcQ",
+    text=True
+)
+print(text_transcript.content)
+
+# Get Video Metadata
+video = supadata.youtube.video(id="https://youtu.be/dQw4w9WgXcQ") # can be url or video id
+print(f"Video: {video}")
+
+# Get Channel Metadata
+channel = supadata.youtube.channel(id="https://youtube.com/@RickAstleyVEVO") # can be url, channel id, handle
+print(f"Channel: {channel}")
+
+# Get video IDs from a YouTube channel
+channel_videos = supadata.youtube.channel.videos(
+    id="RickAstleyVEVO",  # can be url, channel id, or handle
+    type="all",  # 'all', 'video', 'short', or 'live'
+    limit=50
+)
+print(f"Regular videos: {channel_videos.video_ids}")
+print(f"Shorts: {channel_videos.short_ids}")
+print(f"Live: {channel_videos.live_ids}")
+
+# Get Playlist metadata
+playlist = supadata.youtube.playlist(id="PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc") # can be url or playlist id
+print(f"Playlist: {playlist}")
+
+# Get video IDs from a YouTube playlist
+playlist_videos = supadata.youtube.playlist.videos(
+    id="https://www.youtube.com/playlist?list=PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc",  # can be url or playlist id
+    limit=50
+)
+print(f"Regular videos: {playlist_videos.video_ids}")
+print(f"Shorts: {playlist_videos.short_ids}")
+print(f"Live: {playlist_videos.live_ids}")
+
+# Batch Operations
+transcript_batch_job = supadata.youtube.transcript.batch(
+    video_ids=["dQw4w9WgXcQ", "xvFZjo5PgG0"],
+    # playlist_id="PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc", # alternatively
+    # channel_id="UC_9-kyTW8ZkZNDHQJ6FgpwQ", # alternatively
+    lang="en",  # Optional: specify preferred transcript language
+    limit=100   # Optional: limit for playlist/channel
+)
+print(f"Started transcript batch job: {transcript_batch_job.job_id}")
+
+# Start a batch job to get video metadata for a playlist
+video_batch_job = supadata.youtube.video.batch(
+    playlist_id="PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc",
+    limit=50
+)
+print(f"Started video metadata batch job: {video_batch_job.job_id}")
+
+# Get the results of a batch job (poll until status is 'completed' or 'failed')
+batch_results = supadata.youtube.batch.get_batch_results(job_id=transcript_batch_job.job_id)
+print(f"Job status: {batch_results.status}")
+print(f"Stats: {batch_results.stats.succeeded}/{batch_results.stats.total} videos processed")
+print(f"First result: {batch_results.results[0].video_id if batch_results.results else 'No results yet'}")
+```

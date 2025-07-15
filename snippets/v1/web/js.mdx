@@ -1,0 +1,15 @@
+```js Node
+const webContent: Scrape = await supadata.web.scrape('https://supadata.ai');
+
+// Map website URLs
+const siteMap: Map = await supadata.web.map('https://supadata.ai');
+
+// Crawl website
+const crawl: JobId = await supadata.web.crawl({
+  url: 'https://supadata.ai',
+  limit: 10,
+});
+
+// Get crawl job results
+const crawlResults: CrawlJob = await supadata.web.getCrawlResults(crawl.jobId);
+```

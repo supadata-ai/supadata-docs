@@ -1,0 +1,12 @@
+```python Python
+from supadata.errors import SupadataError
+
+try:
+    transcript = supadata.youtube.transcript(video_id="INVALID_ID")
+except SupadataError as error:
+    print(f"Error code: {error.error}")
+    print(f"Error message: {error.message}")
+    print(f"Error details: {error.details}")
+    if error.documentation_url:
+        print(f"Documentation: {error.documentation_url}")
+```

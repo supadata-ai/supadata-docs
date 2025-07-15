@@ -1,0 +1,91 @@
+---
+title: 'Translation'
+description: 'Use this API endpoint to fetch text transcript from a YouTube video in various formats and languages.'
+---
+
+This API fetches a transcript/subtitles from a YouTube video and translates it to the specified language.
+
+## Quick Start
+
+### Request
+
+```bash
+curl -X GET 'https://api.supadata.ai/v1/youtube/transcript/translation?videoId=dQw4w9WgXcQ&lang=es&text=true' \
+  -H 'x-api-key: YOUR_API_KEY'
+```
+
+### Response
+
+```json
+{
+  "content": "Nunca voy a abandonarte, nunca voy a decepcionarte…",
+  "lang": "es"
+}
+```
+
+<Info>
+  This endpoint has longer than usual response times. See [Latency](#latency) for more details.
+</Info>
+
+## Specification
+
+### Endpoint
+
+`GET https://api.supadata.ai/v1/youtube/transcript/translation`
+
+Each request requires an `x-api-key` header with your API key available after signing up. Find out more about [Authentication](/documentation/getting-started#authentication).
+
+### Query Parameters
+
+| Parameter | Type    | Required | Description                                                                             |
+| --------- | ------- | -------- | --------------------------------------------------------------------------------------- |
+| url       | string  | Yes\*    | YouTube video URL. See [Supported YouTube URL Formats](#supported-youtube-url-formats). |
+| videoId   | string  | Yes\*    | YouTube video ID. Alternative to URL.                                                   |
+| lang      | string  | Yes      | ISO 639-1 language code of the translation                                              |
+| text      | boolean | No       | When true, returns plain text transcript. Default: false                                |
+| chunkSize | number  | No       | Maximum characters per transcript chunk (only when text=false)                          |
+
+\* Either `url` or `videoId` must be provided
+
+### Response Format
+
+**When `text=true`:**
+
+```typescript
+{
+  "content": string,
+  "lang": string    // ISO 639-1 language code
+}
+```
+
+**When `text=false`:**
+
+```typescript
+{
+  "content": [
+    {
+      "text": string,     // Transcript segment
+      "offset": number,   // Start time in milliseconds
+      "duration": number, // Duration in milliseconds
+      "lang": string      // ISO 639-1 language code of chunk
+    }
+  ],
+  "lang": string          // ISO 639-1 language code of transcript
+}
+```
+
+### Latency
+
+Due to the duration of transcript translation tasks, the endpoint may take 20 or more seconds to complete. Please make sure to increase the request timeout in your application.
+
+### Error Codes
+
+The API returns HTTP status codes and error codes. See this [page](/documentation/errors) for more details.
+
+### Supported YouTube URL Formats
+
+`url` parameter supports various YouTube URL formats. See this [page](/documentation/youtube/supported-url-formats) for more details.
+
+## Pricing
+
+- 1 minute of transcript = 30 credits

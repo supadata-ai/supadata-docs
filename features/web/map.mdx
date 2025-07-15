@@ -1,0 +1,37 @@
+---
+title: 'Map'
+description: 'Scan a whole website and get URLs on it. Can be used to create a sitemap or run a crawler to fetch content of all pages of a destination.'
+---
+
+Crawl a whole website and get all URLs on it. Can be used to create a sitemap or run a crawler to fetch content of all pages of a destination.
+
+## Endpoint
+
+`GET /v1/web/map`
+
+## Query Parameters
+
+| Parameter | Type   | Required | Description               |
+| --------- | ------ | -------- | ------------------------- |
+| url       | string | Yes      | URL of the website to map |
+
+## Example Request
+
+```bash
+curl 'https://api.supadata.ai/v1/web/map?url=https://example.com' \
+-H 'x-api-key: YOUR_API_KEY'
+```
+
+## Response Format
+
+```json
+{
+  "urls": [
+    "string" // List of URLs found on the webpage
+  ]
+}
+```
+
+## Pricing
+
+- 1 map request = 1 credit

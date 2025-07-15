@@ -1,0 +1,51 @@
+---
+title: 'Invalid Request'
+description: 'It is an API error returned when the API fails to serve the request due to invalid request parameters.'
+---
+
+It is an API error returned when the API fails to serve the request due to invalid request parameters.
+
+```json
+{
+  "error": "invalid-request",
+  "message": "Invalid request",
+  "details": "Required parameters are missing from the request",
+  "documentationUrl": "https://supadata.ai/documentation/errors/invalid-request"
+}
+```
+
+## Reasons and how to fix
+
+### Invalid request parameters
+
+The most common reason for the `invalid-request` error is that one or more of the request parameters are invalid or missing.
+
+To fix this, ensure that all required parameters are included in the request and that they are correctly formatted and valid.
+
+### Missing required parameters
+
+If required parameters are missing from the request, this will trigger the `invalid-request` error.
+
+To fix this, ensure that all mandatory parameters are provided in the request. Refer to the API documentation for a list of required parameters.
+
+### Incorrect data types
+
+Providing parameters with incorrect data types (e.g., a string instead of an integer) can lead to this error.
+
+To fix this, verify that the data types of all parameters match the expected types as specified in the API documentation.
+
+### Parameter value constraints
+
+Some parameters may have constraints on their values (e.g., minimum or maximum length, specific formats). Violating these constraints will result in this error.
+
+To fix this, check the constraints for each parameter in the API documentation and ensure that the provided values comply with these constraints.
+
+### Syntax errors
+
+Syntax errors in the request, such as missing commas or brackets in JSON, can make the request invalid.
+
+To fix this, carefully review the syntax of your request and correct any errors. Using a JSON validator can help identify syntax issues.
+
+### Reach out to support
+
+If you continue to face issues or need further assistance, please reach out to support@supadata.ai, and we will assist you as soon as possible.

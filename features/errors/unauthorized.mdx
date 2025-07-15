@@ -1,0 +1,47 @@
+---
+title: 'Unauthorized'
+description: 'The request is unauthorized. Explanation of the error and how to fix it.'
+---
+
+The request is unauthorized. This error occurs when your Supadata API key is not provided, is invalid or expired.
+
+```json
+{
+  "error": "unauthorized",
+  "message": "Unauthorized",
+  "details": "The request is unauthorized. Please check your API key.",
+  "documentationUrl": "https://supadata.ai/documentation/errors/unauthorized"
+}
+```
+
+## Reasons and how to fix
+
+### Supadata API key not provided
+
+The error might occur if you haven't included the Supadata API key in your request.
+
+To fix this:
+1. Ensure you're including the Supadata API key in the request headers
+2. Verify the header name is correct (`x-api-key: YOUR_API_KEY` where `YOUR_API_KEY` is your API key from the dashboard)
+3. Check if your API client is properly configured to send the key
+
+### Invalid API key
+
+The most common reason for this error is that the API key you're using is invalid.
+
+To fix this:
+1. Verify that you're using the correct API key
+2. Ensure there are no extra spaces or special characters in the key
+
+### Expired API key
+
+Your API key might have expired.
+
+To fix this:
+1. Check your API key's expiration date in the Supadata dashboard
+2. Generate a new API key if necessary
+3. Update your application with the new key
+
+### Reach out to support
+
+If you continue to face issues or need further assistance, please reach out to support@supadata.ai, and we will assist you as soon as possible.

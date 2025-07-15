@@ -1,0 +1,53 @@
+---
+title: 'Scrape'
+description: 'Get content from URL'
+---
+
+Extract content from any web page using our powerful scraping API.
+
+## Endpoint
+
+`GET /v1/web/scrape`
+
+## Query Parameters
+
+| Parameter | Type   | Required | Description                  |
+| --------- | ------ | -------- | ---------------------------- |
+| url       | string | Yes      | URL of the webpage to scrape |
+| noLinks   | boolean | No      | Whether to include Markdown links in the response |
+| lang      | string  | No      | What language to request the content in, if the website supports multiple languages. ISO 639-1 code. Default: en |
+
+## Example Request
+
+```bash
+curl 'https://api.supadata.ai/v1/web/scrape?url=https://example.com' \
+-H 'x-api-key: YOUR_API_KEY'
+```
+
+## Response Format
+
+```json
+{
+  "url": "string", // The URL that was scraped
+  "content": "string", // The content extracted from the URL
+  "name": "string", // The name of the webpage
+  "description": "string", // A description of the webpage
+  "ogUrl": "string", // Open Graph URL for the webpage
+  "countCharacters": "number", // The number of characters in the content
+  "urls": [
+    "string" // List of URLs found on the webpage
+  ]
+}
+```
+
+## Error Codes
+
+The API returns HTTP status codes and error codes. See this [page](/documentation/errors) for more details.
+
+<Info>
+  Respect robots.txt and website terms of service when scraping web content.
+</Info>
+
+## Pricing
+
+- 1 transcript request = 1 credit

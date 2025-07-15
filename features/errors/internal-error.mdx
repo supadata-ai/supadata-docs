@@ -1,0 +1,34 @@
+---
+title: "Internal Error"
+description: 'An internal server error occurred while processing your request. Explanation of the error and how to fix it.'
+---
+
+An internal server error occurred while processing your request. This is a server-side error that indicates something went wrong on our end.
+
+```json
+{
+  "error": "internal-error",
+  "message": "Internal Error",
+  "details": "An internal server error occurred",
+  "documentationUrl": "https://supadata.ai/documentation/errors/internal-error"
+}
+```
+
+## Reasons and how to fix
+
+This error occurs when there's an unexpected issue during request processing on our servers. Possible reasons include:
+
+- Server-side processing error: an unexpected error occurred while processing the request.
+- Database connection issues: temporary database connectivity or network problems.
+- Service dependencies issues: one of our service dependencies is temporarily unavailable.
+
+
+### To fix
+
+1. Retry your request after a few moments
+2. If the error persists, try with a different request payload
+3. Check if the service status page indicates any ongoing issues
+
+### Reach out to support
+
+If you continue to face issues or need further assistance, please reach out to support@supadata.ai, and we will assist you as soon as possible.

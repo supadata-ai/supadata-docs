@@ -1,0 +1,74 @@
+---
+title: 'Playlist Videos'
+description: 'Use this API endpoint to fetch a list of video IDs from a YouTube playlist.'
+---
+
+This endpoint returns a list of video IDs from a YouTube playlist.
+
+## Quick Start
+
+### Request
+
+```bash
+curl -X GET 'https://api.supadata.ai/v1/youtube/playlist/videos?id=PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc&limit=20' \
+  -H 'x-api-key: YOUR_API_KEY'
+```
+
+### Response
+
+```json
+{
+  "videoIds": ["dQw4w9WgXcQ", "xvFZjo5PgG0"],
+  "shortIds": ["xvFZjo5PgG0", "dQw4w9WgXcQ"],
+  "liveIds": ["dQw4w9WgXcQ", "xvFZjo5PgG0"]
+}
+```
+
+## Specification
+
+### Endpoint
+
+`GET https://api.supadata.ai/v1/youtube/playlist/videos`
+
+Each request requires an `x-api-key` header with your API key available after signing up. Find out more about [Authentication](/documentation/getting-started#authentication).
+
+### Query Parameters
+
+| Parameter | Type   | Required | Description                                                                                                    |
+| --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------- |
+| id        | string | Yes      | YouTube playlist URL or ID. See [Supported YouTube URL Formats](/documentation/youtube/supported-url-formats). |
+| limit     | number | No       | Maximum number of video IDs to return. Default: 100. Max: 5000                                                 |
+
+### Response Format
+
+```typescript
+{
+  "videoIds": string[],  // List of vertical YouTube video IDs
+  "shortIds": string[],  // List of Shorts IDs
+  "liveIds": string[]   // List of live video IDs
+}
+```
+
+### Error Codes
+
+The API returns HTTP status codes and error codes. See this [page](/documentation/errors) for more details.
+
+### Supported YouTube Identifiers
+
+The universal `id` parameter supports various YouTube URL and ID formats. See this [page](/documentation/youtube/supported-url-formats) for more details.
+
+## Working with Playlist Videos
+
+After retrieving the list of video IDs, you can:
+
+1. Get metadata for each video using the [Video Metadata](/documentation/youtube/video) endpoint
+2. Get transcripts for each video using the [Transcript](/documentation/youtube/get-transcript) endpoint
+
+<Info>
+  For large playlists, consider using the `limit` parameter to control the number of results
+  returned.
+</Info>
+
+## Pricing
+
+- 1 playlist videos request = 1 credit

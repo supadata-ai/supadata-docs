@@ -1,0 +1,163 @@
+---
+title: 'Batch'
+description: 'Get multiple transcripts or video metadata from YouTube videos in a playlist, channel or list of URLs.'
+---
+
+The batch endpoints allow you to process multiple YouTube videos in a single request. This is useful for analyzing entire playlists or channels, or for processing a list of videos. Batch operations are asynchronous and return a job ID that can be used to check the results.
+
+<Info>
+  This feature is available only on paid plans.
+</Info>
+
+## Supported Source Types
+
+All batch endpoints support the following source types:
+
+- List of video URLs or IDs
+- Playlist URL or ID
+- Channel URL, handle, or ID
+
+## Batch Endpoints
+
+### Transcript Batch
+
+`POST /v1/youtube/transcript/batch` - Create a batch job to get transcripts from multiple YouTube videos.
+
+#### Request Body
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| videoIds | array | One of these is required | Array of YouTube video IDs or URLs |
+| playlistId | string | One of these is required | YouTube playlist URL or ID |
+| channelId | string | One of these is required | YouTube channel URL, handle or ID |
+| limit | number | No | Maximum number of videos to process (when using playlistId or channelId). Default: 10, Max: 5000 |
+| lang | string | No | Preferred language code for transcripts (ISO 639-1) |
+| text      | boolean | No       | When true, returns plain text transcript. Default: false                                |
+
+#### Example Request
+
+```bash
+curl -X POST 'https://api.supadata.ai/v1/youtube/transcript/batch' \
+-H 'x-api-key: YOUR_API_KEY' \
+-H 'Content-Type: application/json' \
+-d '{
+  "videoIds": [
+    "dQw4w9WgXcQ",
+    "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+  ],
+  "lang": "en",
+  "text": true
+}'
+```
+
+#### Response
+
+```json
+{
+  "jobId": "123e4567-e89b-12d3-a456-426614174000"
+}
+```
+
+### Video Metadata Batch
+
+`POST /v1/youtube/video/batch` - Create a batch job to get metadata from multiple YouTube videos.
+
+#### Request Body
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| videoIds | array | One of these is required | Array of YouTube video IDs or URLs |
+| playlistId | string | One of these is required | YouTube playlist URL or ID |
+| channelId | string | One of these is required | YouTube channel URL, handle or ID |
+| limit | number | No | Maximum number of videos to process (when using playlistId or channelId). Default: 10, Max: 5000 |
+
+#### Example Request
+
+```bash
+curl -X POST 'https://api.supadata.ai/v1/youtube/video/batch' \
+-H 'x-api-key: YOUR_API_KEY' \
+-H 'Content-Type: application/json' \
+-d '{
+  "playlistId": "PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc",
+  "limit": 20
+}'
+```
+
+#### Response
+
+```json
+{
+  "jobId": "123e4567-e89b-12d3-a456-426614174000"
+}
+```
+
+## Getting Batch Results
+
+Once you've created a batch job, you can check its status and retrieve results using the job ID.
+
+### Check Batch Job Status
+
+`GET /v1/youtube/batch/{jobId}` - Get the status and results of a batch job.
+
+#### Parameters
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| jobId | string | Yes | The ID of the batch job |
+
+#### Example Request
+
+```bash
+curl 'https://api.supadata.ai/v1/youtube/batch/123e4567-e89b-12d3-a456-426614174000' \
+-H 'x-api-key: YOUR_API_KEY'
+```
+
+#### Response
+
+```json
+{
+  "status": "completed",
+  "results": [
+    {
+      "videoId": "dQw4w9WgXcQ",
+      "transcript": {
+        "content": "Never gonna give you up, never gonna let you down...",
+        "lang": "en",
+        "availableLangs": ["en", "es", "fr"]
+      },
+    },
+    {
+      "videoId": "xvFZjo5PgG0",
+      "errorCode": "transcript-unavailable",
+    }
+  ],
+  "stats": {
+    "total": 2,
+    "succeeded": 1,
+    "failed": 1
+  },
+  "completedAt": "2025-04-03T06:59:53.428Z"
+}
+```
+
+## Batch Job Status
+
+The batch job can be in one of the following states:
+
+| Status | Description |
+| ------ | ----------- |
+| queued | The job is in the queue waiting to be processed |
+| active | The job is currently being processed |
+| completed | The job has finished processing all videos |
+| failed | The job failed due to an error |
+
+<Info>
+  Batch jobs are processed asynchronously and may take some time to complete, especially for large playlists or channels. You should poll the job status endpoint until the status is either "completed" or "failed".
+</Info>
+
+## Pricing
+
+- 1 request to start a batch job = 1 credit
+- 1 video / transcript in a batch = 1 credit
+
+For example, if you start a batch job with 10 videos, you will be charged 11 credits: 1 for the request and 10 for the videos.

@@ -1,0 +1,29 @@
+---
+title: 'Transcript Unavailable'
+description: 'No transcript is available for this video. Explanation of the error and how to fix it.'
+---
+
+No transcript is available for this video. This error occurs when you try to access a transcript for a YouTube, TikTok or X (Twitter) video that doesn't have one available.
+
+```json
+{
+  "error": "transcript-unavailable",
+  "message": "Transcript Unavailable",
+  "details": "No transcript is available for this video",
+  "documentationUrl": "https://supadata.ai/documentation/errors/transcript-unavailable"
+}
+```
+
+## Reasons and how to fix
+
+### Video has no captions
+
+The YouTube, TikTok or X (Twitter) video doesn't have any captions or subtitles available.
+
+To fix this:
+1. Use the [`/transcript`](/documentation/get-transcript) endpoint with `mode=generate` or `mode=auto` option to generate captions for the video
+2. Consider using a different video that has captions
+
+### Reach out to support
+
+If you continue to face issues or need further assistance, please reach out to support@supadata.ai, and we will assist you as soon as possible.

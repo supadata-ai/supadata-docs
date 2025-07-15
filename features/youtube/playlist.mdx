@@ -1,0 +1,62 @@
+---
+title: 'Playlist'
+description: 'Use this API endpoint to fetch metadata from a YouTube playlist including title, description, video count, and more.'
+---
+
+This endpoint returns metadata from YouTube playlists including title, description, video count, view count, and more.
+
+## Quick Start
+
+### Request
+
+```bash
+curl -X GET 'https://api.supadata.ai/v1/youtube/playlist?id=PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc' \
+  -H 'x-api-key: YOUR_API_KEY'
+```
+
+### Response
+
+```json
+{
+  "id": "PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc",
+  "title": "My Favorite Videos",
+  "description": "A collection of my favorite videos",
+  "videoCount": 25,
+  "viewCount": 1000000,
+  "lastUpdated": "2023-01-01T00:00:00.000Z",
+  "channel": {
+    "id": "UCuAXFkgsw1L7xaCfnd5JJOw",
+    "name": "Rick Astley"
+  }
+}
+```
+
+## Specification
+
+### Endpoint
+
+`GET https://api.supadata.ai/v1/youtube/playlist`
+
+Each request requires an `x-api-key` header with your API key available after signing up. Find out more about [Authentication](/documentation/getting-started#authentication).
+
+### Query Parameters
+
+| Parameter | Type   | Required | Description                                                                                                    |
+| --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------- |
+| id        | string | Yes      | YouTube playlist URL or ID. See [Supported YouTube URL Formats](/documentation/youtube/supported-url-formats). |
+
+## Playlist Videos
+
+You can also retrieve a list of video IDs from a playlist using the [Playlist Videos](/documentation/youtube/playlist-videos) endpoint.
+
+### Error Codes
+
+The API returns HTTP status codes and error codes. See this [page](/documentation/errors) for more details.
+
+### Supported YouTube Identifiers
+
+The universal `id` parameter supports various YouTube URL and ID formats. See this [page](/documentation/youtube/supported-url-formats) for more details.
+
+## Pricing
+
+- 1 playlist metadata request = 1 credit
