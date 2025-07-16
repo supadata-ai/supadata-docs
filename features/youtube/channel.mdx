@@ -3,16 +3,21 @@ title: 'Channel'
 description: 'Use this API endpoint to fetch metadata from a YouTube channel including name, description, subscriber count, and more.'
 ---
 
+import ChannelPython from '/snippets/v1/youtube/channel/python.mdx';
+import ChannelNode from '/snippets/v1/youtube/channel/js.mdx';
+import ChannelCURL from '/snippets/v1/youtube/channel/curl.mdx';
+
 This endpoint returns metadata from YouTube channels including name, description, subscriber count, video count, and more.
 
 ## Quick Start
 
 ### Request
 
-```bash
-curl -X GET 'https://api.supadata.ai/v1/youtube/channel?id=RickAstleyVEVO' \
-  -H 'x-api-key: YOUR_API_KEY'
-```
+<CodeGroup>
+  <ChannelPython />
+  <ChannelNode />
+  <ChannelCURL />
+</CodeGroup>
 
 ### Response
 

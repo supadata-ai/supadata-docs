@@ -3,16 +3,21 @@ title: 'Playlist'
 description: 'Use this API endpoint to fetch metadata from a YouTube playlist including title, description, video count, and more.'
 ---
 
+import PlaylistPython from '/snippets/v1/youtube/playlist/python.mdx';
+import PlaylistNode from '/snippets/v1/youtube/playlist/js.mdx';
+import PlaylistCURL from '/snippets/v1/youtube/playlist/curl.mdx';
+
 This endpoint returns metadata from YouTube playlists including title, description, video count, view count, and more.
 
 ## Quick Start
 
 ### Request
 
-```bash
-curl -X GET 'https://api.supadata.ai/v1/youtube/playlist?id=PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc' \
-  -H 'x-api-key: YOUR_API_KEY'
-```
+<CodeGroup>
+  <PlaylistPython />
+  <PlaylistNode />
+  <PlaylistCURL />
+</CodeGroup>
 
 ### Response
 

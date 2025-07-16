@@ -1,0 +1,16 @@
+```js Node
+import {
+  Supadata,
+  Transcript
+} from '@supadata/js';
+
+// Initialize the client
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+const translated: Transcript = await supadata.youtube.translate({
+  videoId: 'dQw4w9WgXcQ',
+  lang: 'es',
+});
+```

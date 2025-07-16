@@ -3,16 +3,21 @@ title: 'Translation'
 description: 'Use this API endpoint to fetch text transcript from a YouTube video in various formats and languages.'
 ---
 
+import TranslationPython from '/snippets/v1/youtube/translation/python.mdx';
+import TranslationNode from '/snippets/v1/youtube/translation/js.mdx';
+import TranslationCurl from '/snippets/v1/youtube/translation/curl.mdx';
+
 This API fetches a transcript/subtitles from a YouTube video and translates it to the specified language.
 
 ## Quick Start
 
 ### Request
 
-```bash
-curl -X GET 'https://api.supadata.ai/v1/youtube/transcript/translation?videoId=dQw4w9WgXcQ&lang=es&text=true' \
-  -H 'x-api-key: YOUR_API_KEY'
-```
+<CodeGroup>
+  <TranslationPython />
+  <TranslationNode />
+  <TranslationCurl />
+</CodeGroup>
 
 ### Response
 

@@ -1,0 +1,13 @@
+```bash CURL
+curl -X POST 'https://api.supadata.ai/v1/youtube/transcript/batch' \
+-H 'x-api-key: YOUR_API_KEY' \
+-H 'Content-Type: application/json' \
+-d '{
+  "videoIds": [
+    "dQw4w9WgXcQ",
+    "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+  ],
+  "lang": "en",
+  "text": true
+}'
+```

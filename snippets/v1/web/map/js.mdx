@@ -1,0 +1,14 @@
+```js Node
+import {
+  Supadata,
+  Map
+} from '@supadata/js';
+
+// Initialize the client
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+const siteMap: Map = await supadata.web.map('https://supadata.ai');
+
+```

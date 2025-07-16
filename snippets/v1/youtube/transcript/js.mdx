@@ -1,0 +1,18 @@
+```js Node
+import {
+  Supadata,
+} from '@supadata/js';
+
+// Initialize the client
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+const transcriptBatch = await supadata.youtube.transcript.batch({
+  videoIds: ['dQw4w9WgXcQ', 'xvFZjo5PgG0'],
+  // playlistId: 'PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc' // alternatively
+  // channelId: 'UC_9-kyTW8ZkZNDHQJ6FgpwQ' // alternatively
+  lang: 'en',
+});
+console.log(`Started transcript batch job: ${transcriptBatch.jobId}`);
+```

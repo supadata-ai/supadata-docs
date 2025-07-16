@@ -1,0 +1,21 @@
+```js Node
+import {
+  Supadata,
+  JobId,
+  CrawlJob
+} from '@supadata/js';
+
+// Initialize the client
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+// Crawl website
+const crawl: JobId = await supadata.web.crawl({
+  url: 'https://supadata.ai',
+  limit: 10,
+});
+
+// Get crawl job results
+const crawlResults: CrawlJob = await supadata.web.getCrawlResults(crawl.jobId);
+```

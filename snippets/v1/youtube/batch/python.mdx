@@ -1,0 +1,15 @@
+```python Python
+from supadata import Supadata, SupadataError
+
+# Initialize the client
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+transcript_batch_job = supadata.youtube.transcript.batch(
+    video_ids=["dQw4w9WgXcQ", "xvFZjo5PgG0"],
+    # playlist_id="PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc", # alternatively
+    # channel_id="UC_9-kyTW8ZkZNDHQJ6FgpwQ", # alternatively
+    lang="en",  # Optional: specify preferred transcript language
+    limit=100   # Optional: limit for playlist/channel
+)
+print(f"Started transcript batch job: {transcript_batch_job.job_id}")
+```

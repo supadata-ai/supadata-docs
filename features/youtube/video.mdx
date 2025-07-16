@@ -3,16 +3,21 @@ title: 'Video'
 description: 'Use this API endpoint to fetch metadata from a YouTube video including title, description, channel info, and more.'
 ---
 
+import VideoPython from '/snippets/v1/youtube/video/python.mdx'
+import VideoNode from '/snippets/v1/youtube/video/js.mdx'
+import VideoCURL from '/snippets/v1/youtube/video/curl.mdx'
+
 This endpoint returns metadata from YouTube videos including title, description, channel information, view counts, and more.
 
 ## Quick Start
 
 ### Request
 
-```bash
-curl -X GET 'https://api.supadata.ai/v1/youtube/video?id=dQw4w9WgXcQ' \
-  -H 'x-api-key: YOUR_API_KEY'
-```
+<CodeGroup>
+  <VideoPython />
+  <VideoNode />
+  <VideoCURL />
+</CodeGroup>
 
 ### Response
 

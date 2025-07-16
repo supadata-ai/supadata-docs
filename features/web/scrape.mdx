@@ -3,6 +3,10 @@ title: 'Scrape'
 description: 'Get content from URL'
 ---
 
+import ScrapePython from '/snippets/v1/web/scrape/python.mdx';
+import ScrapeNode from '/snippets/v1/web/scrape/js.mdx';
+import ScrapeCURL from '/snippets/v1/web/scrape/curl.mdx';
+
 Extract content from any web page using our powerful scraping API.
 
 ## Endpoint
@@ -19,10 +23,11 @@ Extract content from any web page using our powerful scraping API.
 
 ## Example Request
 
-```bash
-curl 'https://api.supadata.ai/v1/web/scrape?url=https://example.com' \
--H 'x-api-key: YOUR_API_KEY'
-```
+<CodeGroup>
+  <ScrapePython />
+  <ScrapeNode />
+  <ScrapeCURL />
+</CodeGroup>
 
 ## Response Format
 

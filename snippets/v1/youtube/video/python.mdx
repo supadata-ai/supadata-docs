@@ -1,0 +1,9 @@
+```python Python
+from supadata import Supadata, SupadataError
+
+# Initialize the client
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+video = supadata.youtube.video(id="https://youtu.be/dQw4w9WgXcQ") # can be url or video id
+print(f"Video: {video}")
+```

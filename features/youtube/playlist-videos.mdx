@@ -2,6 +2,9 @@
 title: 'Playlist Videos'
 description: 'Use this API endpoint to fetch a list of video IDs from a YouTube playlist.'
 ---
+import PlaylistVideosPython from '/snippets/v1/youtube/playlist-videos/python.mdx';
+import PlaylistVideosNode from '/snippets/v1/youtube/playlist-videos/js.mdx';
+import PlaylistVideosCURL from '/snippets/v1/youtube/playlist-videos/curl.mdx';
 
 This endpoint returns a list of video IDs from a YouTube playlist.
 
@@ -9,10 +12,11 @@ This endpoint returns a list of video IDs from a YouTube playlist.
 
 ### Request
 
-```bash
-curl -X GET 'https://api.supadata.ai/v1/youtube/playlist/videos?id=PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc&limit=20' \
-  -H 'x-api-key: YOUR_API_KEY'
-```
+<CodeGroup>
+  <PlaylistVideosPython />
+  <PlaylistVideosNode />
+  <PlaylistVideosCURL />
+</CodeGroup>
 
 ### Response
 

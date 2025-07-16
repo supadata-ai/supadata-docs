@@ -4,16 +4,21 @@ description: 'Use this API endpoint to fetch text transcript from a video hosted
 icon: "book"
 ---
 
+import TranscriptPython from '/snippets/v1/transcripts/python.mdx'
+import TranscriptNode from '/snippets/v1/transcripts/js.mdx'
+import TranscriptCURL from '/snippets/v1/transcripts/curl.mdx'
+
 This API gets transcript/subtitles of a video hosted on YouTube, TikTok, X (Twitter) or a public file URL.
 
 ## Quick Start
 
 ### Request
 
-```bash
-curl -X GET 'https://api.supadata.ai/v1/transcript?url=https://youtu.be/dQw4w9WgXcQ' \
-  -H 'x-api-key: YOUR_API_KEY'
-```
+<CodeGroup>
+  <TranscriptPython />
+  <TranscriptNode />
+  <TranscriptCURL />
+</CodeGroup>
 
 ### Response
 

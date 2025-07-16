@@ -1,0 +1,15 @@
+```python Python
+from supadata import Supadata, SupadataError
+
+# Initialize the client
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+channel_videos = supadata.youtube.channel.videos(
+    id="RickAstleyVEVO",  # can be url, channel id, or handle
+    type="all",  # 'all', 'video', 'short', or 'live'
+    limit=50
+)
+print(f"Regular videos: {channel_videos.video_ids}")
+print(f"Shorts: {channel_videos.short_ids}")
+print(f"Live: {channel_videos.live_ids}")
+```

@@ -3,16 +3,22 @@ title: 'Channel Videos'
 description: 'Use this API endpoint to fetch a list of video IDs from a YouTube channel.'
 ---
 
+import ChannelVideosPython from '/snippets/v1/youtube/channel-videos/python.mdx';
+import ChannelVideosNode from '/snippets/v1/youtube/channel-videos/js.mdx';
+import ChannelVideosCURL from '/snippets/v1/youtube/channel-videos/curl.mdx';
+
 This endpoint returns a list of video IDs from a YouTube channel.
 
 ## Quick Start
 
 ### Request
 
-```bash
-curl -X GET 'https://api.supadata.ai/v1/youtube/channel/videos?id=RickAstleyVEVO&limit=50' \
-  -H 'x-api-key: YOUR_API_KEY'
-```
+
+<CodeGroup>
+  <ChannelVideosPython />
+  <ChannelVideosNode />
+  <ChannelVideosCURL />
+</CodeGroup>
 
 ### Response
 

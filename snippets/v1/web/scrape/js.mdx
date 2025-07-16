@@ -1,0 +1,13 @@
+```js Node
+import {
+  Supadata,
+  Scrape
+} from '@supadata/js';
+
+// Initialize the client
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+const webContent: Scrape = await supadata.web.scrape('https://supadata.ai');
+```

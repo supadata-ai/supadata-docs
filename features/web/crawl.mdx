@@ -3,6 +3,10 @@ title: 'Crawl'
 description: 'Crawl a whole website and get content of all pages on it.'
 ---
 
+import CrawlPython from '/snippets/v1/web/crawl/python.mdx';
+import CrawlNode from '/snippets/v1/web/crawl/js.mdx';
+import CrawlCURL from '/snippets/v1/web/crawl/curl.mdx';
+
 Crawl a whole website and get content of all pages on it. Crawling is a long running task. To get the content of a crawl, you first create a crawl job and then check the results of the job.
 
 <Info>
@@ -25,12 +29,11 @@ Crawl a whole website and get content of all pages on it. Crawling is a long run
 
 ## Example Request
 
-```bash
-curl -X POST 'https://api.supadata.ai/v1/web/crawl' \
--H 'x-api-key: YOUR_API_KEY' \
--H 'Content-Type: application/json' \
--d '{"url": "https://supadata.ai", "limit": 100}'
-```
+<CodeGroup>
+  <CrawlPython />
+  <CrawlNode />
+  <CrawlCURL />
+</CodeGroup>
 
 ## Response
 

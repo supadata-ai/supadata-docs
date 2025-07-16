@@ -1,0 +1,24 @@
+```python Python
+from supadata import Supadata, SupadataError
+
+# Initialize the client
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+# Start a crawl job
+crawl_job = supadata.web.crawl(
+    url="https://supadata.ai",
+    limit=100  # Optional: limit the number of pages to crawl
+)
+print(f"Started crawl job: {crawl_job.job_id}")
+
+# Get crawl results
+# This automatically handles pagination and returns all pages
+try:
+    pages = supadata.web.get_crawl_results(job_id=crawl_job.job_id)
+    for page in pages:
+        print(f"Crawled page: {page.url}")
+        print(f"Page title: {page.name}")
+        print(f"Content: {page.content}")
+except SupadataError as e:
+    print(f"Crawl job failed: {e}")
+```

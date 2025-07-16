@@ -1,0 +1,14 @@
+```python Python
+from supadata import Supadata, SupadataError
+
+# Initialize the client
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+playlist_videos = supadata.youtube.playlist.videos(
+    id="https://www.youtube.com/playlist?list=PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc",  # can be url or playlist id
+    limit=50
+)
+print(f"Regular videos: {playlist_videos.video_ids}")
+print(f"Shorts: {playlist_videos.short_ids}")
+print(f"Live: {playlist_videos.live_ids}")
+```

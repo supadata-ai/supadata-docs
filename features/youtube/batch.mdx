@@ -3,6 +3,10 @@ title: 'Batch'
 description: 'Get multiple transcripts or video metadata from YouTube videos in a playlist, channel or list of URLs.'
 ---
 
+import BatchPython from '/snippets/v1/youtube/batch/python.mdx'
+import BatchNode from '/snippets/v1/youtube/batch/js.mdx'
+import BatchCURL from '/snippets/v1/youtube/batch/curl.mdx'
+
 The batch endpoints allow you to process multiple YouTube videos in a single request. This is useful for analyzing entire playlists or channels, or for processing a list of videos. Batch operations are asynchronous and return a job ID that can be used to check the results.
 
 <Info>
@@ -36,19 +40,11 @@ All batch endpoints support the following source types:
 
 #### Example Request
 
-```bash
-curl -X POST 'https://api.supadata.ai/v1/youtube/transcript/batch' \
--H 'x-api-key: YOUR_API_KEY' \
--H 'Content-Type: application/json' \
--d '{
-  "videoIds": [
-    "dQw4w9WgXcQ",
-    "https://www.youtube.com/watch?v=xvFZjo5PgG0"
-  ],
-  "lang": "en",
-  "text": true
-}'
-```
+<CodeGroup>
+  <BatchPython />
+  <BatchNode />
+  <BatchCURL />
+</CodeGroup>
 
 #### Response
 

@@ -1,0 +1,9 @@
+```python Python
+from supadata import Supadata, SupadataError
+
+# Initialize the client
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+site_map = supadata.web.map("https://supadata.ai")
+print(f"Found {len(site_map.urls)} URLs")
+```

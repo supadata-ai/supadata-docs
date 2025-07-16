@@ -2,6 +2,9 @@
 title: 'Map'
 description: 'Scan a whole website and get URLs on it. Can be used to create a sitemap or run a crawler to fetch content of all pages of a destination.'
 ---
+import MapPython from '/snippets/v1/web/map/python.mdx';
+import MapNode from '/snippets/v1/web/map/js.mdx';
+import MapCURL from '/snippets/v1/web/map/curl.mdx';
 
 Crawl a whole website and get all URLs on it. Can be used to create a sitemap or run a crawler to fetch content of all pages of a destination.
 
@@ -17,10 +20,12 @@ Crawl a whole website and get all URLs on it. Can be used to create a sitemap or
 
 ## Example Request
 
-```bash
-curl 'https://api.supadata.ai/v1/web/map?url=https://example.com' \
--H 'x-api-key: YOUR_API_KEY'
-```
+
+<CodeGroup>
+  <MapPython />
+  <MapNode />
+  <MapCURL />
+</CodeGroup>
 
 ## Response Format
 

@@ -3,6 +3,9 @@ title: 'Transcript'
 description: 'Use this API endpoint to fetch text transcript from a YouTube video in various formats and languages.'
 ---
 
+import TranscriptPython from '/snippets/v1/youtube/transcript/python.mdx';
+import TranscriptNode from '/snippets/v1/youtube/transcript/js.mdx';
+import TranscriptCurl from '/snippets/v1/youtube/transcript/curl.mdx';
 
 This API fetches transcript/subtitles from YouTube videos in various formats and languages.
 
@@ -10,10 +13,11 @@ This API fetches transcript/subtitles from YouTube videos in various formats and
 
 ### Request
 
-```bash
-curl -X GET 'https://api.supadata.ai/v1/youtube/transcript?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ&text=true' \
-  -H 'x-api-key: YOUR_API_KEY'
-```
+<CodeGroup>
+  <TranscriptPython />
+  <TranscriptNode />
+  <TranscriptCurl />
+</CodeGroup>
 
 ### Response
 

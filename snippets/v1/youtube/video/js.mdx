@@ -1,0 +1,15 @@
+```js Node
+import {
+  Supadata,
+  YoutubeVideo
+} from '@supadata/js';
+
+// Initialize the client
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+const video: YoutubeVideo = await supadata.youtube.video({
+  id: 'dQw4w9WgXcQ', // can be url or video id
+});
+```

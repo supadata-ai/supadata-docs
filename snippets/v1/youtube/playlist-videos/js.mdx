@@ -1,0 +1,16 @@
+```js Node
+import {
+  Supadata,
+  VideoIds
+} from '@supadata/js';
+
+// Initialize the client
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+const playlistVideos: VideoIds = await supadata.youtube.playlist.videos({
+  id: 'https://www.youtube.com/playlist?list=PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc', // can be url or playlist id
+  limit: 10,
+});
+```

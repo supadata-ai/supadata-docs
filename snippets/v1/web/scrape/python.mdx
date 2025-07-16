@@ -1,0 +1,10 @@
+```python Python
+from supadata import Supadata, SupadataError
+
+# Initialize the client
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+web_content = supadata.web.scrape("https://supadata.ai")
+print(f"Page title: {web_content.name}")
+print(f"Page content: {web_content.content}")
+```

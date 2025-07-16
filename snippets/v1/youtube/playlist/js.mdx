@@ -1,0 +1,15 @@
+```js Node
+import {
+  Supadata,
+  YoutubeChannel
+} from '@supadata/js';
+
+// Initialize the client
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+const channel: YoutubeChannel = await supadata.youtube.channel({
+  id: 'https://youtube.com/@RickAstleyVEVO', // can be url, channel id, handle
+});
+```
