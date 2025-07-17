@@ -1,17 +1,15 @@
 ---
-title: 'Node'
-description: 'Supadata Node SDK is a wrapper around the Supadata API to help you easily turn websites into markdown.'
-icon: 'node'
-og:title: "Node SDK | Supadata"
-og:description: "Supadata Node SDK is a wrapper around the Supadata API to help you easily turn websites into markdown."
+title: "Node"
+description: "Supadata Node SDK is a wrapper around the Supadata API to help you easily turn websites into markdown."
+icon: "node"
 ---
 
-import InstallationNode from '/snippets/v1/installation/js.mdx'
-import ScrapeAndCrawlExampleNode from '/snippets/v1/scrape-and-crawl/js.mdx'
-import TranscriptNode from '/snippets/v1/transcripts/js.mdx'
-import YouTubeNode from '/snippets/v1/youtube/js.mdx'
-import WebNode from '/snippets/v1/web/js.mdx'
-import ErrorHandlingNode from '/snippets/v1/error-handling/js.mdx'
+import InstallationNode from "/snippets/v1/installation/js.mdx";
+import ScrapeAndCrawlExampleNode from "/snippets/v1/scrape-and-crawl/js.mdx";
+import TranscriptNode from "/snippets/v1/transcripts/js.mdx";
+import YouTubeNode from "/snippets/v1/youtube/js.mdx";
+import WebNode from "/snippets/v1/web/js.mdx";
+import ErrorHandlingNode from "/snippets/v1/error-handling/js.mdx";
 
 ## Installation
 
@@ -22,7 +20,6 @@ To install the Supadata Node SDK, you can use npm:
 ## Usage
 
 Get an API key from [supadata.ai](https://supadata.ai);
-
 
 Here's an example of how to use the SDK with error handling:
 
@@ -36,20 +33,18 @@ Get transcript from any supported platform (YouTube, TikTok, Twitter) or file
 
 ### YouTube
 
-Get YouTube transcript
+Get YouTube video, channel, playlist metadata.
 
 <YouTubeNode />
 
 ### Web
 
-Scrape web content
+Scrape and crawl web content.
 
 <WebNode />
 
 ### Error Handling
 
 The SDK throws `SupadataError` for API-related errors. You can catch and handle these errors as follows:
-
-
 
 <ErrorHandlingNode />
