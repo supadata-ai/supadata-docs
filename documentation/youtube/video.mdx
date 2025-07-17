@@ -1,21 +1,20 @@
 ---
-title: 'Video'
-description: 'Use this API endpoint to fetch metadata from a YouTube video including title, description, channel info, and more.'
+title: "Get YouTube Video"
+sidebarTitle: "Video"
+description: "Use this API endpoint to fetch metadata from a YouTube video including title, description, channel info, and more."
 ---
 
-import VideoPython from '/snippets/v1/youtube/video/python.mdx'
-import VideoNode from '/snippets/v1/youtube/video/js.mdx'
-import VideoCURL from '/snippets/v1/youtube/video/curl.mdx'
-
-This endpoint returns metadata from YouTube videos including title, description, channel information, view counts, and more.
+import VideoPython from "/snippets/v1/youtube/video/python.mdx";
+import VideoNode from "/snippets/v1/youtube/video/js.mdx";
+import VideoCURL from "/snippets/v1/youtube/video/curl.mdx";
 
 ## Quick Start
 
 ### Request
 
 <CodeGroup>
-  <VideoPython />
   <VideoNode />
+  <VideoPython />
   <VideoCURL />
 </CodeGroup>
 
@@ -46,7 +45,7 @@ This endpoint returns metadata from YouTube videos including title, description,
 
 `GET https://api.supadata.ai/v1/youtube/video`
 
-Each request requires an `x-api-key` header with your API key available after signing up. Find out more about [Authentication](/documentation/getting-started#authentication).
+Each request requires an `x-api-key` header with your API key available after signing up. Get your API key [here](https://dash.supadata.ai/organizations/api-key).
 
 ### Query Parameters
 

@@ -1,0 +1,10 @@
+```python Python
+# For immediate results
+if hasattr(transcript, 'content'):
+    print(f"Transcript: {transcript.content}")
+    print(f"Language: {transcript.lang}")
+else:
+    # For async processing (large files)
+    print(f"Processing started with job ID: {transcript.job_id}")
+    # Poll for results using existing batch.get_batch_results method
+```

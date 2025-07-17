@@ -20,46 +20,46 @@
             ]
           },
           {
-            "group": "Standard Features",
+            "group": "Features",
             "pages": [
-              "features/get-transcript",
+              "documentation/get-transcript",
               {
                 "group": "Youtube",
                 "icon": "youtube",
                 "pages": [
-                  "features/youtube/video",
-                  "features/youtube/get-transcript",
-                  "features/youtube/get-transcript-translation",
-                  "features/youtube/channel",
-                  "features/youtube/playlist",
-                  "features/youtube/channel-videos",
-                  "features/youtube/playlist-videos",
-                  "features/youtube/batch",
-                  "features/youtube/supported-url-formats",
-                  "features/youtube/supported-language-codes"
+                  "documentation/youtube/video",
+                  "documentation/youtube/get-transcript",
+                  "documentation/youtube/get-transcript-translation",
+                  "documentation/youtube/channel",
+                  "documentation/youtube/playlist",
+                  "documentation/youtube/channel-videos",
+                  "documentation/youtube/playlist-videos",
+                  "documentation/youtube/batch",
+                  "documentation/youtube/supported-url-formats",
+                  "documentation/youtube/supported-language-codes"
                 ]
               },
               {
                 "group": "Web",
                 "icon": "markdown",
                 "pages": [
-                  "features/web/scrape",
-                  "features/web/map",
-                  "features/web/crawl"
+                  "documentation/web/scrape",
+                  "documentation/web/map",
+                  "documentation/web/crawl"
                 ]
               },
               {
                 "group": "Errors",
                 "icon": "triangle-exclamation",
                 "pages": [
-                  "features/errors/index",
-                  "features/errors/invalid-request",
-                  "features/errors/unauthorized",
-                  "features/errors/not-found",
-                  "features/errors/limit-exceeded",
-                  "features/errors/upgrade-required",
-                  "features/errors/transcript-unavailable",
-                  "features/errors/internal-error"
+                  "documentation/errors/index",
+                  "documentation/errors/invalid-request",
+                  "documentation/errors/unauthorized",
+                  "documentation/errors/not-found",
+                  "documentation/errors/limit-exceeded",
+                  "documentation/errors/upgrade-required",
+                  "documentation/errors/transcript-unavailable",
+                  "documentation/errors/internal-error"
                 ]
               }
             ]
@@ -162,6 +162,15 @@
       "label": "Dashboard",
       "href": "https://dash.supadata.ai"
     }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity"
+    ]
   },
   "footer": {
     "socials": {

@@ -1,21 +1,24 @@
 ---
-title: 'Transcript'
-description: 'Use this API endpoint to fetch text transcript from a YouTube video in various formats and languages.'
+title: "Transcript"
+description: "Use this API endpoint to fetch text transcript from a YouTube video in various formats and languages."
 ---
 
-import TranscriptPython from '/snippets/v1/youtube/transcript/python.mdx';
-import TranscriptNode from '/snippets/v1/youtube/transcript/js.mdx';
-import TranscriptCurl from '/snippets/v1/youtube/transcript/curl.mdx';
+import TranscriptPython from "/snippets/v1/youtube/transcript/python.mdx";
+import TranscriptNode from "/snippets/v1/youtube/transcript/js.mdx";
+import TranscriptCurl from "/snippets/v1/youtube/transcript/curl.mdx";
 
-This API fetches transcript/subtitles from YouTube videos in various formats and languages.
+<Info>
+  This endpoint will soon be deprecated in favor of the [Universal
+  Transcripts](/documentation/get-transcript). Please migrate your workloads.
+</Info>
 
 ## Quick Start
 
 ### Request
 
 <CodeGroup>
-  <TranscriptPython />
   <TranscriptNode />
+  <TranscriptPython />
   <TranscriptCurl />
 </CodeGroup>
 
@@ -35,7 +38,7 @@ This API fetches transcript/subtitles from YouTube videos in various formats and
 
 `GET https://api.supadata.ai/v1/youtube/transcript`
 
-Each request requires an `x-api-key` header with your API key available after signing up. Find out more about [Authentication](/documentation/getting-started#authentication).
+Each request requires an `x-api-key` header with your API key available after signing up. Get your API key [here](https://dash.supadata.ai/organizations/api-key).
 
 ### Query Parameters
 
@@ -91,8 +94,9 @@ The API returns HTTP status codes and error codes. See this [page](/documentatio
 The endpoint supports multiple languages. The `lang` parameter is used to specify the preferred language of the transcript. If the video does not have a transcript in the preferred language, the endpoint will return a transcript in the first available language and a list of other available languages. It is then possible to make another request to get the transcript in your chosen fallback language.
 
 <Info>
-  Need to get your transcript in a language not yet supported? Check the [Transcript
-  Translation](/documentation/youtube/get-transcript-translation) endpoint.
+  Need to get your transcript in a language not yet supported? Check the
+  [Transcript Translation](/documentation/youtube/get-transcript-translation)
+  endpoint.
 </Info>
 
 ## Pricing

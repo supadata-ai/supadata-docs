@@ -1,21 +1,19 @@
 ---
-title: 'Translation'
-description: 'Use this API endpoint to fetch text transcript from a YouTube video in various formats and languages.'
+title: "Translation"
+description: "Use this API endpoint to fetch text transcript from a YouTube video in various formats and languages."
 ---
 
-import TranslationPython from '/snippets/v1/youtube/translation/python.mdx';
-import TranslationNode from '/snippets/v1/youtube/translation/js.mdx';
-import TranslationCurl from '/snippets/v1/youtube/translation/curl.mdx';
-
-This API fetches a transcript/subtitles from a YouTube video and translates it to the specified language.
+import TranslationPython from "/snippets/v1/youtube/translation/python.mdx";
+import TranslationNode from "/snippets/v1/youtube/translation/js.mdx";
+import TranslationCurl from "/snippets/v1/youtube/translation/curl.mdx";
 
 ## Quick Start
 
 ### Request
 
 <CodeGroup>
-  <TranslationPython />
   <TranslationNode />
+  <TranslationPython />
   <TranslationCurl />
 </CodeGroup>
 
@@ -29,7 +27,8 @@ This API fetches a transcript/subtitles from a YouTube video and translates it t
 ```
 
 <Info>
-  This endpoint has longer than usual response times. See [Latency](#latency) for more details.
+  This endpoint has longer than usual response times. See [Latency](#latency)
+  for more details.
 </Info>
 
 ## Specification
@@ -38,7 +37,7 @@ This API fetches a transcript/subtitles from a YouTube video and translates it t
 
 `GET https://api.supadata.ai/v1/youtube/transcript/translation`
 
-Each request requires an `x-api-key` header with your API key available after signing up. Find out more about [Authentication](/documentation/getting-started#authentication).
+Each request requires an `x-api-key` header with your API key available after signing up. Get your API key [here](https://dash.supadata.ai/organizations/api-key).
 
 ### Query Parameters
 

@@ -1,22 +1,19 @@
 ---
-title: 'Channel Videos'
-description: 'Use this API endpoint to fetch a list of video IDs from a YouTube channel.'
+title: "Channel Videos"
+description: "Use this API endpoint to fetch a list of video IDs from a YouTube channel."
 ---
 
-import ChannelVideosPython from '/snippets/v1/youtube/channel-videos/python.mdx';
-import ChannelVideosNode from '/snippets/v1/youtube/channel-videos/js.mdx';
-import ChannelVideosCURL from '/snippets/v1/youtube/channel-videos/curl.mdx';
-
-This endpoint returns a list of video IDs from a YouTube channel.
+import ChannelVideosPython from "/snippets/v1/youtube/channel-videos/python.mdx";
+import ChannelVideosNode from "/snippets/v1/youtube/channel-videos/js.mdx";
+import ChannelVideosCURL from "/snippets/v1/youtube/channel-videos/curl.mdx";
 
 ## Quick Start
 
 ### Request
 
-
 <CodeGroup>
-  <ChannelVideosPython />
   <ChannelVideosNode />
+  <ChannelVideosPython />
   <ChannelVideosCURL />
 </CodeGroup>
 
@@ -36,18 +33,21 @@ This endpoint returns a list of video IDs from a YouTube channel.
 
 `GET https://api.supadata.ai/v1/youtube/channel/videos`
 
-Each request requires an `x-api-key` header with your API key available after signing up. Find out more about [Authentication](/documentation/getting-started#authentication).
+Each request requires an `x-api-key` header with your API key available after signing up. Get your API key [here](https://dash.supadata.ai/organizations/api-key).
 
 ### Query Parameters
 
 | Parameter | Type   | Required | Description                                                                                                           |
 | --------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------- |
 | id        | string | Yes      | YouTube channel URL, handle or ID. See [Supported YouTube URL Formats](/documentation/youtube/supported-url-formats). |
-| limit     | number | No       | Maximum number of video IDs to return. If `type` = `all`, vertical videos are prioritized. (Default: 30, Max: 5000)      |
-| type      | enum   | No       | `all`, `video`, `short`, `live` (Default: `all`)                  |
+| limit     | number | No       | Maximum number of video IDs to return. If `type` = `all`, vertical videos are prioritized. (Default: 30, Max: 5000)   |
+| type      | enum   | No       | `all`, `video`, `short`, `live` (Default: `all`)                                                                      |
 
 <Info>
-  When fetching `type: all`, the limit parameter applies to vertical videos first, then Shorts and live videos. For example, if the channel has 100 vertical videos and 100 Shorts, and `limit` is 150, then 100 vertical videos and 50 Shorts will be returned.
+  When fetching `type: all`, the limit parameter applies to vertical videos
+  first, then Shorts and live videos. For example, if the channel has 100
+  vertical videos and 100 Shorts, and `limit` is 150, then 100 vertical videos
+  and 50 Shorts will be returned.
 </Info>
 
 ### Response Format
@@ -73,10 +73,11 @@ The universal `id` parameter supports various YouTube URL and ID formats. See th
 After retrieving the list of video IDs, you can:
 
 1. Get metadata for each video using the [Video Metadata](/documentation/youtube/video) endpoint
-2. Get transcripts for each video using the [Transcript](/documentation/youtube/get-transcript) endpoint
+2. Get transcripts for each video using the [Transcript](/documentation/get-transcript) endpoint
 
 <Info>
-  Videos are returned latest first, just like in the "Videos" tab of a YouTube channel.
+  Videos are returned latest first, just like in the "Videos" tab of a YouTube
+  channel.
 </Info>
 
 ## Pricing

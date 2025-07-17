@@ -1,20 +1,19 @@
 ---
-title: 'Playlist Videos'
-description: 'Use this API endpoint to fetch a list of video IDs from a YouTube playlist.'
+title: "Playlist Videos"
+description: "Use this API endpoint to fetch a list of video IDs from a YouTube playlist."
 ---
-import PlaylistVideosPython from '/snippets/v1/youtube/playlist-videos/python.mdx';
-import PlaylistVideosNode from '/snippets/v1/youtube/playlist-videos/js.mdx';
-import PlaylistVideosCURL from '/snippets/v1/youtube/playlist-videos/curl.mdx';
 
-This endpoint returns a list of video IDs from a YouTube playlist.
+import PlaylistVideosPython from "/snippets/v1/youtube/playlist-videos/python.mdx";
+import PlaylistVideosNode from "/snippets/v1/youtube/playlist-videos/js.mdx";
+import PlaylistVideosCURL from "/snippets/v1/youtube/playlist-videos/curl.mdx";
 
 ## Quick Start
 
 ### Request
 
 <CodeGroup>
-  <PlaylistVideosPython />
   <PlaylistVideosNode />
+  <PlaylistVideosPython />
   <PlaylistVideosCURL />
 </CodeGroup>
 
@@ -34,7 +33,7 @@ This endpoint returns a list of video IDs from a YouTube playlist.
 
 `GET https://api.supadata.ai/v1/youtube/playlist/videos`
 
-Each request requires an `x-api-key` header with your API key available after signing up. Find out more about [Authentication](/documentation/getting-started#authentication).
+Each request requires an `x-api-key` header with your API key available after signing up. Get your API key [here](https://dash.supadata.ai/organizations/api-key).
 
 ### Query Parameters
 
@@ -66,11 +65,11 @@ The universal `id` parameter supports various YouTube URL and ID formats. See th
 After retrieving the list of video IDs, you can:
 
 1. Get metadata for each video using the [Video Metadata](/documentation/youtube/video) endpoint
-2. Get transcripts for each video using the [Transcript](/documentation/youtube/get-transcript) endpoint
+2. Get transcripts for each video using the [Transcript](/documentation/get-transcript) endpoint
 
 <Info>
-  For large playlists, consider using the `limit` parameter to control the number of results
-  returned.
+  For large playlists, consider using the `limit` parameter to control the
+  number of results returned.
 </Info>
 
 ## Pricing

@@ -1,39 +1,36 @@
 ---
-title: 'Crawl'
-description: 'Crawl a whole website and get content of all pages on it.'
+title: "Crawl"
+description: "Crawl a whole website and get content of all pages on it."
 ---
 
-import CrawlPython from '/snippets/v1/web/crawl/python.mdx';
-import CrawlNode from '/snippets/v1/web/crawl/js.mdx';
-import CrawlCURL from '/snippets/v1/web/crawl/curl.mdx';
+import CrawlPython from "/snippets/v1/web/crawl/python.mdx";
+import CrawlNode from "/snippets/v1/web/crawl/js.mdx";
+import CrawlCURL from "/snippets/v1/web/crawl/curl.mdx";
 
-Crawl a whole website and get content of all pages on it. Crawling is a long running task. To get the content of a crawl, you first create a crawl job and then check the results of the job.
+Crawling is a long running task. To get the content of a crawl, you first create a crawl job and then check the results of the job.
+
+## Request
+
+<CodeGroup>
+  <CrawlNode />
+  <CrawlPython />
+  <CrawlCURL />
+</CodeGroup>
 
 <Info>
   The crawler will follow only the child links. For example, if you crawl
   `https://supadata.ai/blog`, the crawler will follow links like
-  `https://supadata.ai/blog/article-1` , but not `https://supadata.ai/about`. To crawl the whole
-  website, provide the top URL (ie `https://supadata.ai`) as the URL to crawl.
+  `https://supadata.ai/blog/article-1` , but not `https://supadata.ai/about`. To
+  crawl the whole website, provide the top URL (ie `https://supadata.ai`) as the
+  URL to crawl.
 </Info>
 
-## Endpoint
-
-`POST /v1/web/crawl` - Create a crawl job and return a job ID to check the status of the crawl.
-
-## JSON Body
+## Parameters
 
 | Parameter | Type   | Required | Description                                        |
 | --------- | ------ | -------- | -------------------------------------------------- |
 | url       | string | Yes      | URL of the webpage to scrape                       |
 | limit     | number | No       | Maximum number of pages to crawl. Defaults to 100. |
-
-## Example Request
-
-<CodeGroup>
-  <CrawlPython />
-  <CrawlNode />
-  <CrawlCURL />
-</CodeGroup>
 
 ## Response
 

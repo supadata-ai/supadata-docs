@@ -1,0 +1,36 @@
+---
+title: "Map"
+description: "Scan a whole website and get URLs on it. Can be used to create a sitemap or run a crawler to fetch content of all pages of a destination."
+---
+
+import MapPython from "/snippets/v1/web/map/python.mdx";
+import MapNode from "/snippets/v1/web/map/js.mdx";
+import MapCURL from "/snippets/v1/web/map/curl.mdx";
+
+## Request
+
+<CodeGroup>
+  <MapNode />
+  <MapPython />
+  <MapCURL />
+</CodeGroup>
+
+## Parameters
+
+| Parameter | Type   | Required | Description               |
+| --------- | ------ | -------- | ------------------------- |
+| url       | string | Yes      | URL of the website to map |
+
+## Response Format
+
+```json
+{
+  "urls": [
+    "string" // List of URLs found on the webpage
+  ]
+}
+```
+
+## Pricing
+
+- 1 map request = 1 credit

@@ -1,0 +1,21 @@
+```js Node
+import { Supadata } from "@supadata/js";
+
+// Check if we got a transcript directly or a job ID for async processing
+if ("jobId" in transcriptResult) {
+  // For large files, we get a job ID and need to poll for results
+  const jobResult = await supadata.transcript.getJobStatus(
+    transcriptResult.jobId
+  );
+  if (jobResult.status === "completed") {
+    console.log(jobResult.result);
+  } else if (jobResult.status === "failed") {
+    console.error(jobResult.error);
+  } else {
+    console.log("Job status:", jobResult.status);
+  }
+} else {
+  // For smaller files or native transcripts, we get the result directly
+  console.log("Transcript:", transcriptResult);
+}
+```
