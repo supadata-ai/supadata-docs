@@ -1,17 +1,21 @@
 ---
-title: 'Batch'
-description: 'Get multiple transcripts or video metadata from YouTube videos in a playlist, channel or list of URLs.'
+title: "Batch"
+description: "Get multiple transcripts or video metadata from YouTube videos in a playlist, channel or list of URLs."
 ---
 
-import BatchPython from '/snippets/v1/youtube/batch/python.mdx'
-import BatchNode from '/snippets/v1/youtube/batch/js.mdx'
-import BatchCURL from '/snippets/v1/youtube/batch/curl.mdx'
+import BatchPython from "/snippets/v1/youtube/batch/python.mdx";
+import BatchNode from "/snippets/v1/youtube/batch/js.mdx";
+import BatchCURL from "/snippets/v1/youtube/batch/curl.mdx";
+import BatchResultsPython from "/snippets/v1/youtube/batch/python-results.mdx";
+import BatchResultsNode from "/snippets/v1/youtube/batch/js-results.mdx";
+import BatchResultsCURL from "/snippets/v1/youtube/batch/curl-results.mdx";
+import VideoBatchPython from "/snippets/v1/youtube/video-batch/python.mdx";
+import VideoBatchNode from "/snippets/v1/youtube/video-batch/js.mdx";
+import VideoBatchCURL from "/snippets/v1/youtube/video-batch/curl.mdx";
 
 The batch endpoints allow you to process multiple YouTube videos in a single request. This is useful for analyzing entire playlists or channels, or for processing a list of videos. Batch operations are asynchronous and return a job ID that can be used to check the results.
 
-<Info>
-  This feature is available only on paid plans.
-</Info>
+<Info>This feature is available only on paid plans.</Info>
 
 ## Supported Source Types
 
@@ -25,26 +29,24 @@ All batch endpoints support the following source types:
 
 ### Transcript Batch
 
-`POST /v1/youtube/transcript/batch` - Create a batch job to get transcripts from multiple YouTube videos.
-
-#### Request Body
-
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| videoIds | array | One of these is required | Array of YouTube video IDs or URLs |
-| playlistId | string | One of these is required | YouTube playlist URL or ID |
-| channelId | string | One of these is required | YouTube channel URL, handle or ID |
-| limit | number | No | Maximum number of videos to process (when using playlistId or channelId). Default: 10, Max: 5000 |
-| lang | string | No | Preferred language code for transcripts (ISO 639-1) |
-| text      | boolean | No       | When true, returns plain text transcript. Default: false                                |
-
-#### Example Request
+#### Request
 
 <CodeGroup>
   <BatchNode />
   <BatchPython />
   <BatchCURL />
 </CodeGroup>
+
+#### Parameters
+
+| Parameter  | Type    | Required                 | Description                                                                                      |
+| ---------- | ------- | ------------------------ | ------------------------------------------------------------------------------------------------ |
+| videoIds   | array   | One of these is required | Array of YouTube video IDs or URLs                                                               |
+| playlistId | string  | One of these is required | YouTube playlist URL or ID                                                                       |
+| channelId  | string  | One of these is required | YouTube channel URL, handle or ID                                                                |
+| limit      | number  | No                       | Maximum number of videos to process (when using playlistId or channelId). Default: 10, Max: 5000 |
+| lang       | string  | No                       | Preferred language code for transcripts (ISO 639-1)                                              |
+| text       | boolean | No                       | When true, returns plain text transcript. Default: false                                         |
 
 #### Response
 
@@ -56,28 +58,22 @@ All batch endpoints support the following source types:
 
 ### Video Metadata Batch
 
-`POST /v1/youtube/video/batch` - Create a batch job to get metadata from multiple YouTube videos.
+#### Request
 
-#### Request Body
+<CodeGroup>
+  <VideoBatchNode />
+  <VideoBatchPython />
+  <VideoBatchCURL />
+</CodeGroup>
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| videoIds | array | One of these is required | Array of YouTube video IDs or URLs |
-| playlistId | string | One of these is required | YouTube playlist URL or ID |
-| channelId | string | One of these is required | YouTube channel URL, handle or ID |
-| limit | number | No | Maximum number of videos to process (when using playlistId or channelId). Default: 10, Max: 5000 |
+#### Parameters
 
-#### Example Request
-
-```bash
-curl -X POST 'https://api.supadata.ai/v1/youtube/video/batch' \
--H 'x-api-key: YOUR_API_KEY' \
--H 'Content-Type: application/json' \
--d '{
-  "playlistId": "PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc",
-  "limit": 20
-}'
-```
+| Parameter  | Type   | Required                 | Description                                                                                      |
+| ---------- | ------ | ------------------------ | ------------------------------------------------------------------------------------------------ |
+| videoIds   | array  | One of these is required | Array of YouTube video IDs or URLs                                                               |
+| playlistId | string | One of these is required | YouTube playlist URL or ID                                                                       |
+| channelId  | string | One of these is required | YouTube channel URL, handle or ID                                                                |
+| limit      | number | No                       | Maximum number of videos to process (when using playlistId or channelId). Default: 10, Max: 5000 |
 
 #### Response
 
@@ -97,16 +93,17 @@ Once you've created a batch job, you can check its status and retrieve results u
 
 #### Parameters
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| jobId | string | Yes | The ID of the batch job |
+| Parameter | Type   | Required | Description             |
+| --------- | ------ | -------- | ----------------------- |
+| jobId     | string | Yes      | The ID of the batch job |
 
-#### Example Request
+#### Request
 
-```bash
-curl 'https://api.supadata.ai/v1/youtube/batch/123e4567-e89b-12d3-a456-426614174000' \
--H 'x-api-key: YOUR_API_KEY'
-```
+<CodeGroup>
+  <BatchResultsNode />
+  <BatchResultsPython />
+  <BatchResultsCURL />
+</CodeGroup>
 
 #### Response
 
@@ -120,11 +117,11 @@ curl 'https://api.supadata.ai/v1/youtube/batch/123e4567-e89b-12d3-a456-426614174
         "content": "Never gonna give you up, never gonna let you down...",
         "lang": "en",
         "availableLangs": ["en", "es", "fr"]
-      },
+      }
     },
     {
       "videoId": "xvFZjo5PgG0",
-      "errorCode": "transcript-unavailable",
+      "errorCode": "transcript-unavailable"
     }
   ],
   "stats": {
@@ -140,15 +137,17 @@ curl 'https://api.supadata.ai/v1/youtube/batch/123e4567-e89b-12d3-a456-426614174
 
 The batch job can be in one of the following states:
 
-| Status | Description |
-| ------ | ----------- |
-| queued | The job is in the queue waiting to be processed |
-| active | The job is currently being processed |
-| completed | The job has finished processing all videos |
-| failed | The job failed due to an error |
+| Status    | Description                                     |
+| --------- | ----------------------------------------------- |
+| queued    | The job is in the queue waiting to be processed |
+| active    | The job is currently being processed            |
+| completed | The job has finished processing all videos      |
+| failed    | The job failed due to an error                  |
 
 <Info>
-  Batch jobs are processed asynchronously and may take some time to complete, especially for large playlists or channels. You should poll the job status endpoint until the status is either "completed" or "failed".
+  Batch jobs are processed asynchronously and may take some time to complete,
+  especially for large playlists or channels. You should poll the job status
+  endpoint until the status is either "completed" or "failed".
 </Info>
 
 ## Pricing

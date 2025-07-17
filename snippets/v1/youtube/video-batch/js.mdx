@@ -1,0 +1,18 @@
+```js Node
+import {
+  Supadata,
+} from '@supadata/js';
+// Initialize the client
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+// Start a YouTube video metadata batch job
+const videoBatch = await supadata.youtube.video.batch({
+  playlistId: 'PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc',
+  limit: 20,
+  // videoIds: ['dQw4w9WgXcQ', 'xvFZjo5PgG0'] // alternatively
+  // channelId: 'UC_9-kyTW8ZkZNDHQJ6FgpwQ' // alternatively
+});
+console.log(`Started video metadata batch job: ${videoBatch.jobId}`);
+```

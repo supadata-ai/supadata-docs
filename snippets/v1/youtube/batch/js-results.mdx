@@ -1,0 +1,30 @@
+```js Node
+import { Supadata } from "@supadata/js";
+
+const supadata = new Supadata("YOUR_API_KEY");
+
+// Check the status of a batch job
+const batchResult = await supadata.youtube.batch.getJobStatus(jobId);
+
+if (batchResult.status === "completed") {
+  console.log("Batch job completed successfully!");
+  console.log(`Total videos: ${batchResult.stats.total}`);
+  console.log(`Succeeded: ${batchResult.stats.succeeded}`);
+  console.log(`Failed: ${batchResult.stats.failed}`);
+  
+  // Process each result
+  batchResult.results.forEach((result, index) => {
+    if (result.transcript) {
+      console.log(`Video ${index + 1}: ${result.videoId}`);
+      console.log(`Transcript: ${result.transcript.content}`);
+      console.log(`Language: ${result.transcript.lang}`);
+    } else if (result.errorCode) {
+      console.log(`Video ${index + 1} failed: ${result.errorCode}`);
+    }
+  });
+} else if (batchResult.status === "failed") {
+  console.error("Batch job failed:", batchResult.error);
+} else {
+  console.log("Job status:", batchResult.status);
+}
+```

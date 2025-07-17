@@ -1,8 +1,7 @@
 ```js Node
 import {
   Supadata,
-  JobId,
-  CrawlJob
+  JobId
 } from '@supadata/js';
 
 // Initialize the client
@@ -16,6 +15,5 @@ const crawl: JobId = await supadata.web.crawl({
   limit: 10,
 });
 
-// Get crawl job results
-const crawlResults: CrawlJob = await supadata.web.getCrawlResults(crawl.jobId);
+console.log(`Started crawl job: ${crawl.jobId}`);
 ```

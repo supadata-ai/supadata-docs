@@ -6,6 +6,9 @@ description: "Crawl a whole website and get content of all pages on it."
 import CrawlPython from "/snippets/v1/web/crawl/python.mdx";
 import CrawlNode from "/snippets/v1/web/crawl/js.mdx";
 import CrawlCURL from "/snippets/v1/web/crawl/curl.mdx";
+import CrawlResultsPython from "/snippets/v1/web/crawl/python-results.mdx";
+import CrawlResultsNode from "/snippets/v1/web/crawl/js-results.mdx";
+import CrawlResultsCURL from "/snippets/v1/web/crawl/curl-results.mdx";
 
 Crawling is a long running task. To get the content of a crawl, you first create a crawl job and then check the results of the job.
 
@@ -47,10 +50,11 @@ The results can be paginated for large crawls. In such cases, the response will 
 
 ### Crawl Job
 
-```bash
-curl 'https://api.supadata.ai/v1/web/crawl/{jobId}' \
--H 'x-api-key: YOUR_API_KEY'
-```
+<CodeGroup>
+  <CrawlResultsNode />
+  <CrawlResultsPython />
+  <CrawlResultsCURL />
+</CodeGroup>
 
 ### Crawl Results
 

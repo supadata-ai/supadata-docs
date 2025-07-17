@@ -1,0 +1,14 @@
+```python Python
+from supadata import Supadata
+
+# Initialize the client
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+video_batch_job = supadata.youtube.video.batch(
+    playlist_id="PLlaN88a7y2_plecYoJxvRFTLHVbIVAOoc",
+    limit=20
+    # video_ids=["dQw4w9WgXcQ", "xvFZjo5PgG0"], # alternatively
+    # channel_id="UC_9-kyTW8ZkZNDHQJ6FgpwQ", # alternatively
+)
+print(f"Started video metadata batch job: {video_batch_job.job_id}")
+```

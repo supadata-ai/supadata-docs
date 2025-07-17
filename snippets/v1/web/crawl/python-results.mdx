@@ -1,0 +1,28 @@
+```python Python
+from supadata import Supadata
+
+supadata = Supadata("YOUR_API_KEY")
+
+# Check the status of a crawl job
+crawl_result = supadata.web.crawl.get_job_status(job_id)
+
+if crawl_result.status == "completed":
+    print("Crawl job completed successfully!")
+    print(f"Total pages crawled: {len(crawl_result.pages)}")
+    
+    # Process each page
+    for i, page in enumerate(crawl_result.pages):
+        print(f"Page {i + 1}: {page.name}")
+        print(f"URL: {page.url}")
+        print(f"Description: {page.description}")
+        print(f"Content preview: {page.content[:100]}...")
+        print("---")
+    
+    # Handle pagination if there are more results
+    if hasattr(crawl_result, 'next') and crawl_result.next:
+        print(f"More results available. Next page URL: {crawl_result.next}")
+elif crawl_result.status == "failed":
+    print(f"Crawl job failed: {crawl_result.error}")
+else:
+    print(f"Job status: {crawl_result.status}")
+```

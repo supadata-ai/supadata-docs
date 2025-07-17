@@ -1,0 +1,27 @@
+```python Python
+from supadata import Supadata
+
+supadata = Supadata("YOUR_API_KEY")
+
+# Check the status of a batch job
+batch_result = supadata.youtube.batch.get_job_status(job_id)
+
+if batch_result.status == "completed":
+    print("Batch job completed successfully!")
+    print(f"Total videos: {batch_result.stats.total}")
+    print(f"Succeeded: {batch_result.stats.succeeded}")
+    print(f"Failed: {batch_result.stats.failed}")
+    
+    # Process each result
+    for i, result in enumerate(batch_result.results):
+        if hasattr(result, 'transcript') and result.transcript:
+            print(f"Video {i + 1}: {result.video_id}")
+            print(f"Transcript: {result.transcript.content}")
+            print(f"Language: {result.transcript.lang}")
+        elif hasattr(result, 'error_code'):
+            print(f"Video {i + 1} failed: {result.error_code}")
+elif batch_result.status == "failed":
+    print(f"Batch job failed: {batch_result.error}")
+else:
+    print(f"Job status: {batch_result.status}")
+```
