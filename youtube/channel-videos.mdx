@@ -38,11 +38,11 @@ Each request requires an `x-api-key` header with your API key available after si
 
 ### Query Parameters
 
-| Parameter | Type   | Required | Description                                                                                                           |
-| --------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------- |
-| id        | string | Yes      | YouTube channel URL, handle or ID. See [Supported YouTube URL Formats](/documentation/youtube/supported-url-formats). |
-| limit     | number | No       | Maximum number of video IDs to return. If `type` = `all`, vertical videos are prioritized. (Default: 30, Max: 5000)   |
-| type      | enum   | No       | `all`, `video`, `short`, `live` (Default: `all`)                                                                      |
+| Parameter | Type   | Required | Description                                                                                                         |
+| --------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| id        | string | Yes      | YouTube channel URL, handle or ID. See [Supported YouTube URL Formats](/youtube/supported-url-formats).             |
+| limit     | number | No       | Maximum number of video IDs to return. If `type` = `all`, vertical videos are prioritized. (Default: 30, Max: 5000) |
+| type      | enum   | No       | `all`, `video`, `short`, `live` (Default: `all`)                                                                    |
 
 <Info>
   When fetching `type: all`, the limit parameter applies to vertical videos
@@ -63,18 +63,18 @@ Each request requires an `x-api-key` header with your API key available after si
 
 ### Error Codes
 
-The API returns HTTP status codes and error codes. See this [page](/documentation/errors) for more details.
+The API returns HTTP status codes and error codes. See this [page](/errors) for more details.
 
 ### Supported YouTube Identifiers
 
-The universal `id` parameter supports various YouTube URL and ID formats. See this [page](/documentation/youtube/supported-url-formats) for more details.
+The universal `id` parameter supports various YouTube URL and ID formats. See this [page](/youtube/supported-url-formats) for more details.
 
 ## Working with Channel Videos
 
 After retrieving the list of video IDs, you can:
 
-1. Get metadata for each video using the [Video Metadata](/documentation/youtube/video) endpoint
-2. Get transcripts for each video using the [Transcript](/documentation/get-transcript) endpoint
+1. Get metadata for each video using the [Video Metadata](/youtube/video) endpoint
+2. Get transcripts for each video using the [Transcript](/get-transcript) endpoint
 
 <Info>
   Videos are returned latest first, just like in the "Videos" tab of a YouTube
