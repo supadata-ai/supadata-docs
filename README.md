@@ -1,32 +1,52 @@
-# Mintlify Starter Kit
+# Supadata Docs
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+Welcome to the Supadata documentation repository. This repo contains the source files for [docs.supadata.ai](https://docs.supadata.ai), powered by [Mintlify](https://mintlify.com/).
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+## About Supadata
 
-### Development
+Supadata is a tool that turns YouTube, TikTok, X videos and websites into structured data. Skip the hassle of video transcription and data scraping. Our APIs help you build better software and AI products faster.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview the documentation changes locally. To install, use the following command
+## Getting Started
+
+To get started with the Supadata documentation, follow the steps below:
+
+### Prerequisites
+
+- Node.js (version 19 or higher)
+
+### Installation
+
+1. Install the [Mintlify CLI](https://www.npmjs.com/package/mint) globally using npm (or yarn, pnpm, etc.):
 
 ```
 npm i -g mint
 ```
 
-Run the following command at the root of your documentation (where docs.json is)
+2. Clone this repository and navigate to the directory:
 
-```
-mint dev
-```
+   ```bash
+   git clone https://github.com/supadata-ai/supadata-docs.git
+   cd supadata-docs
+   ```
 
-### Publishing Changes
+3. Start the Mintlify development server:
 
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
+   ```bash
+   mint dev
+   ```
 
-#### Troubleshooting
+4. Open your web browser and visit [http://localhost:3000](http://localhost:3000) to see a local preview of the documentation.
 
-- If the dev environment isn't running - Run `mint update` to ensure you have the most recent version of the CLI.
-- Page loads as a 404 - Make sure you are running in a folder with `docs.json`
+## Contributing
+
+We welcome contributions to improve the Supadata documentation! If you find any issues or want to suggest enhancements, please open an issue or submit a pull request to this repository.
+
+When contributing, please follow these guidelines:
+
+- Keep the documentation clear, concise, and easy to understand.
+- Use proper formatting and adhere to the existing document structure.
+- Test your changes locally before submitting a pull request.
+
+## Contact
+
+If you have any questions or need further assistance, please reach out to us at [support@supadata.ai](mailto:support@supadata.ai).🕷️
