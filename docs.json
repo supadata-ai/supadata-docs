@@ -22,44 +22,44 @@
           {
             "group": "Features",
             "pages": [
-              "documentation/get-transcript",
+              "get-transcript",
               {
                 "group": "Youtube",
                 "icon": "youtube",
                 "pages": [
-                  "documentation/youtube/video",
-                  "documentation/youtube/get-transcript",
-                  "documentation/youtube/get-transcript-translation",
-                  "documentation/youtube/channel",
-                  "documentation/youtube/playlist",
-                  "documentation/youtube/channel-videos",
-                  "documentation/youtube/playlist-videos",
-                  "documentation/youtube/batch",
-                  "documentation/youtube/supported-url-formats",
-                  "documentation/youtube/supported-language-codes"
+                  "youtube/video",
+                  "youtube/get-transcript",
+                  "youtube/get-transcript-translation",
+                  "youtube/channel",
+                  "youtube/playlist",
+                  "youtube/channel-videos",
+                  "youtube/playlist-videos",
+                  "youtube/batch",
+                  "youtube/supported-url-formats",
+                  "youtube/supported-language-codes"
                 ]
               },
               {
                 "group": "Web",
                 "icon": "markdown",
                 "pages": [
-                  "documentation/web/scrape",
-                  "documentation/web/map",
-                  "documentation/web/crawl"
+                  "web/scrape",
+                  "web/map",
+                  "web/crawl"
                 ]
               },
               {
                 "group": "Errors",
                 "icon": "triangle-exclamation",
                 "pages": [
-                  "documentation/errors/list",
-                  "documentation/errors/invalid-request",
-                  "documentation/errors/unauthorized",
-                  "documentation/errors/not-found",
-                  "documentation/errors/limit-exceeded",
-                  "documentation/errors/upgrade-required",
-                  "documentation/errors/transcript-unavailable",
-                  "documentation/errors/internal-error"
+                  "errors/list",
+                  "errors/invalid-request",
+                  "errors/unauthorized",
+                  "errors/not-found",
+                  "errors/limit-exceeded",
+                  "errors/upgrade-required",
+                  "errors/transcript-unavailable",
+                  "errors/internal-error"
                 ]
               }
             ]
