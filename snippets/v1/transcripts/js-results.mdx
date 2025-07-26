@@ -8,7 +8,7 @@ if ("jobId" in transcriptResult) {
     transcriptResult.jobId
   );
   if (jobResult.status === "completed") {
-    console.log(jobResult.result);
+    console.log(jobResult.content);
   } else if (jobResult.status === "failed") {
     console.error(jobResult.error);
   } else {
