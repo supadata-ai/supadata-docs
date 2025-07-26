@@ -52,7 +52,7 @@
                 "group": "Errors",
                 "icon": "triangle-exclamation",
                 "pages": [
-                  "documentation/errors/index",
+                  "documentation/errors/list",
                   "documentation/errors/invalid-request",
                   "documentation/errors/unauthorized",
                   "documentation/errors/not-found",

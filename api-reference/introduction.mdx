@@ -36,7 +36,7 @@ description: "Supadata API Reference"
 
 All requests contain the following base URL:
 
-```bash
+```sh
 https://api.supadata.ai/v1
 ```
 
@@ -44,8 +44,8 @@ https://api.supadata.ai/v1
 
 For authentication, it's required to include a `x-api-key` header.
 
-```bash
-x-api-key: <YOUR_API_KEY>
+```sh
+x-api-key: {YOUR_API_KEY}
 ```
 
 ## Response codes
@@ -59,16 +59,15 @@ Typically, 2xx HTTP status codes denote success, 4xx codes represent failures re
 | 200    | Request was successful.                      |
 | 400    | Verify the correctness of the parameters.    |
 | 401    | The API key was not provided.                |
-| 402    | Payment required                             |
+| 402    | Payment required.                            |
 | 404    | The requested resource could not be located. |
-| 429    | The rate limit has been surpassed.           |
+| 429    | A plan limit has been surpassed.             |
 | 5xx    | Signifies a server error with Supadata.      |
 
-Refer to the Error Codes section for a detailed explanation of all potential API errors.
-​
+Refer to the [Error Codes](/documentation/errors) section for a detailed explanation of all potential API errors.
 
 ## Rate limit
 
-The Supadata API has a rate limit to ensure the stability and reliability of the service. The rate limit is applied to all endpoints and is based on the number of requests made within a specific time frame.
+The Supadata API has a rate limit to ensure the stability and reliability of the service. The rate limit is applied to all endpoints and is based on the number of requests made within a specific time frame and your current subscription plan.
 
 When you exceed the rate limit, you will receive a 429 response code.
