@@ -4,7 +4,7 @@ Welcome to the Supadata documentation repository. This repo contains the source 
 
 ## About Supadata
 
-Supadata is a tool that turns YouTube, TikTok, X videos and websites into structured data. Skip the hassle of video transcription and data scraping. Our APIs help you build better software and AI products faster.
+Supadata is a tool that turns YouTube, TikTok, Instagram, X (Twitter) videos and websites into structured data. Skip the hassle of video transcription and data scraping. Our APIs help you build better software and AI products faster.
 
 ## Getting Started
 

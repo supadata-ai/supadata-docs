@@ -2217,7 +2217,7 @@
             "schema": {
               "type": "string",
               "format": "uri",
-              "description": "Video URL from any supported platform (YouTube, TikTok, Twitter) or a file URL.",
+              "description": "Video URL from any supported platform (YouTube, TikTok, Instagram, Twitter) or a file URL.",
               "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             },
             "required": true
@@ -2271,7 +2271,7 @@
             "required": false
           }
         ],
-        "description": "Get transcript from a supported video platform (YouTube, TikTok, Twitter) or file URL. If the video is too large to return transcript immediately, request returns a job ID. Use the `/transcript/:jobId` endpoint to get job results.",
+        "description": "Get transcript from a supported video platform (YouTube, TikTok, Instagram, Twitter) or file URL. If the video is too large to return transcript immediately, request returns a job ID. Use the `/transcript/:jobId` endpoint to get job results.",
         "x-codeSamples": [
           {
             "lang": "TypeScript",
