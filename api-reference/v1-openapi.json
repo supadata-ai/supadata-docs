@@ -832,17 +832,6 @@
             "description": "Current status of the job",
             "example": "completed"
           },
-          "result": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/Transcript"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Result if the job is completed"
-          },
           "error": {
             "oneOf": [
               {
@@ -853,6 +842,38 @@
               }
             ],
             "description": "Error information if the job failed"
+          },
+          "content": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TranscriptChunk"
+                }
+              },
+              {
+                "type": "string",
+                "description": "Plain text transcript when text=true parameter is used",
+                "example": "Never gonna give you up, never gonna let you down..."
+              }
+            ]
+          },
+          "lang": {
+            "type": "string",
+            "description": "ISO 639-1 language code of transcript",
+            "example": "en"
+          },
+          "availableLangs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of available language codes",
+            "example": [
+              "en",
+              "es",
+              "zh-TW"
+            ]
           }
         },
         "required": [
