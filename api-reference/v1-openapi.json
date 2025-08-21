@@ -2485,7 +2485,7 @@
             "in": "path",
             "name": "jobId",
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/JobId"
             },
             "required": true
           },
