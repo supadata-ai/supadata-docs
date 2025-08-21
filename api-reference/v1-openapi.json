@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Supadata",
-    "description": "Web & YouTube to text API for developers",
+    "description": "Web & Social Media Content API for Developers",
     "version": "1.2.0"
   },
   "servers": [
@@ -137,7 +137,6 @@
               "internal-error",
               "transcript-unavailable",
               "not-found",
-              "internal-error",
               "limit-exceeded"
             ],
             "description": "Error code identifying the type of error",
@@ -483,7 +482,6 @@
                     "internal-error",
                     "transcript-unavailable",
                     "not-found",
-                    "internal-error",
                     "limit-exceeded"
                   ],
                   "description": "Error code if processing this item failed",
@@ -1168,7 +1166,7 @@
               ],
               "description": "Type of videos to return.",
               "example": "video",
-              "default": "video"
+              "default": "all"
             },
             "required": false
           }
@@ -2217,7 +2215,7 @@
             "schema": {
               "type": "string",
               "format": "uri",
-              "description": "Video URL from any supported platform (YouTube, TikTok, Instagram, Twitter) or a file URL.",
+              "description": "Video URL from any supported platform (YouTube, TikTok, Twitter, Instagram) or a file URL.",
               "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             },
             "required": true
@@ -2271,7 +2269,7 @@
             "required": false
           }
         ],
-        "description": "Get transcript from a supported video platform (YouTube, TikTok, Instagram, Twitter) or file URL. If the video is too large to return transcript immediately, request returns a job ID. Use the `/transcript/:jobId` endpoint to get job results.",
+        "description": "Get transcript from a supported video platform (YouTube, TikTok, Twitter, Instagram) or file URL. If the video is too large to return transcript immediately, request returns a job ID. Use the `/transcript/:jobId` endpoint to get job results.",
         "x-codeSamples": [
           {
             "lang": "TypeScript",
