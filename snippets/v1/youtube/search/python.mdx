@@ -1,0 +1,19 @@
+```python Python
+from supadata import Supadata
+
+# Initialize the client
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+search_results = supadata.youtube.search(
+    query="rick astley never gonna give you up",
+    type="video",  # Optional: 'video', 'channel', 'playlist', 'all' (default 'all')
+    limit=20,  # Optional: get more than the first page of results
+    sort_by="views",  # Optional: 'relevance', 'rating', 'date', 'views'
+    upload_date="year",  # Optional: 'hour', 'today', 'week', 'month', 'year'
+    duration="medium"  # Optional: 'short', 'medium', 'long'
+)
+
+print(f"Found {len(search_results.results)} results")
+for result in search_results.results:
+    print(f"{result.type}: {result.title}")
+```

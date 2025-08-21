@@ -28,6 +28,7 @@
                 "icon": "youtube",
                 "pages": [
                   "youtube/video",
+                  "youtube/search",
                   "youtube/get-transcript",
                   "youtube/get-transcript-translation",
                   "youtube/channel",
@@ -104,6 +105,7 @@
             "group": "YouTube Endpoints",
             "pages": [
               "api-reference/endpoint/youtube/video-get",
+              "api-reference/endpoint/youtube/search",
               "api-reference/endpoint/youtube/video-batch",
               "api-reference/endpoint/youtube/transcript",
               "api-reference/endpoint/youtube/transcript-batch",

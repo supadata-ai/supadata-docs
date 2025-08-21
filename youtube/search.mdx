@@ -1,0 +1,152 @@
+---
+title: "YouTube Search"
+sidebarTitle: "Search"
+og:title: "Search YouTube videos, channels & playlists | Supadata"
+description: "Use this API endpoint to search YouTube for videos, channels, and playlists with advanced filtering options."
+---
+
+import SearchPython from "/snippets/v1/youtube/search/python.mdx";
+import SearchNode from "/snippets/v1/youtube/search/js.mdx";
+import SearchCURL from "/snippets/v1/youtube/search/curl.mdx";
+
+## Quick Start
+
+### Request
+
+<CodeGroup>
+  <SearchNode />
+  <SearchPython />
+  <SearchCURL />
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "query": "Rick Astley Never Gonna Give You Up",
+  "results": [
+    {
+      "type": "video",
+      "id": "dQw4w9WgXcQ",
+      "title": "Rick Astley - Never Gonna Give You Up (Official Video)",
+      "description": "The official music video for Rick Astley...",
+      "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+      "duration": 213,
+      "viewCount": 1234567890,
+      "uploadDate": "2009-10-25T00:00:00.000Z",
+      "channel": {
+        "id": "UCuAXFkgsw1L7xaCfnd5JJOw",
+        "name": "Rick Astley",
+        "thumbnail": "https://yt3.ggpht.com/..."
+      }
+    },
+    {
+      "type": "channel",
+      "id": "UCuAXFkgsw1L7xaCfnd5JJOw",
+      "title": "Rick Astley",
+      "description": "Official Rick Astley YouTube Channel...",
+      "thumbnail": "https://yt3.ggpht.com/...",
+      "subscriberCount": 2000000,
+      "videoCount": 100
+    },
+    {
+      "type": "playlist",
+      "id": "PLrAVp4ISIlVYYbGzAY_YX30NMdvOL_PGJ",
+      "title": "Best of Rick Astley",
+      "description": "A collection of Rick Astley's greatest hits",
+      "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+      "videoCount": 25,
+      "channel": {
+        "id": "UCuAXFkgsw1L7xaCfnd5JJOw",
+        "name": "Rick Astley"
+      }
+    }
+  ],
+  "nextPageToken": "eyJxdWVyeSI6IlJpY2sgQXN0bGV5IiwiZmlsdGVycyI6e319"
+}
+```
+
+## Specification
+
+### Endpoint
+
+`GET https://api.supadata.ai/v1/youtube/search`
+
+Each request requires an `x-api-key` header with your API key available after signing up. Get your API key [here](https://dash.supadata.ai/organizations/api-key).
+
+### Query Parameters
+
+| Parameter     | Type   | Required | Description                                                                                                                                                |
+| ------------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| query         | string | Yes      | Search query string                                                                                                                                        |
+| type          | string | No       | Filter by content type. Options: `all` (default), `video`, `channel`, `playlist`, `movie`                                                                  |
+| uploadDate    | string | No       | Filter by upload date. Options: `all` (default), `hour`, `today`, `week`, `month`, `year`                                                                  |
+| duration      | string | No       | Filter by video duration. Options: `all` (default), `short` (\<4min), `medium` (4-20min), `long` (>20min)                                                  |
+| sortBy        | string | No       | Sort order of results. Options: `relevance` (default), `rating`, `date`, `views`                                                                           |
+| features      | array  | No       | Array of special features to filter by. Options: `hd`, `subtitles`, `creative-commons`, `3d`, `live`, `purchased`, `4k`, `360`, `location`, `hdr`, `vr180` |
+| limit         | number | No       | Maximum number of results to return (1-5000). When provided, API automatically paginates to fetch up to this many results                                  |
+| nextPageToken | string | No       | Token for fetching the next page of results. When provided, other filter parameters are ignored                                                            |
+
+## Pagination
+
+The search endpoint supports two different pagination modes depending on whether you use the `limit` parameter:
+
+### Automatic Pagination (with `limit`)
+
+When you provide a `limit` parameter, the API automatically handles pagination for you:
+
+```bash
+# Get up to 100 results automatically
+curl -X GET 'https://api.supadata.ai/v1/youtube/search?query=programming&limit=100' \
+  -H 'x-api-key: YOUR_API_KEY'
+```
+
+**How it works:**
+
+- The API fetches multiple pages behind the scenes until it reaches your desired `limit` or runs out of results
+- You receive all results in a single response
+- Each page fetched counts as 1 credit (so requesting 100 results might consume 5+ credits if each page contains ~20 results)
+- No `nextPageToken` is returned since all requested results are included
+
+**Use this when:**
+
+- You need a specific number of results
+- You want convenience over credit control
+- You're building bulk data collection tools
+
+### Manual Pagination (without `limit`)
+
+When you don't provide a `limit` parameter, you get manual control over pagination:
+
+```bash
+# Get first page
+curl -X GET 'https://api.supadata.ai/v1/youtube/search?query=programming' \
+  -H 'x-api-key: YOUR_API_KEY'
+
+# Get next page using the token from previous response
+curl -X GET 'https://api.supadata.ai/v1/youtube/search?nextPageToken=TOKEN_HERE' \
+  -H 'x-api-key: YOUR_API_KEY'
+```
+
+**How it works:**
+
+- You receive one page of results (~20 items) per request
+- Each request consumes exactly 1 credit
+- A `nextPageToken` is included in the response for fetching additional pages
+- When using `nextPageToken`, all other filter parameters are ignored
+
+**Use this when:**
+
+- You want precise credit control
+- You're implementing infinite scroll or "Load More" functionality
+- You only need the first page of results
+- You're building interactive applications where users control pagination
+
+### Error Codes
+
+The API returns HTTP status codes and error codes. See this [page](/errors) for more details.
+
+## Pricing
+
+- 1 search request = 1 credit per page of results
+- Using the `limit` parameter to fetch multiple pages automatically will consume credits for each page retrieved
