@@ -1,0 +1,20 @@
+```js Node
+import { Supadata } from "@supadata/js";
+
+// Initialize the client
+const supadata = new Supadata({
+  apiKey: "YOUR_API_KEY",
+});
+
+const searchResults = await supadata.youtube.search({
+  query: "never gonna give you up",
+  type: "video", // Optional: 'video', 'channel', 'playlist', 'all' (default 'all')
+  limit: 20, // Optional: get more than the first page of results
+  sortBy: "views", // Optional: 'relevance', 'rating', 'date', 'views'
+  uploadDate: "year", // Optional: 'hour', 'today', 'week', 'month', 'year'
+  duration: "medium", // Optional: 'short', 'medium', 'long',
+  features: ["hd", "subtitles"], // Optional
+});
+
+console.log(`Found ${searchResults.results.length} results`);
+```

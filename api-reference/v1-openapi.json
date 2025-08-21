@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Supadata",
-    "description": "Web & YouTube to text API for developers",
+    "description": "Web & Social Media Content API for Developers",
     "version": "1.2.0"
   },
   "servers": [
@@ -135,9 +135,11 @@
             "enum": [
               "invalid-request",
               "internal-error",
+              "forbidden",
+              "unauthorized",
+              "upgrade-required",
               "transcript-unavailable",
               "not-found",
-              "internal-error",
               "limit-exceeded"
             ],
             "description": "Error code identifying the type of error",
@@ -481,9 +483,11 @@
                   "enum": [
                     "invalid-request",
                     "internal-error",
+                    "forbidden",
+                    "unauthorized",
+                    "upgrade-required",
                     "transcript-unavailable",
                     "not-found",
-                    "internal-error",
                     "limit-exceeded"
                   ],
                   "description": "Error code if processing this item failed",
@@ -538,6 +542,126 @@
           "stats"
         ],
         "description": "Response for batch job results"
+      },
+      "YoutubeSearch": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The search query that was executed",
+            "example": "Rick Astley Never Gonna Give You Up"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "video",
+                    "channel",
+                    "playlist"
+                  ],
+                  "description": "Type of the search result",
+                  "example": "video"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "ID of the video, channel, or playlist",
+                  "example": "dQw4w9WgXcQ"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the result",
+                  "example": "Rick Astley - Never Gonna Give You Up (Official Video)"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the result",
+                  "example": "The official music video for Rick Astley..."
+                },
+                "thumbnail": {
+                  "type": "string",
+                  "description": "URL to the thumbnail image",
+                  "example": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+                },
+                "duration": {
+                  "type": "number",
+                  "description": "Duration in seconds (for videos only)",
+                  "example": 213
+                },
+                "viewCount": {
+                  "type": "number",
+                  "description": "View count (for videos only)",
+                  "example": 1234567890
+                },
+                "uploadDate": {
+                  "type": "string",
+                  "description": "Upload date (for videos only)",
+                  "example": "2009-10-25T00:00:00.000Z",
+                  "format": "date-time"
+                },
+                "channel": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Channel ID",
+                      "example": "UCuAXFkgsw1L7xaCfnd5JJOw"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Channel name",
+                      "example": "Rick Astley"
+                    },
+                    "thumbnail": {
+                      "type": "string",
+                      "description": "Channel thumbnail URL",
+                      "example": "https://yt3.ggpht.com/..."
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "description": "Channel information (for videos and playlists)"
+                },
+                "subscriberCount": {
+                  "type": "number",
+                  "description": "Subscriber count (for channels only)",
+                  "example": 2000000
+                },
+                "videoCount": {
+                  "type": "number",
+                  "description": "Video count (for channels and playlists only)",
+                  "example": 100
+                }
+              },
+              "required": [
+                "type",
+                "id",
+                "title"
+              ],
+              "description": "Search result item"
+            },
+            "description": "Array of search results"
+          },
+          "totalResults": {
+            "type": "number",
+            "description": "Estimated total number of results",
+            "example": 1000000
+          },
+          "nextPageToken": {
+            "type": "string",
+            "description": "Token for fetching the next page of results. Only returned when limit parameter is not provided.",
+            "example": "eyJxdWVyeSI6IlJpY2sgQXN0bGV5IiwiZmlsdGVycyI6e319"
+          }
+        },
+        "required": [
+          "query",
+          "results"
+        ]
       },
       "Scrape": {
         "type": "object",
@@ -708,17 +832,6 @@
             "description": "Current status of the job",
             "example": "completed"
           },
-          "result": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/Transcript"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Result if the job is completed"
-          },
           "error": {
             "oneOf": [
               {
@@ -729,6 +842,38 @@
               }
             ],
             "description": "Error information if the job failed"
+          },
+          "content": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TranscriptChunk"
+                }
+              },
+              {
+                "type": "string",
+                "description": "Plain text transcript when text=true parameter is used",
+                "example": "Never gonna give you up, never gonna let you down..."
+              }
+            ]
+          },
+          "lang": {
+            "type": "string",
+            "description": "ISO 639-1 language code of transcript",
+            "example": "en"
+          },
+          "availableLangs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of available language codes",
+            "example": [
+              "en",
+              "es",
+              "zh-TW"
+            ]
           }
         },
         "required": [
@@ -1168,7 +1313,7 @@
               ],
               "description": "Type of videos to return.",
               "example": "video",
-              "default": "video"
+              "default": "all"
             },
             "required": false
           }
@@ -1788,6 +1933,196 @@
         ]
       }
     },
+    "/youtube/search": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/YoutubeSearch"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getYoutubeSearch",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Search query string",
+              "example": "Never Gonna Give You Up"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "uploadDate",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "hour",
+                "today",
+                "week",
+                "month",
+                "year"
+              ],
+              "description": "Filter by upload date (eg. last month). Note: works only for videos and movies.",
+              "example": "month",
+              "default": "all"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "video",
+                "channel",
+                "playlist",
+                "movie"
+              ],
+              "description": "Filter by content type",
+              "example": "video",
+              "default": "all"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "duration",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "short",
+                "medium",
+                "long"
+              ],
+              "description": "Filter by video duration: short (<4min), medium (4-20min), long (>20min). Note: works only for videos and movies.",
+              "example": "medium",
+              "default": "all"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "relevance",
+                "rating",
+                "date",
+                "views"
+              ],
+              "description": "Sort order of search results.",
+              "example": "views",
+              "default": "relevance"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "features",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "hd",
+                  "subtitles",
+                  "creative-commons",
+                  "3d",
+                  "live",
+                  "4k",
+                  "360",
+                  "location",
+                  "hdr",
+                  "vr180"
+                ]
+              },
+              "description": "Array of special features to filter by. Note: works only for videos and movies.",
+              "example": [
+                "hd",
+                "subtitles",
+                "creative-commons"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 5000,
+              "description": "Maximum number of results to return. When provided, the API will automatically paginate to fetch up to this many results. When omitted, returns a single page with `nextPageToken` for manual pagination.",
+              "example": 50
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "nextPageToken",
+            "schema": {
+              "type": "string",
+              "description": "Token for fetching the next page of results. When provided, other filter parameters are ignored.",
+              "example": "eyJxdWVyeSI6IlJpY2sgQXN0bGV5IiwiZmlsdGVycyI6e319"
+            },
+            "required": false
+          }
+        ],
+        "description": "Search YouTube for videos, channels, and playlists with advanced filters.",
+        "x-codeSamples": [
+          {
+            "lang": "TypeScript",
+            "label": "Node.js",
+            "source": "import { Supadata } from '@supadata/js';\n\nconst supadata = new Supadata({\n  apiKey: 'YOUR_API_KEY',\n});\nconst searchResults = await supadata.youtube.search({\n  query: 'rick astley never gonna give you up',\n  type: 'video', // Optional: 'video', 'channel', 'playlist', 'all' (default 'all')\n  limit: 20, // Optional: get more than the first page of results\n  sortBy: 'views', // Optional: 'relevance', 'rating', 'date', 'views'\n  uploadDate: 'year', // Optional: 'hour', 'today', 'week', 'month', 'year'\n  duration: 'medium', // Optional: 'short', 'medium', 'long'\n});\nconsole.log(`Found ${searchResults.results.length} results`);"
+          },
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "from supadata import Supadata\n\nsupadata = Supadata(api_key=\"YOUR_API_KEY\")\nsearch_results = supadata.youtube.search(\n    query=\"rick astley never gonna give you up\",\n    type=\"video\",  # Optional: 'video', 'channel', 'playlist', 'all' (default 'all')\n    limit=20,  # Optional: get more than the first page of results\n    sort_by=\"views\",  # Optional: 'relevance', 'rating', 'date', 'views'\n    upload_date=\"year\",  # Optional: 'hour', 'today', 'week', 'month', 'year'\n    duration=\"medium\"  # Optional: 'short', 'medium', 'long'\n)\nprint(f\"Found {len(search_results.results)} results\")\nfor result in search_results.results:\n    print(f\"{result.type}: {result.title}\")"
+          },
+          {
+            "lang": "Shell",
+            "label": "cURL",
+            "source": "curl -X GET \"https://api.supadata.ai/v1/youtube/search?query=rick%20astley%20never%20gonna%20give%20you%20up&type=video&limit=20&sortBy=views&uploadDate=month\" \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"Content-Type: application/json\""
+          }
+        ]
+      }
+    },
     "/web/scrape": {
       "get": {
         "responses": {
@@ -1803,6 +2138,36 @@
           },
           "400": {
             "description": "Invalid Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -2116,14 +2481,6 @@
         "operationId": "getWebCrawlByJobId",
         "parameters": [
           {
-            "in": "path",
-            "name": "jobId",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
             "in": "query",
             "name": "skip",
             "schema": {
@@ -2140,7 +2497,7 @@
             "required": true
           }
         ],
-        "description": "Get the status and results of a crawl job.",
+        "description": "Get the status and results of a crawl by job ID.",
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -2169,7 +2526,17 @@
       "get": {
         "responses": {
           "200": {
-            "description": "Successfully fetched or generated transcript, or jobId for asynchronous processing",
+            "description": "Successfully fetched or generated transcript",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptOrJobId"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Job ID for asynchronous processing",
             "content": {
               "application/json": {
                 "schema": {
@@ -2217,7 +2584,7 @@
             "schema": {
               "type": "string",
               "format": "uri",
-              "description": "Video URL from any supported platform (YouTube, TikTok, Instagram, Twitter) or a file URL.",
+              "description": "Video URL from any supported platform (YouTube, TikTok, Twitter, Instagram) or a file URL.",
               "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             },
             "required": true
@@ -2271,7 +2638,7 @@
             "required": false
           }
         ],
-        "description": "Get transcript from a supported video platform (YouTube, TikTok, Instagram, Twitter) or file URL. If the video is too large to return transcript immediately, request returns a job ID. Use the `/transcript/:jobId` endpoint to get job results.",
+        "description": "Get transcript from a supported video platform (YouTube, TikTok, Twitter, Instagram) or file URL. If the video is too large to return transcript immediately, request returns a job ID. Use the `/transcript/:jobId` endpoint to get job results.",
         "x-codeSamples": [
           {
             "lang": "TypeScript",
