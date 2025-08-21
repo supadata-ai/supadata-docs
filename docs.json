@@ -104,8 +104,8 @@
           {
             "group": "YouTube Endpoints",
             "pages": [
-              "api-reference/endpoint/youtube/video-get",
               "api-reference/endpoint/youtube/search",
+              "api-reference/endpoint/youtube/video-get",
               "api-reference/endpoint/youtube/video-batch",
               "api-reference/endpoint/youtube/transcript",
               "api-reference/endpoint/youtube/transcript-batch",
