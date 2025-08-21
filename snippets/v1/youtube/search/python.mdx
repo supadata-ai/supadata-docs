@@ -5,12 +5,13 @@ from supadata import Supadata
 supadata = Supadata(api_key="YOUR_API_KEY")
 
 search_results = supadata.youtube.search(
-    query="rick astley never gonna give you up",
+    query="never gonna give you up",
     type="video",  # Optional: 'video', 'channel', 'playlist', 'all' (default 'all')
     limit=20,  # Optional: get more than the first page of results
     sort_by="views",  # Optional: 'relevance', 'rating', 'date', 'views'
     upload_date="year",  # Optional: 'hour', 'today', 'week', 'month', 'year'
-    duration="medium"  # Optional: 'short', 'medium', 'long'
+    duration="medium",  # Optional: 'short', 'medium', 'long',
+    features=["hd", "subtitles"],  # Optional
 )
 
 print(f"Found {len(search_results.results)} results")

@@ -76,16 +76,16 @@ Each request requires an `x-api-key` header with your API key available after si
 
 ### Query Parameters
 
-| Parameter     | Type   | Required | Description                                                                                                                                                |
-| ------------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| query         | string | Yes      | Search query string                                                                                                                                        |
-| type          | string | No       | Filter by content type. Options: `all` (default), `video`, `channel`, `playlist`, `movie`                                                                  |
-| uploadDate    | string | No       | Filter by upload date. Options: `all` (default), `hour`, `today`, `week`, `month`, `year`                                                                  |
-| duration      | string | No       | Filter by video duration. Options: `all` (default), `short` (\<4min), `medium` (4-20min), `long` (>20min)                                                  |
-| sortBy        | string | No       | Sort order of results. Options: `relevance` (default), `rating`, `date`, `views`                                                                           |
-| features      | array  | No       | Array of special features to filter by. Options: `hd`, `subtitles`, `creative-commons`, `3d`, `live`, `purchased`, `4k`, `360`, `location`, `hdr`, `vr180` |
-| limit         | number | No       | Maximum number of results to return (1-5000). When provided, API automatically paginates to fetch up to this many results                                  |
-| nextPageToken | string | No       | Token for fetching the next page of results. When provided, other filter parameters are ignored                                                            |
+| Parameter     | Type   | Required | Description                                                                                                                                   |
+| ------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| query         | string | Yes      | Search query string                                                                                                                           |
+| type          | string | No       | Filter by content type. Options: `all` (default), `video`, `channel`, `playlist`, `movie`                                                     |
+| uploadDate    | string | No       | Filter by upload date. Options: `all` (default), `hour`, `today`, `week`, `month`, `year`                                                     |
+| duration      | string | No       | Filter by video duration. Options: `all` (default), `short` (\<4min), `medium` (4-20min), `long` (>20min)                                     |
+| sortBy        | string | No       | Sort order of results. Options: `relevance` (default), `rating`, `date`, `views`                                                              |
+| features      | array  | No       | Array of special features to filter by. Options: `hd`, `subtitles`, `creative-commons`, `3d`, `live`, `4k`, `360`, `location`, `hdr`, `vr180` |
+| limit         | number | No       | Maximum number of results to return (1-5000). When provided, API automatically paginates to fetch up to this many results                     |
+| nextPageToken | string | No       | Token for fetching the next page of results. When provided, other filter parameters are ignored                                               |
 
 ## Pagination
 
