@@ -1976,7 +1976,7 @@
               "type": "string",
               "minLength": 1,
               "description": "Search query string",
-              "example": "Rick Astley Never Gonna Give You Up"
+              "example": "Never Gonna Give You Up"
             },
             "required": true
           },
@@ -1993,7 +1993,7 @@
                 "month",
                 "year"
               ],
-              "description": "Filter by upload date",
+              "description": "Filter by upload date (eg. last month). Note: works only for videos and movies.",
               "example": "month",
               "default": "all"
             },
@@ -2028,7 +2028,7 @@
                 "medium",
                 "long"
               ],
-              "description": "Filter by video duration: short (<4min), medium (4-20min), long (>20min)",
+              "description": "Filter by video duration: short (<4min), medium (4-20min), long (>20min). Note: works only for videos and movies.",
               "example": "medium",
               "default": "all"
             },
@@ -2045,7 +2045,7 @@
                 "date",
                 "views"
               ],
-              "description": "Sort order of search results",
+              "description": "Sort order of search results.",
               "example": "views",
               "default": "relevance"
             },
@@ -2064,7 +2064,6 @@
                   "creative-commons",
                   "3d",
                   "live",
-                  "purchased",
                   "4k",
                   "360",
                   "location",
@@ -2072,7 +2071,7 @@
                   "vr180"
                 ]
               },
-              "description": "Array of special features to filter by",
+              "description": "Array of special features to filter by. Note: works only for videos and movies.",
               "example": [
                 "hd",
                 "subtitles",
@@ -2088,7 +2087,7 @@
               "type": "number",
               "minimum": 1,
               "maximum": 5000,
-              "description": "Maximum number of results to return. When provided, the API will automatically paginate to fetch up to this many results. When omitted, returns a single page with continuation token for manual pagination.",
+              "description": "Maximum number of results to return. When provided, the API will automatically paginate to fetch up to this many results. When omitted, returns a single page with `nextPageToken` for manual pagination.",
               "example": 50
             },
             "required": false
@@ -2482,14 +2481,6 @@
         "operationId": "getWebCrawlByJobId",
         "parameters": [
           {
-            "in": "path",
-            "name": "jobId",
-            "schema": {
-              "$ref": "#/components/schemas/JobId"
-            },
-            "required": true
-          },
-          {
             "in": "query",
             "name": "skip",
             "schema": {
@@ -2506,7 +2497,7 @@
             "required": true
           }
         ],
-        "description": "Get the status and results of a crawl job.",
+        "description": "Get the status and results of a crawl by job ID.",
         "x-codeSamples": [
           {
             "lang": "TypeScript",

@@ -59,10 +59,10 @@ Each request requires an `x-api-key` header with your API key available after si
 
 The API can return either a transcript result directly (HTTP 200) or a job ID for asynchronous processing (HTTP 202).
 
-<Callout type="info">
+<Info>
   For large videos that require processing time, the API returns HTTP 202 with a
   job ID. Use the `/transcript/{jobId}` endpoint to poll for results.
-</Callout>
+</Info>
 
 **Immediate transcript response (HTTP 200):**
 

@@ -89,7 +89,12 @@ Each request requires an `x-api-key` header with your API key available after si
 
 ## Pagination
 
-The search endpoint supports two different pagination modes depending on whether you use the `limit` parameter:
+The search endpoint supports two different pagination modes depending on whether you use the `limit` parameter.
+
+<Info>
+  Supadata SDKs automatically handle pagination for you. Please use the API if
+  you need to control pagination.
+</Info>
 
 ### Automatic Pagination (with `limit`)
 
