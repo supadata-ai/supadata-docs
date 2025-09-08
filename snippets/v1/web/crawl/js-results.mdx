@@ -3,8 +3,9 @@ import { Supadata } from "@supadata/js";
 
 const supadata = new Supadata("YOUR_API_KEY");
 
-// Check the status of a crawl job
-const crawlResult = await supadata.web.crawl.getJobStatus(jobId);
+// Get crawl job results
+// This automatically handles pagination and returns all pages
+const crawlResult = await supadata.web.getCrawlResults(jobId);
 
 if (crawlResult.status === "completed") {
   console.log("Crawl job completed successfully!");
@@ -18,11 +19,6 @@ if (crawlResult.status === "completed") {
     console.log(`Content preview: ${page.content.substring(0, 100)}...`);
     console.log("---");
   });
-  
-  // Handle pagination if there are more results
-  if (crawlResult.next) {
-    console.log("More results available. Next page URL:", crawlResult.next);
-  }
 } else if (crawlResult.status === "failed") {
   console.error("Crawl job failed:", crawlResult.error);
 } else {
