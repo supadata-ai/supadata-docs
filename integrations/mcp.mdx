@@ -1,0 +1,104 @@
+---
+title: "MCP"
+description: "Model Context Protocol server for AI-powered web and video scraping"
+---
+
+## Quick Start
+
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=%40supadata%2Fmcp&config=eyJlbnYiOnsiU1VQQURBVEFfQVBJX0tFWSI6IllPVVItQVBJLUtFWSJ9LCJjb21tYW5kIjoibnB4IC15IEBzdXBhZGF0YS9tY3AifQ%3D%3D)
+
+Or use Smithery: https://smithery.ai/server/@supadata-ai/mcp
+
+## Overview
+
+The Supadata MCP (Model Context Protocol) server enables powerful web and video scraping capabilities directly within AI development environments like Cursor, Claude Desktop, and VS Code. This open-source integration allows AI models to extract transcripts, scrape web pages, and crawl entire websites to gather context.
+
+## Features
+
+- **Multi-Platform Support**: Works with YouTube, TikTok, Instagram, Twitter, and more
+- **AI-First Design**: Optimized for use with LLMs and AI assistants
+- **Multiple Tools**: Transcript extraction, web scraping, site mapping, and crawling
+- **Easy Integration**: Simple setup with popular AI tools
+
+## Installation
+
+### Manual Installation
+
+```bash
+env SUPADATA_API_KEY=your-api-key npx -y @supadata/mcp
+```
+
+## Integration Setup
+
+### Cursor
+
+1. Open Cursor Settings
+2. Navigate to **MCPs & Integrations** → **New MCP Server**
+3. Add new MCP server:
+
+```json
+{
+  "supadata": {
+    "command": "npx",
+    "args": ["-y", "@supadata/mcp"],
+    "env": {
+      "SUPADATA_API_KEY": "your-api-key"
+    }
+  }
+}
+```
+
+### Claude Desktop
+
+Go to **Claude settings** → ** Developer** → **Edit Config** and add the following to the config file:
+
+```json
+{
+  "mcpServers": {
+    "supadata": {
+      "command": "npx",
+      "args": ["-y", "@supadata/mcp"],
+      "env": {
+        "SUPADATA_API_KEY": "your-api-key"
+      }
+    }
+  }
+}
+```
+
+### VS Code
+
+Using the MCP extension:
+
+1. Install the MCP extension
+2. Add Supadata server configuration
+3. Set your API key in environment settings
+
+### Windsurf
+
+Add to `~/.windsurf/cascade/config.json`:
+
+```json
+{
+  "mcpServers": {
+    "supadata": {
+      "command": "npx",
+      "args": ["-y", "@supadata/mcp"],
+      "env": {
+        "SUPADATA_API_KEY": "your-api-key"
+      }
+    }
+  }
+}
+```
+
+## Configuration
+
+### Environment Variables
+
+- `SUPADATA_API_KEY`: Your Supadata API key (required)
+
+## Support
+
+- [GitHub Issues](https://github.com/supadata-ai/mcp/issues)
+- [MCP Documentation](https://github.com/supadata-ai/mcp#readme)

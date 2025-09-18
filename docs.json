@@ -68,19 +68,29 @@
         ]
       },
       {
-        "tab": "SDKs",
+        "tab": "Integrations",
         "groups": [
           {
-            "group": "Overall",
+            "group": "General",
             "pages": [
-              "sdks/overview"
+              "integrations/overview"
             ]
           },
           {
-            "group": "Official",
+            "group": "SDKs",
             "pages": [
-              "sdks/python",
-              "sdks/node"
+              "integrations/python",
+              "integrations/node"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/mcp",
+              "integrations/n8n",
+              "integrations/zapier",
+              "integrations/make",
+              "integrations/activepieces"
             ]
           }
         ]
