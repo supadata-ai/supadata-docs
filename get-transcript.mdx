@@ -1,7 +1,7 @@
 ---
 title: "Transcript"
 og:title: "Get YouTube, TikTok, Instagram, X (Twitter) transcript | Supadata"
-description: "Use this API endpoint to fetch text transcript from a video hosted on YouTube, TikTok, Instagram, X (Twitter) or a public file URL."
+description: "Use this API endpoint to fetch text transcript from a video hosted on YouTube, TikTok, Instagram, X (Twitter) or a public file URL. Supadata will fetch existing transcript or fall back to AI to create one."
 icon: "book"
 ---
 
@@ -52,7 +52,7 @@ Each request requires an `x-api-key` header with your API key available after si
 
 <Info>
   To fetch only existing transcripts and avoid costs tied to AI generation, use
-  `mode=native`.
+  `mode=native`. See <a href="#pricing">Pricing</a> for details.
 </Info>
 
 ### Response Format
@@ -173,7 +173,22 @@ The endpoint supports multiple languages. The `lang` parameter is used to specif
 
 When `mode = generate`, the `lang` parameter is ignored and the transcript is generated in the language of the video.
 
+## Latency
+
+Requests for existing transcripts (eg. in `mode=native`) are resolved at normal latency. Requests that involve AI generation (eg. in `mode=generate`) can take up to 60s if they do not return an asynchronous job ID earlier. Long videos and large files take longer to transcribe.
+
+Please consider this when implementing time-outs and UX in your project.
+
 ## Pricing
 
-- 1 native transcript = 1 credit
+- 1 existing transcript = 1 credit
 - 1 generated transcript minute = 2 credits
+
+### Examples
+
+| Case                                     | Mode       | What happens                           | Credits consumed               |
+| ---------------------------------------- | ---------- | -------------------------------------- | ------------------------------ |
+| YouTube video without any transcript     | `auto`     | Supadata generates transcript with AI  | 2 per min of video             |
+| Instagram video                          | `native`   | No transcript available response (206) | 1                              |
+| Instagram video with existing transcript | `auto`     | Supadata returns existing transcript   | 1                              |
+| TikTok video                             | `generate` | Supadata generates transcript with AI  | 2 per min of video (usually 2) |
