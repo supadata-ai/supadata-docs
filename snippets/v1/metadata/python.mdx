@@ -1,0 +1,11 @@
+```python Python
+from supadata import Supadata
+
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+metadata = supadata.metadata(
+    url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+)
+
+print(metadata)
+```

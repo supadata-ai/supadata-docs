@@ -24,6 +24,7 @@
             "group": "Features",
             "pages": [
               "get-transcript",
+              "get-metadata",
               {
                 "group": "Youtube",
                 "icon": "youtube",
@@ -106,10 +107,11 @@
             ]
           },
           {
-            "group": "Transcript Endpoints",
+            "group": "Universal Endpoints",
             "pages": [
               "api-reference/endpoint/transcript/transcript",
-              "api-reference/endpoint/transcript/transcript-get"
+              "api-reference/endpoint/transcript/transcript-get",
+              "api-reference/endpoint/metadata/metadata"
             ]
           },
           {

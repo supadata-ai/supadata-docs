@@ -1,0 +1,13 @@
+```javascript Node.js
+import { Supadata } from '@supadata/js';
+
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+const metadata = await supadata.metadata({
+  url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+});
+
+console.log(metadata)
+```

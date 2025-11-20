@@ -880,6 +880,296 @@
           "status"
         ],
         "description": "Response for job status/results"
+      },
+      "Metadata": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "youtube",
+              "tiktok",
+              "instagram",
+              "twitter"
+            ],
+            "description": "Platform where the media is hosted"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MediaType"
+              }
+            ],
+            "description": "Type of media content (discriminator field)",
+            "example": "video"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique media identifier from the platform",
+            "example": "dQw4w9WgXcQ"
+          },
+          "url": {
+            "type": "string",
+            "description": "Canonical URL to the media",
+            "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Media title",
+            "example": "Amazing Video Title"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Media description or caption",
+            "example": "Check out this amazing content! #awesome"
+          },
+          "author": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string",
+                "example": "username"
+              },
+              "displayName": {
+                "type": "string",
+                "example": "John Doe"
+              },
+              "avatarUrl": {
+                "type": "string",
+                "example": "https://example.com/avatar.jpg"
+              },
+              "verified": {
+                "type": "boolean",
+                "example": true,
+                "description": "Whether the author is verified on the platform"
+              }
+            },
+            "required": [
+              "displayName"
+            ],
+            "description": "Author/creator information"
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "views": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "example": 50000,
+                "description": "View count. null if unavailable or not applicable for the platform."
+              },
+              "likes": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "example": 5000,
+                "description": "Like count. null if unavailable or not applicable for the platform."
+              },
+              "comments": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "example": 200,
+                "description": "Comment count. null if unavailable or not applicable for the platform."
+              },
+              "shares": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "example": 100,
+                "description": "Share count. null if unavailable or not applicable for the platform (e.g., YouTube, Instagram)."
+              }
+            },
+            "required": [
+              "likes",
+              "comments",
+              "shares"
+            ],
+            "description": "Engagement statistics. null values indicate the metric is unavailable or not applicable for the platform."
+          },
+          "media": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "video",
+                    "description": "Media type discriminator"
+                  },
+                  "duration": {
+                    "type": "number",
+                    "example": 30,
+                    "description": "Video duration in seconds"
+                  },
+                  "thumbnailUrl": {
+                    "type": "string",
+                    "example": "https://example.com/thumb.jpg",
+                    "description": "Largest/best quality thumbnail URL"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "image",
+                    "description": "Media type discriminator"
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "https://example.com/image.jpg",
+                    "description": "Direct URL to the image"
+                  }
+                },
+                "required": [
+                  "type",
+                  "url"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "carousel",
+                    "description": "Media type discriminator"
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "const": "video",
+                              "description": "Video item"
+                            },
+                            "duration": {
+                              "type": "number",
+                              "description": "Video duration in seconds"
+                            },
+                            "thumbnailUrl": {
+                              "type": "string",
+                              "description": "Video thumbnail URL"
+                            }
+                          },
+                          "required": [
+                            "type"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "const": "image",
+                              "description": "Image item"
+                            },
+                            "url": {
+                              "type": "string",
+                              "description": "Direct URL to the image"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "url"
+                          ]
+                        }
+                      ]
+                    },
+                    "description": "Array of carousel items (images or videos)"
+                  }
+                },
+                "required": [
+                  "type",
+                  "items"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "post",
+                    "description": "Media type discriminator for text-only posts"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            ],
+            "description": "Media-specific data, discriminated by type field (video, image, carousel, or post)"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags, hashtags, or keywords associated with the media",
+            "example": [
+              "funny",
+              "cats",
+              "viral"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Creation/publish timestamp (ISO 8601 format)",
+            "example": "2024-01-15T10:30:00Z"
+          },
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Platform-specific additional data"
+          }
+        },
+        "required": [
+          "platform",
+          "type",
+          "id"
+        ]
+      },
+      "MediaType": {
+        "type": "string",
+        "enum": [
+          "video",
+          "image",
+          "carousel",
+          "post"
+        ],
+        "description": "Type of media content"
+      },
+      "MetadataQuery": {
+        "type": "string",
+        "format": "uri",
+        "description": "URL to any supported internet media. Supports YouTube videos, TikTok videos, Instagram reels/posts, Twitter/X posts, and more.",
+        "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "examples": [
+          "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "https://youtu.be/dQw4w9WgXcQ",
+          "https://www.tiktok.com/@user/video/1234567890",
+          "https://www.instagram.com/reel/ABC123",
+          "https://twitter.com/user/status/1234567890"
+        ]
       }
     }
   },
@@ -942,7 +1232,7 @@
               "type": "string",
               "description": "YouTube video URL or ID. See [supported URL formats](https://supadata.ai/documentation/youtube/supported-url-formats).",
               "examples": [
-                "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                "https://youtu.be/dQw4w9WgXcQ",
                 "dQw4w9WgXcQ"
               ]
             },
@@ -1401,7 +1691,7 @@
               "type": "string",
               "format": "uri",
               "description": "YouTube video URL. See [supported URL formats](https://supadata.ai/documentation/youtube/supported-url-formats).",
-              "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              "example": "https://youtu.be/dQw4w9WgXcQ"
             }
           },
           {
@@ -1453,12 +1743,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "from supadata import Supadata\n\nsupadata = Supadata(api_key=\"YOUR_API_KEY\")\ntext_transcript = supadata.youtube.transcript(\n    url=\"https://youtu.be/dQw4w9WgXcQ\",\n    text=True # Set to False to get the transcript with timestamps\n)\nprint(text_transcript.content)"
+            "source": "from supadata import Supadata\n\nsupadata = Supadata(api_key=\"YOUR_API_KEY\")\ntext_transcript = supadata.youtube.transcript(\n    url=\"https://youtu.be/dQw4w9WgXcQ\",\n    lang=\"en\",\n    text=True # Set to False to get the transcript with timestamps\n)\nprint(text_transcript.content)"
           },
           {
             "lang": "Shell",
             "label": "cURL - Using URL",
-            "source": "curl -X GET \"https://api.supadata.ai/v1/youtube/transcript?url=https://youtu.be/dQw4w9WgXcQ\" \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"Content-Type: application/json\""
+            "source": "curl -X GET \"https://api.supadata.ai/v1/youtube/transcript?url=https://youtu.be/dQw4w9WgXcQ&lang=en\" \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"Content-Type: application/json\""
           }
         ]
       }
@@ -1526,7 +1816,7 @@
               "type": "string",
               "format": "uri",
               "description": "YouTube video URL. See [supported URL formats](https://supadata.ai/documentation/youtube/supported-url-formats).",
-              "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              "example": "https://youtu.be/dQw4w9WgXcQ"
             },
             "required": false
           },
@@ -1583,7 +1873,7 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "from supadata import Supadata\n\nsupadata = Supadata(api_key=\"YOUR_API_KEY\")\ntranslated = supadata.youtube.translate(\n    url=\"https://youtu.be/dQw4w9WgXcQ\",\n    lang=\"es\"\n)\nprint(f\"Got translated transcript in {translated.lang}\")"
+            "source": "from supadata import Supadata\n\nsupadata = Supadata(api_key=\"YOUR_API_KEY\")\ntranslated = supadata.youtube.translate(\n    url=\"https://youtu.be/dQw4w9WgXcQ\",\n    lang=\"es\",\n    text=False\n)\nprint(f\"Got translated transcript in {translated.lang}\")"
           },
           {
             "lang": "Shell",
@@ -2481,20 +2771,21 @@
         "operationId": "getWebCrawlByJobId",
         "parameters": [
           {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The crawl job ID"
+          },
+          {
             "in": "query",
             "name": "skip",
             "schema": {
               "type": "number",
               "minimum": 0
             }
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "path",
-            "name": "jobId",
-            "required": true
           }
         ],
         "description": "Get the status and results of a crawl by job ID.",
@@ -2585,7 +2876,7 @@
               "type": "string",
               "format": "uri",
               "description": "Video URL from any supported platform (YouTube, TikTok, Twitter, Instagram) or a file URL.",
-              "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              "example": "https://youtu.be/dQw4w9WgXcQ"
             },
             "required": true
           },
@@ -2643,12 +2934,12 @@
           {
             "lang": "TypeScript",
             "label": "Node.js",
-            "source": "import { Supadata } from '@supadata/js';\n\nconst supadata = new Supadata({\n  apiKey: 'YOUR_API_KEY',\n});\n\n// Get transcript or job ID\nconst transcriptResult = await supadata.transcript({\n  url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',\n  lang: 'en',\n  text: true,\n  mode: 'auto' // 'native', 'auto', or 'generate'\n});\nconsole.log(transcript);\n\nif ('jobId' in transcriptJob) {\n  // Check job result\n  const result = await supadata.transcript.getJobStatus(transcriptJob.jobId);\n  console.log(result);\n}"
+            "source": "import { Supadata } from '@supadata/js';\n\nconst supadata = new Supadata({\n  apiKey: 'YOUR_API_KEY',\n});\n\n// Get transcript or job ID\nconst transcriptResult = await supadata.transcript({\n  url: 'https://youtu.be/dQw4w9WgXcQ',\n  lang: 'en',\n  text: true,\n  mode: 'auto' // 'native', 'auto', or 'generate'\n});\nconsole.log(transcript);\n\nif ('jobId' in transcriptJob) {\n  // Check job result\n  const result = await supadata.transcript.getJobStatus(transcriptJob.jobId);\n  console.log(result);\n}"
           },
           {
             "lang": "Python",
             "label": "Python",
-            "source": "from supadata import Supadata\n\nsupadata = Supadata(api_key=\"YOUR_API_KEY\")\n\n# Get transcript or job ID\ntranscript_result = supadata.transcript(\n    url=\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\",\n    lang=\"en\",\n    text=True,\n    mode=\"auto\"  # 'native', 'auto', or 'generate'\n)\nprint(f\"Got transcript result or job ID: {transcript_result}\")\n\nif hasattr(transcript_result, 'job_id'):\n    # Check job result\n    result = supadata.transcript.get_job_status(transcript_result.job_id)\n    print(f\"Job status: {result.status}\")\n    if result.status == \"completed\":\n        print(result.content)"
+            "source": "from supadata import Supadata\n\nsupadata = Supadata(api_key=\"YOUR_API_KEY\")\n\n# Get transcript or job ID\ntranscript_result = supadata.transcript(\n    url=\"https://youtu.be/dQw4w9WgXcQ\",\n    lang=\"en\",\n    text=True,\n    mode=\"auto\"  # 'native', 'auto', or 'generate'\n)\nprint(f\"Got transcript result or job ID: {transcript_result}\")\n\nif hasattr(transcript_result, 'job_id'):\n    # Check job result\n    result = supadata.transcript.get_job_status(transcript_result.job_id)\n    print(f\"Job status: {result.status}\")\n    if result.status == \"completed\":\n        print(result.content)"
           },
           {
             "lang": "Shell",
@@ -2724,6 +3015,105 @@
             "lang": "Shell",
             "label": "cURL - Get Job Status",
             "source": "curl -X GET \"https://api.supadata.ai/v1/transcript/JOB_ID\" \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"Content-Type: application/json\""
+          }
+        ]
+      }
+    },
+    "/metadata": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Metadata retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Metadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limit Exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getMetadata",
+        "tags": [
+          "Metadata"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "url",
+            "schema": {
+              "$ref": "#/components/schemas/MetadataQuery"
+            },
+            "required": true
+          }
+        ],
+        "summary": "Get media metadata",
+        "description": "Fetch metadata from any supported internet media including YouTube videos, TikTok videos, Instagram reels/posts, and Twitter/X posts. Returns unified metadata with a predictable structure across all platforms.",
+        "x-codeSamples": [
+          {
+            "lang": "TypeScript",
+            "label": "Node.js",
+            "source": "import { Supadata } from '@supadata/js';\n\nconst supadata = new Supadata({\n  apiKey: 'YOUR_API_KEY',\n});\n\n// TikTok video, can be also YouTube, Instagram, Twitter\nconst tiktokMetadata = await supadata.metadata({\n  url: 'https://www.tiktok.com/@user/video/1234567890',\n});\nconsole.log(tiktokMetadata);"
+          },
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "from supadata import Supadata\n\nsupadata = Supadata(api_key=\"YOUR_API_KEY\")\n\n# TikTok video, can be also YouTube, Instagram, Twitter\ntiktok_metadata = supadata.metadata(\n    url=\"https://www.tiktok.com/@user/video/1234567890\"\n)\nprint(f\"Caption: {tiktok_metadata.description}\")\nprint(f\"Likes: {tiktok_metadata.stats.likes}\")"
+          },
+          {
+            "lang": "Shell",
+            "label": "cURL",
+            "source": "curl -X GET \"https://api.supadata.ai/v1/metadata?url=https%3A%2F%2Fwww.tiktok.com%2F%40user%2Fvideo%2F1234567890\" \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"Content-Type: application/json\""
           }
         ]
       }

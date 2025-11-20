@@ -1,0 +1,168 @@
+---
+title: "Metadata"
+og:title: "Get YouTube, TikTok, Instagram, X (Twitter) metadata | Supadata"
+description: "Use this API endpoint to fetch metadata from videos and posts hosted on YouTube, TikTok, Instagram, or X (Twitter). Supadata returns a unified schema with platform-specific fields."
+icon: "circle-info"
+---
+
+import MetadataNode from "/snippets/v1/metadata/js.mdx";
+import MetadataPython from "/snippets/v1/metadata/python.mdx";
+import MetadataCURL from "/snippets/v1/metadata/curl.mdx";
+
+## Quick Start
+
+### Request
+
+<CodeGroup>
+  <MetadataNode />
+  <MetadataPython />
+  <MetadataCURL />
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "platform": "youtube",
+  "type": "video",
+  "id": "dQw4w9WgXcQ",
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "title": "Rick Astley - Never Gonna Give You Up",
+  "description": "The official video for \"Never Gonna Give You Up\"...",
+  "author": {
+    "displayName": "Rick Astley",
+    "avatarUrl": "https://yt3.ggpht.com/..."
+  },
+  "stats": {
+    "views": 1234567890,
+    "likes": 12345678,
+    "comments": 200000,
+    "shares": null
+  },
+  "media": {
+    "type": "video",
+    "duration": 213,
+    "thumbnailUrl": "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+  },
+  "tags": ["Rick Astley", "Never Gonna Give You Up", "Official Video"],
+  "createdAt": "2009-10-25T00:00:00Z",
+  "additionalData": {
+    "channelId": "UCuAXFkgsw1L7xaCfnd5JJOw",
+    "transcriptLanguages": ["en"]
+  }
+}
+```
+
+## Specification
+
+### Endpoint
+
+`GET https://api.supadata.ai/v1/metadata`
+
+Each request requires an `x-api-key` header with your API key available after signing up. Get your API key [here](https://dash.supadata.ai/organizations/api-key).
+
+### Query Parameters
+
+| Parameter | Type   | Required | Description                                                                                                                                                            |
+| --------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url       | string | Yes      | URL of the media to get metadata from. Must be YouTube, TikTok, Instagram, or X (Twitter). It is recommended to encode the URL before sending it as a query parameter. |
+
+### Response Format
+
+The API returns a unified metadata schema with platform-specific fields.
+
+```typescript
+{
+  "platform": "youtube" | "tiktok" | "instagram" | "twitter",
+  "type": "video" | "image" | "carousel" | "post",
+  "id": string,
+  "url": string,
+  "title": string | null,
+  "description": string | null,
+  "author": {
+    "username": string,
+    "displayName": string,
+    "avatarUrl": string,
+    "verified": boolean
+  },
+  "stats": {
+    "views": number | null,
+    "likes": number | null,
+    "comments": number | null,
+    "shares": number | null
+  },
+  "media": VideoMedia | ImageMedia | CarouselMedia | PostMedia,
+  "tags": string[],
+  "createdAt": string,
+  "additionalData": object  // Platform-specific fields
+}
+```
+
+### Error Codes
+
+The API returns HTTP status codes and error codes. See this [page](/errors) for more details.
+
+### Supported URL Formats
+
+The metadata endpoint supports various media URLs, eg:
+
+**YouTube:**
+
+- `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
+- `https://youtu.be/dQw4w9WgXcQ`
+- `https://www.youtube.com/embed/dQw4w9WgXcQ`
+- `https://www.youtube.com/shorts/dQw4w9WgXcQ`
+- `https://www.youtube.com/live/dQw4w9WgXcQ`
+
+**TikTok:**
+
+- `https://www.tiktok.com/@username/video/7234567890123456789`
+- `https://vm.tiktok.com/AAAAZZZZZ`
+- `https://m.tiktok.com/v/7234567890123456789`
+
+**Instagram:**
+
+- `https://www.instagram.com/reel/C1234567890`
+- `https://www.instagram.com/p/C1234567890`
+- `https://www.instagram.com/tv/C1234567890`
+
+**Twitter/X:**
+
+- `https://twitter.com/username/status/1234567890123456789`
+- `https://x.com/username/status/1234567890123456789`
+
+## Base Schema
+
+All metadata responses share a common base schema regardless of platform. Here are the important details:
+
+- **type**: Acts as a discriminator that determines the structure of the `media` field (see [Media Types](#media-types) below)
+- **title** and **description**: May be `null` for some platforms or content types
+- **stats**: `null` values indicate the metric is unavailable or not applicable for the platform.
+- **createdAt**: ISO 8601 formatted timestamp
+- **additionalData**: Contains platform-specific fields not included in the base schema
+
+## Media Types
+
+The `media` field structure varies based on the `type` discriminator:
+
+- Video: `duration`, `thumbnailUrl`
+- Image: `url`
+- Carousel: `items` (array of video/image objects)
+- Post: no additional fields
+
+## Platform-Specific Fields
+
+Different platforms and media types may include additional fields in the `additionalData` object, for example:
+
+- Channel information for YouTube
+- Music/sound information for TikTok
+- Retweet/quote information for X (Twitter)
+
+<Info>
+  Platform-specific fields in `additionalData` may vary and are subject to
+  change based on platform API availability.
+</Info>
+
+## Pricing
+
+All metadata requests cost **1 credit**, regardless of platform or media type.
