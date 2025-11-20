@@ -3,7 +3,7 @@
   "info": {
     "title": "Supadata",
     "description": "Web & Social Media Content API for Developers",
-    "version": "1.2.0"
+    "version": "1.3.0"
   },
   "servers": [
     {
@@ -900,7 +900,6 @@
                 "$ref": "#/components/schemas/MediaType"
               }
             ],
-            "description": "Type of media content (discriminator field)",
             "example": "video"
           },
           "id": {
@@ -1162,10 +1161,8 @@
         "type": "string",
         "format": "uri",
         "description": "URL to any supported internet media. Supports YouTube videos, TikTok videos, Instagram reels/posts, Twitter/X posts, and more.",
-        "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
         "examples": [
           "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "https://youtu.be/dQw4w9WgXcQ",
           "https://www.tiktok.com/@user/video/1234567890",
           "https://www.instagram.com/reel/ABC123",
           "https://twitter.com/user/status/1234567890"
@@ -1240,6 +1237,7 @@
           }
         ],
         "description": "Get metadata for a YouTube video.",
+        "deprecated": true,
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -1734,6 +1732,7 @@
           }
         ],
         "description": "Get transcript from YouTube video in various formats and languages. If the `lang` parameter is not provided or the transcript is not available in the requested language, the API defaults to the first available language.",
+        "deprecated": true,
         "x-codeSamples": [
           {
             "lang": "TypeScript",
