@@ -1,7 +1,7 @@
 ---
 title: "Metadata"
-og:title: "Get YouTube, TikTok, Instagram, X (Twitter) metadata | Supadata"
-description: "Use this API endpoint to fetch metadata from videos and posts hosted on YouTube, TikTok, Instagram, or X (Twitter). Supadata returns a unified schema with platform-specific fields."
+og:title: "Get YouTube, TikTok, Instagram, X (Twitter) or Facebook metadata | Supadata"
+description: "Use this API endpoint to fetch metadata from videos and posts hosted on YouTube, TikTok, Instagram, X (Twitter) or Facebook. Supadata returns a unified schema with platform-specific fields."
 icon: "circle-info"
 ---
 
@@ -63,9 +63,9 @@ Each request requires an `x-api-key` header with your API key available after si
 
 ### Query Parameters
 
-| Parameter | Type   | Required | Description                                                                                                                                                            |
-| --------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| url       | string | Yes      | URL of the media to get metadata from. Must be YouTube, TikTok, Instagram, or X (Twitter). It is recommended to encode the URL before sending it as a query parameter. |
+| Parameter | Type   | Required | Description                                                                                                                                                                     |
+| --------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url       | string | Yes      | URL of the media to get metadata from. Must be YouTube, TikTok, Instagram, X (Twitter) or Facebook. It is recommended to encode the URL before sending it as a query parameter. |
 
 ### Response Format
 
@@ -73,7 +73,7 @@ The API returns a unified metadata schema with platform-specific fields.
 
 ```typescript
 {
-  "platform": "youtube" | "tiktok" | "instagram" | "twitter",
+  "platform": "youtube" | "tiktok" | "instagram" | "twitter" | "facebook",
   "type": "video" | "image" | "carousel" | "post",
   "id": string,
   "url": string,
@@ -130,6 +130,14 @@ The metadata endpoint supports various media URLs, eg:
 
 - `https://twitter.com/username/status/1234567890123456789`
 - `https://x.com/username/status/1234567890123456789`
+
+**Facebook**
+
+- `https://www.facebook.com/reel/682865820350105/`
+- `https://www.facebook.com/groups/123456789012345/permalink/987654321098765/`
+- `https://m.facebook.com/examplepage/posts/123123123123123/`
+- `https://www.facebook.com/share/p/123123123123123/`
+- Marketplace & Event URLs are not supported yet.
 
 ## Base Schema
 

@@ -1,7 +1,7 @@
 ---
 title: "Transcript"
-og:title: "Get YouTube, TikTok, Instagram, X (Twitter) transcript | Supadata"
-description: "Use this API endpoint to fetch text transcript from a video hosted on YouTube, TikTok, Instagram, X (Twitter) or a public file URL. Supadata will fetch existing transcript or fall back to AI to create one."
+og:title: "Get YouTube, TikTok, Instagram, X (Twitter), Facebook transcript | Supadata"
+description: "Use this API endpoint to fetch text transcript from a video hosted on YouTube, TikTok, Instagram, X (Twitter), Facebook or a public file URL. Supadata will fetch existing transcript or fall back to AI to create one."
 icon: "book"
 ---
 
@@ -44,7 +44,7 @@ Each request requires an `x-api-key` header with your API key available after si
 
 | Parameter | Type    | Required | Description                                                                                                                                                                                                                                    |
 | --------- | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| url       | string  | Yes      | URL of the video to get transcript from. Must be either YouTube, TikTok, Instagram, X (Twitter) or a public file URL. It is recommended to encode the URL before sending it as a query parameter.                                              |
+| url       | string  | Yes      | URL of the video to get transcript from. Must be either YouTube, TikTok, Instagram, X (Twitter), Facebook or a public file URL. It is recommended to encode the URL before sending it as a query parameter.                                    |
 | lang      | string  | No       | Preferred language code of the transcript (ISO 639-1). See [Languages](#languages).                                                                                                                                                            |
 | text      | boolean | No       | When true, returns plain text transcript. Default: false                                                                                                                                                                                       |
 | chunkSize | number  | No       | Maximum characters per transcript chunk (only when text=false)                                                                                                                                                                                 |
@@ -150,6 +150,7 @@ The API returns HTTP status codes and error codes. See this [page](/errors) for 
 - TikTok video URL, e.g. `https://www.tiktok.com/@username/video/1234567890`
 - X (Twitter) video URL, e.g. `https://x.com/username/status/1234567890`
 - Instagram video URL, e.g. `https://instagram.com/reel/1234567890/`
+- Facebook video URL, e.g.`https://www.facebook.com/reel/682865820350105/`
 - Publicly accessible file URL, e.g. `https://bucket.s3.eu-north-1.amazonaws.com/file.mp4`
 
 ### File Transcripts

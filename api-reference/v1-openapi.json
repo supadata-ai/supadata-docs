@@ -890,7 +890,8 @@
               "youtube",
               "tiktok",
               "instagram",
-              "twitter"
+              "twitter",
+              "facebook"
             ],
             "description": "Platform where the media is hosted"
           },
@@ -1160,12 +1161,13 @@
       "MetadataQuery": {
         "type": "string",
         "format": "uri",
-        "description": "URL to any supported internet media. Supports YouTube videos, TikTok videos, Instagram reels/posts, Twitter/X posts, and more.",
+        "description": "URL to any supported internet media. Supports YouTube videos, TikTok videos, Instagram reels/posts, Twitter/X posts, Facebook videos, and more.",
         "examples": [
           "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
           "https://www.tiktok.com/@user/video/1234567890",
           "https://www.instagram.com/reel/ABC123",
-          "https://twitter.com/user/status/1234567890"
+          "https://twitter.com/user/status/1234567890",
+          "https://www.facebook.com/i/videos/1234567890"
         ]
       }
     }
@@ -2928,7 +2930,7 @@
             "required": false
           }
         ],
-        "description": "Get transcript from a supported video platform (YouTube, TikTok, Twitter, Instagram) or file URL. If the video is too large to return transcript immediately, request returns a job ID. Use the `/transcript/:jobId` endpoint to get job results.",
+        "description": "Get transcript from a supported video platform (YouTube, TikTok, Twitter, Instagram, Facebook) or file URL. If the video is too large to return transcript immediately, request returns a job ID. Use the `/transcript/:jobId` endpoint to get job results.",
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -3102,12 +3104,12 @@
           {
             "lang": "TypeScript",
             "label": "Node.js",
-            "source": "import { Supadata } from '@supadata/js';\n\nconst supadata = new Supadata({\n  apiKey: 'YOUR_API_KEY',\n});\n\n// TikTok video, can be also YouTube, Instagram, Twitter\nconst tiktokMetadata = await supadata.metadata({\n  url: 'https://www.tiktok.com/@user/video/1234567890',\n});\nconsole.log(tiktokMetadata);"
+            "source": "import { Supadata } from '@supadata/js';\n\nconst supadata = new Supadata({\n  apiKey: 'YOUR_API_KEY',\n});\n\n// TikTok video, can be also YouTube, Instagram, Twitter, Facebook\nconst tiktokMetadata = await supadata.metadata({\n  url: 'https://www.tiktok.com/@user/video/1234567890',\n});\nconsole.log(tiktokMetadata);"
           },
           {
             "lang": "Python",
             "label": "Python",
-            "source": "from supadata import Supadata\n\nsupadata = Supadata(api_key=\"YOUR_API_KEY\")\n\n# TikTok video, can be also YouTube, Instagram, Twitter\ntiktok_metadata = supadata.metadata(\n    url=\"https://www.tiktok.com/@user/video/1234567890\"\n)\nprint(f\"Caption: {tiktok_metadata.description}\")\nprint(f\"Likes: {tiktok_metadata.stats.likes}\")"
+            "source": "from supadata import Supadata\n\nsupadata = Supadata(api_key=\"YOUR_API_KEY\")\n\n# TikTok video, can be also YouTube, Instagram, Twitter, Facebook\ntiktok_metadata = supadata.metadata(\n    url=\"https://www.tiktok.com/@user/video/1234567890\"\n)\nprint(f\"Caption: {tiktok_metadata.description}\")\nprint(f\"Likes: {tiktok_metadata.stats.likes}\")"
           },
           {
             "lang": "Shell",
