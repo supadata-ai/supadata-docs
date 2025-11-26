@@ -3099,7 +3099,7 @@
           }
         ],
         "summary": "Get media metadata",
-        "description": "Fetch metadata from any supported internet media including YouTube videos, TikTok videos, Instagram reels/posts, and Twitter/X posts. Returns unified metadata with a predictable structure across all platforms.",
+        "description": "Fetch metadata from any supported internet media including YouTube, TikTok, Instagram, Twitter/X and Facebook posts. Returns unified metadata with a predictable structure across all platforms.",
         "x-codeSamples": [
           {
             "lang": "TypeScript",
