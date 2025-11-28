@@ -138,6 +138,12 @@
               "api-reference/endpoint/web/crawl",
               "api-reference/endpoint/web/crawl-get"
             ]
+          },
+          {
+            "group": "Account Endpoints",
+            "pages": [
+              "api-reference/endpoint/account/me"
+            ]
           }
         ]
       }

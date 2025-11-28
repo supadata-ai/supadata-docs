@@ -1169,6 +1169,37 @@
           "https://twitter.com/user/status/1234567890",
           "https://www.facebook.com/i/videos/1234567890"
         ]
+      },
+      "Me": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "string",
+            "description": "Unique identifier for the organization",
+            "example": "550e8400-e29b-41d4-a716-446655440000"
+          },
+          "plan": {
+            "type": "string",
+            "description": "Subscription plan name",
+            "example": "Pro"
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Maximum credits available for the current billing period",
+            "example": 100000
+          },
+          "usedCredits": {
+            "type": "number",
+            "description": "Number of credits used in the current billing period",
+            "example": 15000
+          }
+        },
+        "required": [
+          "organizationId",
+          "plan",
+          "maxCredits",
+          "usedCredits"
+        ]
       }
     }
   },
@@ -3117,6 +3148,49 @@
             "source": "curl -X GET \"https://api.supadata.ai/v1/metadata?url=https%3A%2F%2Fwww.tiktok.com%2F%40user%2Fvideo%2F1234567890\" \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"Content-Type: application/json\""
           }
         ]
+      }
+    },
+    "/me": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Account information retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Me"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getMe",
+        "tags": [
+          "Account"
+        ],
+        "parameters": [],
+        "summary": "Get account information",
+        "description": "Retrieve organization details, plan information, and credit usage."
       }
     }
   }
