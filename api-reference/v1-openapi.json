@@ -301,6 +301,11 @@
             "description": "Number of videos on the channel",
             "example": 100
           },
+          "viewCount": {
+            "type": "number",
+            "description": "Total number of views across all channel videos",
+            "example": 100
+          },
           "thumbnail": {
             "type": "string",
             "description": "URL to channel thumbnail",
