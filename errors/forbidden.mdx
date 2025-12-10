@@ -1,0 +1,55 @@
+---
+title: "Forbidden"
+og:title: "Forbidden | Supadata"
+description: "Access to this resource is forbidden. Explanation of the error and how to fix it."
+---
+
+Access to this resource is forbidden. This error occurs when Supadata cannot access the media URL you provided, typically due to expired access tokens or restrictive permissions on your storage.
+
+```json
+{
+  "status": "failed",
+  "error": "forbidden",
+  "message": "Forbidden",
+  "details": "Access to this resource is forbidden",
+  "documentationUrl": "https://docs.supadata.ai/errors/forbidden"
+}
+```
+
+## Reasons and how to fix
+
+### Expired pre-signed URLs or tokens
+
+The most common cause is providing a media URL with an expired access token or pre-signed URL. Services like AWS S3, Google Cloud Storage, and Azure Blob Storage use time-limited URLs for security.
+
+To fix this:
+
+1. Use publicly accessible URLs without expiration when possible
+2. Generate pre-signed URLs immediately before making the API request
+3. Set a longer TTL (Time To Live) on pre-signed URLs - we recommend at least 1 hour
+4. Configure your storage bucket to allow public read access for media files
+
+### Cloud storage permissions
+
+Your media might be hosted on S3 or another cloud storage service with restrictive permissions that prevent our servers from accessing it.
+
+To fix this:
+
+1. Ensure your storage bucket allows public read access
+2. Update IAM policies to allow external access to the specific media files
+3. Test URL accessibility from a different network or device to confirm it's publicly accessible
+
+### Social media content restrictions
+
+Social media platforms like YouTube, TikTok, and Instagram may restrict access to certain content. Common scenarios include members-only content, private accounts, age-restricted videos, geographic restrictions, or deleted content.
+
+To fix this:
+
+1. Verify the social media content is publicly accessible without login
+2. Ensure content isn't set to private, unlisted, or members-only
+3. Test the link in a private/incognito browser window
+4. If possible, download the media and host it on publicly accessible storage
+
+### Reach out to support
+
+If you continue to face issues or need further assistance, please reach out to support@supadata.ai, and we will assist you as soon as possible.

@@ -13,6 +13,7 @@ Below is a comprehensive list of all possible error codes you might encounter wh
 | [Invalid Request](/errors/invalid-request)               | The request is invalid or malformed                        | 400         |
 | [Unauthorized](/errors/unauthorized)                     | The request is unauthorized. Please check your API key     | 401         |
 | [Upgrade Required](/errors/upgrade-required)             | This feature is not available on your current plan         | 402         |
+| [Forbidden](/errors/forbidden)                           | Access to this resource is forbidden                       | 403         |
 | [Not Found](/errors/not-found)                           | The requested item could not be found                      | 404         |
 | [Limit Exceeded](/errors/limit-exceeded)                 | You have exceeded the allowed request rate or quota limits | 429         |
 | [Transcript Unavailable](/errors/transcript-unavailable) | No transcript is available for this video                  | 206         |
@@ -27,6 +28,6 @@ All errors follow a consistent JSON response format:
   "error": "error-code",
   "message": "Human readable error message",
   "details": "Detailed explanation of the error",
-  "documentationUrl": "https://supadata.ai/errors/error-code"
+  "documentationUrl": "https://docs.supadata.ai/errors/error-code"
 }
 ```
