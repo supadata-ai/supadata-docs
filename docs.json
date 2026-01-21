@@ -29,9 +29,7 @@
                 "group": "Youtube",
                 "icon": "youtube",
                 "pages": [
-                  "youtube/video",
                   "youtube/search",
-                  "youtube/get-transcript",
                   "youtube/get-transcript-translation",
                   "youtube/channel",
                   "youtube/playlist",
