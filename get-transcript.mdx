@@ -138,6 +138,11 @@ When the API returns a job ID, you can poll for results using the job ID endpoin
   "failed".
 </Callout>
 
+#### Polling Guidelines
+
+- **Polling interval**: We recommend polling every 1 second
+- **Job expiry**: Job results are available for **1 hour** after completion. After that, the endpoint will return a `404 Not Found` error. Make sure to retrieve and store results promptly after the job completes.
+
 ### Error Codes
 
 The API returns HTTP status codes and error codes. See this [page](/errors) for more details.
@@ -152,6 +157,24 @@ The API returns HTTP status codes and error codes. See this [page](/errors) for 
 - Instagram video URL, e.g. `https://instagram.com/reel/1234567890/`
 - Facebook video URL, e.g.`https://www.facebook.com/reel/682865820350105/`
 - Publicly accessible file URL, e.g. `https://bucket.s3.eu-north-1.amazonaws.com/file.mp4`
+
+### Video Accessibility
+
+Only publicly accessible videos can be transcribed. Videos that require authentication or have restricted access will return errors:
+
+- **Login-required videos** - Videos that require signing in
+- **Membership/subscriber-only videos** - Content behind paywalls
+- **Private videos** - Videos not publicly listed
+- **Age-restricted videos** - Content with age verification requirements
+- **Heavily geoblocked videos** - Videos available only in specific countries
+
+<Tip>
+  To verify if a video is accessible, try opening it in a browser incognito/private window without signing in. If you can watch the video, it can be transcribed.
+</Tip>
+
+If the video is not accessible, the API will return:
+- `404 Not Found` - Video does not exist or is private
+- `403 Forbidden` - Video requires authentication or is restricted
 
 ### File Transcripts
 
@@ -176,9 +199,15 @@ When `mode = generate`, the `lang` parameter is ignored and the transcript is ge
 
 ## Latency
 
-Requests for existing transcripts (eg. in `mode=native`) are resolved at normal latency. Requests that involve AI generation (eg. in `mode=generate`) can take up to 60s if they do not return an asynchronous job ID earlier. Long videos and large files take longer to transcribe.
+Requests for existing transcripts (eg. in `mode=native`) are resolved at normal latency. Requests that involve AI generation (eg. in `mode=generate`) can take up to 60s if they do not return an asynchronous job ID earlier.
 
-Please consider this when implementing time-outs and UX in your project.
+### AI Transcription Time
+
+AI transcription time is correlated with video duration - the longer the video, the longer the transcription takes. Videos longer than 20 minutes will automatically trigger an asynchronous job, returning a job ID (HTTP 202) instead of the transcript directly.
+
+<Tip>
+  Consider this latency when implementing time-outs and UX in your project. For example, if your app times out before receiving a response, the request will still count towards your credit usage.
+</Tip>
 
 ## Pricing
 
@@ -193,3 +222,11 @@ Please consider this when implementing time-outs and UX in your project.
 | Instagram video                          | `native`   | No transcript available response (206) | 1                              |
 | Instagram video with existing transcript | `auto`     | Supadata returns existing transcript   | 1                              |
 | TikTok video                             | `generate` | Supadata generates transcript with AI  | 2 per min of video (usually 2) |
+
+### Tracking Credit Usage
+
+There are two ways to check how many credits were consumed in a request:
+
+1. **Dashboard**: The [dashboard](https://dash.supadata.ai) has a history section showing all API requests and the number of credits used for each.
+
+2. **Response header**: Each API response includes an `x-billable-requests` header containing the number of credits consumed by that request.
