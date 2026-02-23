@@ -1,0 +1,13 @@
+```python Python
+from supadata import Supadata
+
+supadata = Supadata(api_key="YOUR_API_KEY")
+
+# Start extract job
+job = supadata.extract(
+    url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    prompt="Extract the main topics and key takeaways"
+)
+
+print(job.job_id)
+```

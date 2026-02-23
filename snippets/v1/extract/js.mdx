@@ -1,0 +1,15 @@
+```javascript Node.js
+import { Supadata } from '@supadata/js';
+
+const supadata = new Supadata({
+  apiKey: 'YOUR_API_KEY',
+});
+
+// Start extract job
+const job = await supadata.extract({
+  url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+  prompt: 'Extract the main topics and key takeaways',
+});
+
+console.log(job.jobId);
+```
