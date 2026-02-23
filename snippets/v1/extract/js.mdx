@@ -8,7 +8,7 @@ const supadata = new Supadata({
 // Start extract job
 const job = await supadata.extract({
   url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-  prompt: 'Extract the main topics and key takeaways',
+  prompt: 'How many times does a dog appear in this video? Describe each appearance.',
 });
 
 console.log(job.jobId);

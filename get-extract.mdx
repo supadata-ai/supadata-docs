@@ -40,21 +40,32 @@ The extract endpoint always returns a job ID for asynchronous processing. Use th
 {
   "status": "completed",
   "data": {
-    "topics": ["AI basics", "Machine learning", "Neural networks"],
-    "summary": "An introduction to artificial intelligence concepts"
+    "totalAppearances": 3,
+    "appearances": [
+      { "timestamp": "0:12", "description": "Golden retriever runs across the park" },
+      { "timestamp": "1:45", "description": "Same dog catches a frisbee mid-air" },
+      { "timestamp": "3:20", "description": "Dog rolls over on the grass for belly rubs" }
+    ]
   },
   "schema": {
     "type": "object",
     "properties": {
-      "topics": {
-        "type": "array",
-        "items": { "type": "string" }
+      "totalAppearances": {
+        "type": "number"
       },
-      "summary": {
-        "type": "string"
+      "appearances": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "timestamp": { "type": "string" },
+            "description": { "type": "string" }
+          },
+          "required": ["timestamp", "description"]
+        }
       }
     },
-    "required": ["topics", "summary"]
+    "required": ["totalAppearances", "appearances"]
   }
 }
 ```
@@ -97,17 +108,24 @@ The `schema` parameter accepts a [JSON Schema](https://json-schema.org/) object 
   "schema": {
     "type": "object",
     "properties": {
-      "topics": {
-        "type": "array",
-        "items": { "type": "string" },
-        "description": "Main topics discussed"
+      "totalAppearances": {
+        "type": "number",
+        "description": "Total number of times a dog appears"
       },
-      "summary": {
-        "type": "string",
-        "description": "Brief summary of the video"
+      "appearances": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "timestamp": { "type": "string", "description": "Timestamp of the appearance" },
+            "description": { "type": "string", "description": "What the dog is doing" }
+          },
+          "required": ["timestamp", "description"]
+        },
+        "description": "Each individual dog appearance"
       }
     },
-    "required": ["topics", "summary"]
+    "required": ["totalAppearances", "appearances"]
   }
 }
 ```
@@ -462,21 +480,32 @@ else:
 {
   "status": "completed",
   "data": {
-    "topics": ["AI basics", "Machine learning", "Neural networks"],
-    "summary": "An introduction to artificial intelligence concepts"
+    "totalAppearances": 3,
+    "appearances": [
+      { "timestamp": "0:12", "description": "Golden retriever runs across the park" },
+      { "timestamp": "1:45", "description": "Same dog catches a frisbee mid-air" },
+      { "timestamp": "3:20", "description": "Dog rolls over on the grass for belly rubs" }
+    ]
   },
   "schema": {
     "type": "object",
     "properties": {
-      "topics": {
-        "type": "array",
-        "items": { "type": "string" }
+      "totalAppearances": {
+        "type": "number"
       },
-      "summary": {
-        "type": "string"
+      "appearances": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "timestamp": { "type": "string" },
+            "description": { "type": "string" }
+          },
+          "required": ["timestamp", "description"]
+        }
       }
     },
-    "required": ["topics", "summary"]
+    "required": ["totalAppearances", "appearances"]
   }
 }
 ```
