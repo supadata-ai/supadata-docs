@@ -90,6 +90,10 @@ Each request requires an `x-api-key` header with your API key available after si
   At least one of `prompt` or `schema` must be provided. You can also provide both for maximum control over the output.
 </Info>
 
+<Note>
+  The `/extract` endpoint uses AI to **analyze video content** (what is seen and heard in the video). It does not retrieve transcripts, titles, descriptions, or platform metrics. For those, use the dedicated [Transcript](/get-transcript) or [Metadata](/get-metadata) endpoints.
+</Note>
+
 ### Schema
 
 The `schema` parameter accepts a [JSON Schema](https://json-schema.org/) object that defines the expected structure of the extracted data. This is useful for building pipelines that need consistent, predictable output formats.
@@ -97,6 +101,11 @@ The `schema` parameter accepts a [JSON Schema](https://json-schema.org/) object 
 #### How it works
 
 - **Prompt only**: When only `prompt` is provided, the AI automatically generates a JSON Schema based on the prompt. The generated schema is returned in the `schema` field of the response, so you can reuse it for future requests to get consistent outputs.
+
+  <Info>
+    With prompt-only mode, the response structure (key names, nesting, and types) may vary between calls since the AI generates the schema dynamically. To ensure a consistent output format across requests, provide an explicit `schema`.
+  </Info>
+
 - **Schema only**: When only `schema` is provided, the AI extracts data structured exactly according to the schema.
 - **Both prompt and schema**: The schema defines the output structure, while the prompt guides what content to extract. This gives you maximum control over the extraction.
 
