@@ -3,12 +3,6 @@ title: "MCP"
 description: "Model Context Protocol server for AI-powered web and video scraping"
 ---
 
-## Quick Start
-
-[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=%40supadata%2Fmcp&config=eyJlbnYiOnsiU1VQQURBVEFfQVBJX0tFWSI6IllPVVItQVBJLUtFWSJ9LCJjb21tYW5kIjoibnB4IC15IEBzdXBhZGF0YS9tY3AifQ%3D%3D)
-
-Or use Smithery: https://smithery.ai/server/@supadata-ai/mcp
-
 ## Overview
 
 The Supadata MCP (Model Context Protocol) server enables powerful web and video scraping capabilities directly within AI development environments like Cursor, Claude Desktop, and VS Code. This open-source integration allows AI models to extract transcripts, scrape web pages, and crawl entire websites to gather context.
@@ -25,10 +19,46 @@ The Supadata MCP (Model Context Protocol) server enables powerful web and video 
 ### Manual Installation
 
 ```bash
-env SUPADATA_API_KEY=your-api-key npx -y @supadata/mcp
+env X_API_KEY=your-api-key npx -y @supadata/mcp
 ```
 
 ## Integration Setup
+
+### Claude / Claude Desktop / Cowork
+
+Connect directly from Claude without manually configuring an API key.
+
+1. Go to **Settings** → **Connectors**
+2. Click **Add custom connector** and enter `Supadata` as the name and `https://api.supadata.ai/mcp` as the URL. Click **Add**.
+
+<Frame>
+  <img src="/images/mcp-claude-add-connector.png" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+3. Click **Authorize** when prompted to grant MCP access.
+
+<Frame>
+  <img src="/images/mcp-claude-oauth.png" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Claude Code
+
+1. Add the Supadata MCP server:
+
+```bash
+claude mcp add --transport http supadata https://api.supadata.ai/mcp
+```
+
+2. Run `/mcp` in Claude Code and select **Authenticate** for Supadata to complete the OAuth flow in your browser.
+
+### ChatGPT
+
+1. Go to **Settings** → **Apps & Connectors**
+2. Click **Create** to add a new connector
+3. Enter `Supadata` as the name and `https://api.supadata.ai/mcp` as the connector URL
+4. Click **Save**
+
+To use it in a conversation, click the **+** icon in the composer, select **More** → **Developer mode**, and choose the Supadata connector.
 
 ### Cursor
 
@@ -42,15 +72,15 @@ env SUPADATA_API_KEY=your-api-key npx -y @supadata/mcp
     "command": "npx",
     "args": ["-y", "@supadata/mcp"],
     "env": {
-      "SUPADATA_API_KEY": "your-api-key"
+      "X_API_KEY": "your-api-key"
     }
   }
 }
 ```
 
-### Claude Desktop
+### Windsurf
 
-Go to **Claude settings** → ** Developer** → **Edit Config** and add the following to the config file:
+Add to `~/.windsurf/cascade/config.json`:
 
 ```json
 {
@@ -59,7 +89,7 @@ Go to **Claude settings** → ** Developer** → **Edit Config** and add the fol
       "command": "npx",
       "args": ["-y", "@supadata/mcp"],
       "env": {
-        "SUPADATA_API_KEY": "your-api-key"
+        "X_API_KEY": "your-api-key"
       }
     }
   }
@@ -74,29 +104,11 @@ Using the MCP extension:
 2. Add Supadata server configuration
 3. Set your API key in environment settings
 
-### Windsurf
-
-Add to `~/.windsurf/cascade/config.json`:
-
-```json
-{
-  "mcpServers": {
-    "supadata": {
-      "command": "npx",
-      "args": ["-y", "@supadata/mcp"],
-      "env": {
-        "SUPADATA_API_KEY": "your-api-key"
-      }
-    }
-  }
-}
-```
-
 ## Configuration
 
 ### Environment Variables
 
-- `SUPADATA_API_KEY`: Your Supadata API key (required)
+- `X_API_KEY`: Your Supadata API key (required)
 
 ## Support
 
