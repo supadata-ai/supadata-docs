@@ -160,6 +160,11 @@
           "anchor": "Feedback",
           "href": "https://supadata.featurebase.app",
           "icon": "comment"
+        },
+        {
+          "anchor": "Changelog",
+          "href": "https://feedback.supadata.ai/changelog",
+          "icon": "clock-rotate-left"
         }
       ]
     }
