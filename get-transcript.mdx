@@ -103,6 +103,12 @@ When `text=false`:
 }
 ```
 
+<Info>
+  An HTTP 200 response with an empty `content` array (`[]`) means the
+  transcription was successful but no speech was detected in the audio/video.
+  Such requests are still charged according to the media duration.
+</Info>
+
 ### Getting Job Results
 
 When the API returns a job ID, you can poll for results using the job ID endpoint:
@@ -177,6 +183,10 @@ Only publicly accessible videos can be transcribed. Videos that require authenti
 If the video is not accessible, the API will return:
 - `404 Not Found` - Video does not exist or is private
 - `403 Forbidden` - Video requires authentication or is restricted
+
+### Live Streams
+
+Only complete media can be transcribed. Live streams, broadcasts, and similar ongoing content are not supported, and this limitation applies to all platforms that offer them.
 
 ### File Transcripts
 
